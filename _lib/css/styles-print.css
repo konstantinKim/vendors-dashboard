@@ -1,0 +1,284 @@
+@media print
+{
+	body { margin: auto auto !important position: relative !important; top: 50% !important;
+		-khtml-print-color-adjust: exact;
+		-moz-print-color-adjust: exact;
+		-ms-print-color-adjust: exact;
+		-o-print-color-adjust: exact;
+		-webkit-print-color-adjust: exact;
+		width: 1100px !important;
+	}
+	
+	
+	
+	
+	a.link-blue{ color: #0072bc; outline: none; text-decoration: none; }
+	a[href]:after { content: none !important; }
+	
+	
+	
+	
+	.col-gh-7 { float: left !important; margin: 0; padding: 0; width: 14.2857143% !important; }
+	.col-gh-3 { float: left; margin: 0; padding: 0; width: 33.3333333% !important; }
+	.col-ghgrid-4 { float: left !important; margin: 0; padding: 0; width: 50% !important; }
+	
+	.print-page-break { display: block; page-break-before: always; }
+	.print-page-break-none { display: block; margin: -30px 0px 0px 0px !important; }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* global header, global nav, and global sub nav area */
+	#top-most-header-container,
+	#header-container,
+	#global-nav-container,
+	#global-sub-nav-container { display: none; }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* dark gray bar and tabs area */
+	#global-main-top-bar { background-color: #484848 !important; margin: 30px auto 0px auto !important; overflow: hidden; padding: 0; width: 1100px !important; min-width: 1100px !important; height: 40px; }
+	#global-main-top-bar.print-version { margin: 700px auto 0px auto !important;  }
+	#global-main-top-bar img { float: left; }
+	#global-main-top-bar p { color: #fff !important; float: left; font: normal 15px Arial; line-height: 40px; margin: 0; padding: 0px 0px 0px 10px; }
+	
+	#global-main-tabs { background-color: #f5f5f5 !important; border-top: solid 1px transparent; border-right: solid 1px #ccc !important; border-bottom: solid 1px transparent; border-left: solid 1px #ccc !important; margin: 0 auto; padding: 0 !important; width: 1100px !important; min-width: 1100px !important; height: auto; }
+	#global-main-tabs .tabs-statistics { color: #4c4c4c; display: inline-block; font: normal 12px Arial; line-height: 47px; margin: 0; padding: 0; position: relative; top: 2px; text-align: center; width: 100% !important; }
+	#global-main-tabs .tabs-statistics-selected { background: #fff !important; border-left: solid 1px #ccc; color: #4c4c4c; display: inline-block; font: normal 12px Arial; line-height: 47px; margin: 0; padding: 0; position: relative; top: 4px; text-align: center; width: 100% !important; }
+	#global-main-tabs .tabs-statistics img,
+	#global-main-tabs .tabs-statistics-selected img { padding: 0px 8px 0px 0px; }
+	#global-main-tabs .border { border-top: solid 1px transparent; border-right: solid 1px #ccc !important; border-bottom: solid 1px transparent; border-left: solid 1px transparent; margin: 0; padding: 0; }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* main content area */
+	#global-main-content { background: #fff !important; border: 1px solid #ccc; margin: -3px auto 0px auto !important; padding: 21px 0px 46px 0px; width: 1100px; min-width: 1100px; height: auto; }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* statistics charts area */
+	#statistics-title { color: #00285e; float: left; font: normal 30px Arial; line-height: 32px; margin: 45px auto 0px auto; padding: 0; text-align: center !important; min-width: 1100px !important; }
+	#statistics-title span { color: #00285e; font: normal 13px Arial; line-height: 15px; margin: 0; padding: 0; position: relative; top: -8px; text-align: center; text-transform: uppercase; }
+	
+	#statistics-filter { color: #4c4c4c; font: normal 12px Arial; line-height: 21px; margin: 19px 0px 0px 31px; padding: 0; width: 1038px; height: auto; }
+	#statistics-filter .left { margin: 0; padding: 0; width: 100%; height: auto; }
+	#statistics-filter .left span.selected { color: #4c4c4c; font: bold 12px Arial; line-height: 21px; }
+	#statistics-filter .left span.selected img { padding: 0px 8px 0px 0px; position: relative !important; top: 3px !important; }
+	#statistics-filter .left span.divider { color: #ccc; font: normal 17px Arial; line-height: 17px; margin: 0px 15px 0px 15px; padding: 0; position: relative; top: -1px; }
+	#statistics-filter .left a.link-blue img { padding: 0px 8px 0px 0px; position: relative !important; top: 3px !important; }
+	#statistics-filter .left .button-print { background: #0072bc !important; border: none; color: #fff !important; float: left; font: normal 10px Arial; line-height: 12px; margin: 0px 0px 0px 5px; outline: none; padding: 4px 12px 4px 12px !important; position: relative !important; top: 0px !important; text-decoration: none;
+		border-radius: 4px;
+		-kthml-border-radius: 4px;
+		-ms-border-radius: 4px;
+		-moz-border-radius: 4px;
+		-o-border-radius: 4px;
+		-webkit-border-radius: 4px;
+}
+	#statistics-filter .right { margin: 0; padding: 0; text-align: right;  width: 100%; height: 21px; }
+	#statistics-filter .right .filter-calendar { background-image: url('http://turnertracker.com/assets/_images/icons/content/calendar.png') !important; float: right; margin: font: normal 12px Arial; 0px 0px 0px 9px; padding: 0; text-align: left !important; width: 116px !important; height: 21px !important; }
+	#statistics-filter .right .input-calendar { background: none; border: none; color: #4c4c4c; font: normal 12px Arial; line-height: 19px; margin: 0; padding: 0px 7px 0px 5px; width: 96px; height: 19px;
+		appearance: none;
+		-khtml-appearance: none;
+		-moz-appearance: none;
+		-ms-appearance: none;
+		-o-appearance: none;
+		-webkit-appearance: none;
+	}
+	#statistics-filter .right .filter-calendar input.input-calendar { padding-left: 26px !important; }
+	#statistics-filter .right .filter-button { background: #0072bc !important; border: none; color: #fff !important; float: right; font: normal 10px Arial; line-height: 12px; margin: 0px 0px 0px 5px; outline: none; padding: 4px 12px 4px 12px; position: relative; top: 0px; text-decoration: none;
+		border-radius: 4px;
+		-kthml-border-radius: 4px;
+		-ms-border-radius: 4px;
+		-moz-border-radius: 4px;
+		-o-border-radius: 4px;
+		-webkit-border-radius: 4px;
+	}
+	
+	#chart-donut-container { border: none; margin: 0px auto !important; overflow: hidden; padding: 30px 0px 0px 0px !important; width: 1038px !important; height: auto; }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* carbon footprint area */
+	#carbon-title { border: none; color: #666; display: block; font: bold 14px Arial; line-height: 15px; margin: 0px auto 22px auto; padding: 120px 0px 0px 0px !important; width: 1038px; height: auto; }
+	#carbon-title .spacer { float: left; margin: 0; padding: 0; width: 42%; }
+	#carbon-title .actual { float: left; margin: 0; padding: 0; width: 29%; }
+	#carbon-title .projected { float: left; margin: 0; padding: 0; width: 29%; }
+	#carbon-container { border: solid 3px #ccc; margin: 0px auto 0px auto; width: 1038px; height: auto; } 
+	#carbon-row { border: solid 1px #ccc; line-height: 50px; margin: 0px auto 0px auto; overflow: hidden; padding: 12px 0px 12px 0px; }
+	#carbon-row .withbg { background: #f5f5f5; }
+	#carbon-row .img-area { float: left; margin: 0; padding: 0; text-align: center; width: 12%; height: auto; }
+	#carbon-row .title { color: #4c4c4c; float: left; font: normal 14px Arial; line-height: 16px; margin: 0; padding: 12px 0px 0px 0px; position: relative; top: 0px; width: 30%; height: auto; }
+	#carbon-row .actual { color: #33537e; float: left; font: bold 20px Arial; line-height: 22px; margin: 0; padding: 18px 0px 0px 0px; width: 29%; height: auto; }
+	#carbon-row .projected { color: #33537e; float: left; font: bold 20px Arial; line-height: 22px; margin: 0; padding: 18px 0px 0px 0px; width: 29%; height: auto; }
+	#carbon-row span.small { color: #33537e; font: normal 12px Arial; line-height: 14px; margin: 0; padding: 0; }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* overall diversion rate */
+	#statistics-diversion-rate-container { background: #ddd !important; border: none; margin: 0 auto; padding: 0; position: relative; top: 0px; width: 1100px !important; min-width: 1100px !important; height: auto; }
+	#statistics-diversion-rate-container .rates { color: #333; float: left; font: normal 15px Arial; line-height: 17px; margin: 0; padding: 14px 0px 0px 0px !important; text-align: center; width: 100% !important; }
+	#statistics-diversion-rate-container .rates span { font: bold 20px Arial; }
+	/*#statistics-diversion-rate-container .border-right { border-top: solid 1px transparent; border-right: solid 1px #b3b3b3; border-bottom: solid 1px transparent; border-left: solid 1px transparent; margin: 0; padding: 14px 0px 0px 0px !important; height: 40px; }*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* overall content */
+	#statistics-overall-content { margin: 0 auto; overflow: hidden; padding: 0 !important; width: 1100px !important; min-width: 1100px !important; height: auto; }
+	#statistics-overall-content .content { float: left !important; margin: 0 !important; overflow: hidden; padding: 0px 0px 0px 50px !important; width: 100% !important; }
+	#statistics-overall-content .content span.line { display: none; }
+	#statistics-overall-content .content span.left { color: #4c4c4c; float: left !important; font: bold 12px Arial; line-height: 13px; margin: 0 !important; padding: 0 !important; width: 50% !important; }
+	#statistics-overall-content .content span.right { color: #4c4c4c; float: left !important; font: normal 12px Arial; line-height: 13px; margin: 0 !important; padding !important: 0; width: 40% !important; }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* statistics data table area */
+	#statistics-overall-content { border-top: solid 1px transparent; border-right: solid 1px #ccc; border-bottom: solid 1px #ccc; border-left: solid 1px #ccc; margin: 0 auto; overflow: hidden; padding: 40px 0px 37px 0px !important; width: 1100px; min-width: 1100px !important; height: auto; }
+	
+	#statistics-table { margin: 0px auto; width: 1038px !important; }
+	.table>tbody { border-top: solid 1px transparent; border-right: solid 5px #ccc !important; border-bottom: solid 1px transparent; border-left: solid 5px #ccc !important; }
+	.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th { background-color: #f5f5f5 !important; }
+	.table-bordered { border: none; }
+	.table-bordered>thead>tr>th,
+	.table-bordered>tbody>tr>th,
+	.table-bordered>tfoot>tr>th,
+	.table-bordered>thead>tr>td,
+	.table-bordered>tbody>tr>td,
+	.table-bordered>tfoot>tr>td { border: none; }
+	.table-bordered>thead>tr>th, .table-bordered>thead>tr>td { border-bottom-width: 2px; }
+	
+	#statistics-table-container { color: #4c4c4c; font: normal 12px; line-height: 14px; margin: 32px auto 0px auto !important; overflow: hidden; padding: 0; width: 1038px !important; min-width: 1038px !important; height: auto; }
+	#statistics-table-container th.column-title { border-top: solid 1px transparent; border-right: solid 1px transparent; border-bottom: solid 3px #ccc !important; border-left: solid 1px transparent; font: bold 14px Arial !important; line-height: 14px; margin: 0; padding: 0px 0px 9px 16px !important; text-align: left; min-width: 24% !important; width: 24% !important; }
+	#statistics-table-container td.column-title { border-top: solid 1px #ccc; border-right: solid 1px transparent; border-bottom: solid 1px transparent; border-left: solid 1px transparent; font: normal 14px Arial !important; line-height: 14px; margin: 0; padding: 9px 0px 9px 19px !important; vertical-align: middle; min-width: 24% !important; width: 24% !important; }
+	#statistics-table-container th.column-stats { border-top: solid 1px transparent; border-right: solid 1px transparent; border-bottom: solid 3px #ccc !important; border-left: solid 1px transparent; font: bold 14px Arial !important; line-height: 14px; margin: 0; padding: 0px 0px 9px 6px !important; min-width: 8.44444444% !important; width: 8.44444444% !important; }
+	#statistics-table-container td.column-stats { border-top: solid 1px #ccc; border-right: solid 1px transparent; border-bottom: solid 1px transparent; border-left: solid 1px transparent; font: normal 14px Arial !important; line-height: 14px; margin: 0; padding: 9px 0px 9px 6px !important; vertical-align: middle; min-width: 8.44444444% !important; width: 8.44444444% !important; }
+	#statistics-table-container th.column-title-footer { border-top: solid 3px #ccc !important; border-right: solid 1px transparent; border-bottom: solid 1px transparent; border-left: solid 1px transparent; font: bold 14px Arial !important; line-height: 14px; margin: 0; padding: 9px 0px 9px 16px !important; text-align: left; width: 24% !important; }
+	#statistics-table-container th.column-stats-footer { border-top: solid 3px #ccc !important; border-right: solid 1px transparent; border-bottom: solid 1px transparent; border-left: solid 1px transparent; font: bold 14px Arial; line-height: 14px; margin: 0; padding: 9px 0px 9px 6px !important; text-align: left; width: 8.44444444% !important; }
+	
+	div.dataTables_length label { display: none; border: none; color: #4c4c4c; float: left; font: normal 12px Arial; line-height: 14px; margin: 17px 0px 0px 0px; outline: none; text-align: left; }
+	div.dataTables_length select { display: none; border: solid 1px #ccc; color: #4c4c4c; float: left; font: normal 12px Arial; line-height: 24px; margin: 0px 3px 0px 0px; position: relative; top: -6px; width: 75px; height: 26px; }
+	div.dataTables_filter label { display: none; color: #4c4c4c; float: right !important; font: normal 12px Arial; line-height: 14px; margin: 17px 0px 14px 0px !important; position: relative !important; top: 0px !important; }
+	div.dataTables_filter input { display: none; float: right !important; margin: 0px 0px 0px 4px; position: relative !important; top: -6px !important; width: 150px; !important; height: 26px; }
+	/*input[type=search], input[type=text] { border: solid 1px #ccc !important;
+		border-radius: 4px !important;
+		-kthml-border-radius: 4px !important;
+		-ms-border-radius: 4px !important;
+		-moz-border-radius: 4px !important;
+		-o-border-radius: 4px !important;
+		-webkit-border-radius: 4px !important;
+	}*/
+	div.dataTables_info { color: #4c4c4c; font: normal 12px Arial; line-height: 14px; padding-top: 8px !important; }
+	div.dataTables_paginate { color: #4c4c4c; float: right; font: normal 12px Arial; line-height: 14px; margin: -22px 0px 0px 0px !important; }
+	div.dataTables_paginate ul.pagination { color: #4c4c4c; font: normal 12px Arial; line-height: 14px; margin: 0; }
+	.pagination { display: inline-block; padding-left: 0; margin: 20px 0px 0px 0px !important;
+		border-radius: 4px;
+		-kthml-border-radius: 4px;
+		-ms-border-radius: 4px;
+		-moz-border-radius: 4px;
+		-o-border-radius: 4px;
+		-webkit-border-radius: 4px;
+	}
+	.pagination>li { display: inline; }
+	.pagination>li>a, .pagination>li>span { background-color: #fff !important; border: 1px solid #ccc !important; color: #4c4c4c; float: left; font: normal 12px Arial; line-height: 14px; margin: 3px 0px 0px 0px; margin-left: -1px; padding: 4px 8px 4px 8px; float: left; position: relative; text-decoration: none; }
+	.pagination>li:first-child>a,
+	.pagination>li:first-child>span { border-top-left-radius: 4px !important; border-bottom-left-radius: 4px !important; margin-left: 0; }
+	.pagination>li:last-child>a,
+	.pagination>li:last-child>span { border-top-right-radius: 4px !important; border-bottom-right-radius: 4px !important; }
+	.pagination>li>a:hover,
+	.pagination>li>span:hover,
+	.pagination>li>a:focus,
+	.pagination>li>span:focus { background: #117bca !important; border-color: #117bca !important; color: #fff !important; outline: none; }
+	.pagination>.active>a,
+	.pagination>.active>span,
+	.pagination>.active>a:hover,
+	.pagination>.active>span:hover,
+	.pagination>.active>a:focus,
+	.pagination>.active>span:focus { background-color: #022b5c !important; border-color: #022b5c !important; color: #fff !important; cursor: default; z-index: 2; }
+	.pagination>.disabled>span,
+	.pagination>.disabled>span:hover,
+	.pagination>.disabled>span:focus,
+	.pagination>.disabled>a,
+	.pagination>.disabled>a:hover,
+	.pagination>.disabled>a:focus { background-color: #fff !important; border-color: #ccc !important; color: #ccc !important; cursor: not-allowed; }
+	.pagination-lg>li>a,
+	.pagination-lg>li>span { font-size: 18px; padding: 10px 16px; }
+	.pagination-lg>li:first-child>a,
+	.pagination-lg>li:first-child>span { border-top-left-radius: 6px !important; border-bottom-left-radius: 6px !important; }
+	.pagination-lg>li:last-child>a, .pagination-lg>li:last-child>span { border-top-right-radius: 6px !important; border-bottom-right-radius: 6px !important; }
+	.pagination-sm>li>a, .pagination-sm>li>span { font-size: 12px; padding: 5px 10px; }
+	.pagination-sm>li:first-child>a, .pagination-sm>li:first-child>span { border-top-left-radius: 3px !important; border-bottom-left-radius: 3px !important; }
+	.pagination-sm>li:last-child>a, .pagination-sm>li:last-child>span { border-top-right-radius: 3px !important; border-bottom-right-radius: 3px !important; }
+	
+	.statistics-box { border: solid 2px #ddd; color: #4c4c4c; float: left; margin: 8px auto 0px auto; padding: 0; width: 32.23% !important; height: auto;
+		border-radius: 4px;
+		-kthml-border-radius: 4px;
+		-ms-border-radius: 4px;
+		-moz-border-radius: 4px;
+		-o-border-radius: 4px;
+		-webkit-border-radius: 4px;
+	}
+	.statistics-box .left { float: left; font: normal 12px Arial; line-height: 14px; margin: 0; padding: 6px 0px 6px 6px !important; width: 70%; height: auto; }
+	.statistics-box .right { float: left; font: bold 12px Arial; line-height: 14px; margin: 0; padding: 6px 0px 6px 6px !important; width: 25%; height: auto; }
+	.statistics-box-space { float: left; margin: 0; padding: 0; width: 1%; height: auto; }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* footer area and modal windows */
+	#global-footer-container { display: none; }
+	.modal-add-project, .reveal-form { display: none; }
+	
+	.datepicker { display: none; }
+}

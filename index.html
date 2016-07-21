@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<head>
+
+	<title>Haulers and Subcontractors Dashboard</title>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--<meta name="viewport" content="width=device-width" />-->
+    <meta name="viewport" content="width=1100" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/vendor/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/vendor/bootstrap-datatables.css">
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/styles.css">
+    <!-- settings styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/styles-settings.css">
+    <!-- statistics styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/styles-statistics.css">
+    
+    <style>
+		#chart-donut-container { border: none; margin: 24px auto 0px auto; overflow: hidden; padding: 0; width: 100%; height: auto; }
+		#chart-donut-ticket, #chart-donut-ticket-2, #chart-donut-ticket-3 { margin: 0 auto; padding: 0; width: 600px; }
+		.highcharts-tooltip span { background: #4c4c4c; border: none; color: #fff; font: normal 10px Arial; line-height: 16px; margin: 0; padding: 6px 8px 6px 8px; text-align: center; width: auto;
+			border-radius: 3px;
+			-khtml-border-radius: 3px;
+			-moz-border-radius: 3px;
+			-ms-border-radius: 3px;
+			-o-border-radius: 3px;
+			-webkit-border-radius: 3px;
+			opacity: 0.9;
+			-khtml-opacity: 0.9;
+			-moz-opacity: 0.9;
+			-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+			filter: alpha(opacity=90);
+			-o-opacity: 0.9;
+			-webkit-opacity: 0.9;
+		}
+		.toggle-bg-gray { background: #0f0; }
+		.toggle-bg-white { background: #fff; }
+		
+		tr.content { border-top: none !important; border-bottom: none !important; overflow: hidden !important; height: 100% !important; min-height: 100% !important; }
+		.thead { font: normal 14px ArialRegular !important; letter-spacing: .15px !important; padding: 12px 0px 6px 15px !important;  }
+		.tdata { border-right: solid 1px #ccc !important; line-height: 16px; font: normal 14px ArialRegular !important; letter-spacing: .15px !important; margin: 0; padding: 6px 15px 6px 15px !important; width: 25% !important; height: 100% !important; min-height: 100%; !important; }
+		.tdata-bold { border-right: solid 1px #ccc !important; font: normal 13px ArialBold !important; letter-spacing: .15px !important; line-height: 16px; margin: 0; padding: 6px 15px 6px 15px !important; width: 25% !important; height: 100% !important; min-height: 100%; !important; }
+		.tdata-spacer { background: #ccc; width: 1px !important; height: 100% !important;}
+		@-moz-document url-prefix() { .tdata, .tdata-bold { min-height: 1000% !important; } }
+		
+		table.table thead .sorting { background-attachment: relative; background-position: -16px right !important; }
+		table.table thead .sorting_asc { background-attachment: relative; background-position: -16px right !important; }
+		table.table thead .sorting_desc { background-attachment: relative; background-position: -16px right !important; }
+		
+		
+		.tdata.no-border, .tdata-bold.no-border { border-right: solid 1px transparent !important; }
+		.column-25 { width: 25% !important; height: 100%; }
+		.rounded-corner { display: block; background: #0072bc; border: none; padding: 4px 0px 4px 0px; width: 100px;
+			border-radius: 4px !important;;
+			-kthml-border-radius: 4px !important;;
+			-ms-border-radius: 4px !important;;
+			-moz-border-radius: 4px !important;;
+			-o-border-radius: 4px !important;;
+			-webkit-border-radius: 4px !important;;
+		}
+		.note { background: #fff; border: solid 1px #ccc; !important; line-height: 16px; margin: -30px auto 30px auto; padding: 9px 30px 10px 15px; width: 92% }
+	</style>
+    
+    <script type="text/javascript" src="/_lib/js/vendor/jquery-1.10.0.min.js"></script>
+    <!-- jquery 1.7 for reveal window -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/_lib/js/vendor/jquery-1.10.0.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/_lib/js/vendor/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/_lib/js/scripts.js"></script>
+    <script type="text/javascript" src="/_lib/js/vendor/jquery.reveal.js"></script>
+
+</head>
+  <body>  		    
+  	<!-- -------------- -->
+    <!-- header section -->
+    <!-- -------------- -->
+    
+    <!-- top most header -->
+    <div id="top-most-header-container">
+    	<div class="container-gh">
+        	<div class="row" id="top-most-header">
+            	<div class="col-ghgrid-2">
+                	<div class="language-container">
+                    	<div style="float: left">
+                        	<img src="../_images/global/icon-flag-usa.jpg" style="margin: 0; padding: 0px 4px 0px 0px; position: relative; top: -1px;">USA
+                        </div>
+                        <!-- drop down for language will go here -->
+                        <div style="float: left">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-ghgrid-3">
+                	<div class="cs-container">
+                    	FOR CUSTOMER SERVICE CALL <span>1-888-525-1301</span>
+                    </div>
+                </div>
+                <div class="col-ghgrid-3">
+                	<div class="alerts-container">
+                    	<div class="box alert-tasks">
+                        	<img class="icon-tasks" src="../_images/global/icon-tasks-gray.gif" />Tasks
+                        </div>
+                        <div class="box2 alert-alerts">
+                        	<img class="icon-alerts" src="../_images/global/icon-alerts-gray.gif" style="position: relative; top: -2px;" />Alerts
+                        </div>
+                         <div class="box2 alert-messages-on">
+                        	<img class="icon-messages" src="../_images/global/icon-messages-blue.gif" />(<a class="link" href="#">5</a>) Messages
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- main header -->
+    <div class="container-gh">
+    	<div class="row" id="header-container">
+        	<div class="col-ghgrid-2">
+            	<div class="logo"><img src="../_images/global/logo.gif" /></div>
+            </div>
+            <div class="col-ghgrid-6">
+            	<div class="user">
+                	<p>Welcome <span class="name">Dean R.</span></p>
+                </div>
+                <div class="disposed">
+                	<p>4570.81<br/><span class="red">Disposed</span></p>
+                </div>
+                <div class="recycled">
+                	<p>13,787.33<br/><span class="green">Recycled</span></p>
+                </div>
+                <div class="reused">
+                	<p>1,903.67<br/><span class="blue">Reused</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------------ -->
+    <!-- global nav section -->
+    <!-- ------------------ -->
+    
+    <!-- main nav -->
+    <div class="container-gh">
+    	<div class="row" id="global-nav-container">
+        	<div class="col-ghgrid-1">
+            	<a class="link-regular" href="haulsub-projects-active.html">
+                <span class="nav-selected nav-home-selected">
+                	<span style="position: relative; top: 44px;">HOME</span><br/>
+                    <img class="global-nav-home-hover" src="../_images/icons/nav/home-white.png" style="margin: 2px 0px 0px 0px;">
+                </span>
+                </a>
+            </div>
+            <div class="col-ghgrid-1">
+            	<a class="link-regular" href="haulsub-statistics-overview.html">
+                <span class="nav nav-statistics">
+                	<span style="position: relative; top: 44px;">STATISTICS</span><br/>
+                    <img class="global-nav-statistics" src="../_images/icons/nav/statistics-dark.png" style="margin: 2px 0px 0px 0px;"><br/>
+                    <img class="global-nav-statistics-hover" src="../_images/icons/nav/statistics-white.png" style="margin: 50px 0px 0px 0px;">
+                </span>
+                </a>
+            </div>
+            <div class="col-ghgrid-1">
+            	<a class="link-regular" href="haulsub-settings-change-password.html">
+                <span class="nav nav-settings">
+                	<span style="position: relative; top: 44px;">SETTINGS</span><br/>
+                    <img class="global-nav-settings" src="../_images/icons/nav/settings-dark.png" style="margin: 2px 0px 0px 0px;"><br/>
+                    <img class="global-nav-settings-hover" src="../_images/icons/nav/settings-white.png" style="margin: 50px 0px 0px 0px;">
+                </span>
+                </a>
+            </div>
+            <div class="col-ghgrid-1">
+            	<a class="link-regular" href="recycler-search.html">
+                <div class="nav nav-recycler-search">
+                	<span style="position: relative; top: 44px;">RECYCLER SEARCH</span><br/>
+                    <img class="global-nav-recycler-search" src="../_images/icons/nav/recycler-search-dark.png" style="margin: 2px 0px 0px 0px;"><br/>
+                    <img class="global-nav-recycler-search-hover" src="../_images/icons/nav/recycler-search-white.png" style="margin: 50px 0px 0px 0px;">
+                </div>
+                </a>
+            </div>
+            <div class="col-ghgrid-1">
+            	<a class="link-regular" href="#" data-reveal-id="reveal-suggestions" data-animation="fade">
+                <span class="nav nav-suggestions">
+                	<span style="position: relative; top: 44px;">SUGGESTIONS</span><br/>
+                    <img class="global-nav-suggestions" src="../_images/icons/nav/suggestions-dark.png" style="margin: 2px 0px 0px 0px;"><br/>
+                    <img class="global-nav-suggestions-hover" src="../_images/icons/nav/suggestions-white.png" style="margin: 50px 0px 0px 0px;">
+                </span>
+                </a>
+            </div>
+            <div class="col-ghgrid-1">
+            	<a class="link-regular" href="#" data-reveal-id="reveal-reportbug" data-animation="fade">
+                <span class="nav nav-report-bug">
+                	<span style="position: relative; top: 44px;">REPORT BUG</span><br/>
+                    <img class="global-nav-report-bug" src="../_images/icons/nav/report-bug-dark.png" style="margin: 2px 0px 0px 0px;"><br/>
+                    <img class="global-nav-report-bug-hover" src="../_images/icons/nav/report-bug-white.png" style="margin: 50px 0px 0px 0px;">
+                </span>
+                </a>
+            </div>
+            <div class="col-ghgrid-1">
+            	<a class="link-regular" href="#">
+                <span class="nav nav-live-help">
+                	<span style="position: relative; top: 44px;">LIVE HELP</span><br/>
+                    <img class="global-nav-live-help" src="../_images/icons/nav/live-help-dark.png" style="margin: 2px 0px 0px 0px;"><br/>
+                    <img class="global-nav-live-help-hover" src="../_images/icons/nav/live-help-white.png" style="margin: 50px 0px 0px 0px;">
+                </span>
+                </a>
+            </div>
+            <div class="col-ghgrid-1">
+            	<a class="link-regular" href="#">
+                <span class="nav nav-log-out">
+                	<span style="position: relative; top: 44px;">LOG OUT</span><br/>
+                    <img class="global-nav-log-out" src="../_images/icons/nav/log-out-dark.png" style="margin: 2px 0px 0px 0px;"><br/>
+                    <img class="global-nav-log-out-hover" src="../_images/icons/nav/log-out-white.png" style="margin: 50px 0px 0px 0px;">
+                </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- sub nav -->
+    <div id="global-sub-nav-container">
+    	<div class="container-gh">
+        	<div class="row" id="global-sub-nav" style="text-align: left;">
+            	<div class="col-ghgrid-8">
+                	<a class="sub-nav-selected padding" href="haulsub-projects-active.html">ACTIVE PROJECTS</a>
+                    <a class="sub-nav" href="haulsub-projects-completed.html" style="padding: 0px 14px 0px 12px;">COMPLETED PROJECTS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="root">
+    	
+    </div>
+
+    <!-- -------------- -->
+    <!-- footer section -->
+    <!-- -------------- -->
+    
+    <div id="global-footer-container">
+    	<div class="container-gh" id="global-footer">
+        	<div class="row">
+            	<div class="col-ghgrid-4">
+                	<div class="footer-left">
+                    	Turner is an Equal Opportunity Employer M/F.<br/>All qualified applicants will receive consideration for employment without regard to their protected veteran status and will not be discriminated against on the basis of disability.
+                    </div>
+                </div>
+                <div class="col-ghgrid-1">&nbsp;</div>
+                <div class="col-ghgrid-3">
+                	<div class="footer-right">
+                    	&copy; 2014 Turner Construction Company. All Rights Reserved
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<script type="text/javascript" src="/_lib/js/vendor/jquery.easing.min.js"></script>
+	<script type="text/javascript" src="/_lib/js/vendor/jquery-easing-compatibility.js"></script>
+    <script type="text/javascript" src="/_lib/js/vendor/highcharts.js"></script>
+    <script type="text/javascript" src="/_lib/js/vendor/jquery.datatables.js"></script>
+    <script type="text/javascript" src="/_lib/js/vendor/bootstrap.datatables.js"></script>
+	<script type='text/javascript' src="/_lib/js/vendor/bootstrap.min.js"></script>
+
+    <script src="/static/bundle.js"></script>
+
+  </body>
+</html>

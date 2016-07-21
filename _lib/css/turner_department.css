@@ -1,0 +1,170 @@
+/* =================== */
+/* == settings page == */
+/* =================== */
+
+
+
+
+
+
+
+
+
+#settings-container { border: none; margin: 7px auto 0px auto; overflow: hidden; padding: 0; width: 1038px; /*width: 94%;*/ height: auto; }
+
+/* == intro == */
+#settings-container .intro { color: #4c4c4c; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 16px; margin: 0; overflow: hidden; padding: 0px 0px 27px 0px; width: 1038px; /*width: 94%;*/ height: auto; }
+#settings-container .intro span { color: #00285e; font: normal 18px ArialRegular; }
+
+/* == header == */
+#settings-container .header { margin: 0; overflow: hidden; padding: 0; width: 100%; height: 40px;
+	background: linear-gradient(to bottom, rgb(77, 76, 78) 0%, rgb(66, 65, 67) 100%);
+	background: -ms-linear-gradient(top, rgb(77, 76, 78) 0%, rgb(66, 65, 67) 100%);
+	background: -moz-linear-gradient(top, rgb(77, 76, 78) 0%, rgb(66, 65, 67) 100%);
+	background: -webkit-linear-gradient(top, rgb(77, 76, 78) 0%, rgb(66, 65, 67) 100%);
+	background: -o-linear-gradient(top, rgb(77, 76, 78) 0%, rgb(66, 65, 67) 100%);
+}
+#settings-container .header img { float: left; }
+#settings-container .header p { color: #fff; float: left; font: normal 15px ArialRegular; letter-spacing: .15px; line-height: 40px; margin: 0; padding: 0px 0px 0px 10px; }
+#settings-container .header p span { font: normal 15px ArialBold; letter-spacing: .15px; margin: 0; padding: 0; position: relative; top: 0px; }
+#settings-container .header .divider { background: #1f1e20; float: left; line-height: 40px; margin: 0px 0px 0px 20px; padding: 0; width: 1px; height: auto; }
+#settings-container .header .add { color: #fff; font: normal 12px ArialRegular; line-height: 21px; letter-spacing: .15px; margin: 0px 0px 0px 12px; padding: 6px 17px 6px 12px; position: relative; top: 8px; }
+#settings-container .header .search { background: #fff; border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: #ccc; border-width: 1px; color: #4c4c4c; float: right; margin: 6px 8px 0px 0px; padding: 0; width: 80%; height: 24px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+#settings-container .header .search input { background: none; border: none; }
+#settings-container .header .search input.search { color: #4c4c4c; float: left; font: normal 12px ArialRegular; line-height: 24px; letter-spacing: .15px; margin: -1px 0px 0px 0px; padding: 0px 5px 0px 5px; width: 90%; } 
+#settings-container .header .search input.search:focus { outline: none; }
+#settings-container .header .search input.search-icon { margin: 0; padding: 4px 0px 0px 2px; }
+
+/* == table == */
+#settings-container .titles { border: solid 1px #ccc; color: #4c4c4c; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 40px; margin: 0; overflow: hidden; padding: 0; width: 1038px; /*width: 94%;*/ height: auto;
+	background: linear-gradient(to bottom, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -ms-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -moz-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -webkit-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -o-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+}
+#settings-container .titles.dark { font-size: 16px; text-align: center;
+	background: linear-gradient(to bottom, rgb(235, 235, 235) 0%, rgb(215, 215, 215) 100%);
+	background: -ms-linear-gradient(top, rgb(235, 235, 235) 0%, rgb(215, 215, 215) 100%);
+	background: -moz-linear-gradient(top, rgb(235, 235, 235) 0%, rgb(215, 215, 215) 100%);
+	background: -webkit-linear-gradient(top, rgb(235, 235, 235) 0%, rgb(215, 215, 215) 100%);
+	background: -o-linear-gradient(top, rgb(235, 235, 235) 0%, rgb(215, 215, 215) 100%);
+}
+#settings-container .content { border: solid 1px #ccc; color: #4c4c4c; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 40px; margin: -1px 0px 0px 0px; overflow: hidden; padding: 0; width: 1038px; /*width: 94%;*/ height: auto; }
+#settings-container .content.withbg { background: #f5f5f5; }
+#settings-container .content p { line-height: 16px; margin: 0; padding: 0; }
+#settings-container .content select { background: #fff; border: solid 1px #ccc; margin: 0; padding: 7px 10px 7px 4px; width: 100%; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+#settings-container .content select { outline: none; }
+
+#settings-container  textarea { background: none; border: solid 1px #ccc; color: #4c4c4c; font: normal 14px ArialRegular; display: block; line-height: 17px; margin: 0; padding: 5px 6px 0px 6px; width: 100%; height: 104px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+#settings-container  textarea { outline: none; }
+#settings-container input[type=button], #settings-container input[type=submit] { background: #0072bc; border: none; color: #fff; display: block; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 20px 0px 0px 0px; outline: none; padding: 0px 16px 0px 16px; text-align: center; text-decoration: none; width: auto; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#settings-container .column-3 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 3% !important; height: inherit; }
+#settings-container .column-4 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 4% !important; height: inherit; }
+#settings-container .column-5 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 5% !important; height: inherit; }
+#settings-container .column-6 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 6% !important; height: inherit; }
+#settings-container .column-7 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 7% !important; height: inherit; }
+#settings-container .column-8 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 8% !important; height: inherit; }
+#settings-container .column-9 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 9% !important; height: inherit; }
+#settings-container .column-10 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 10% !important; height: inherit; }
+#settings-container .column-11 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 11% !important; height: inherit; }
+#settings-container .column-12 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 12% !important; height: inherit; }
+#settings-container .column-13 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 13% !important; height: inherit; }
+#settings-container .column-14 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 14% !important; height: inherit; }
+#settings-container .column-15 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 15% !important; height: inherit; }
+#settings-container .column-16 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 16% !important; height: inherit; }
+#settings-container .column-18 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 18% !important; height: inherit; }
+#settings-container .column-19 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 19% !important; height: inherit; }
+#settings-container .column-20 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: show; padding: 0px 0px 0px 15px; width: 20% !important; height: inherit; }
+#settings-container .column-22 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 22% !important; height: inherit; }
+#settings-container .column-24 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 24% !important; height: inherit; }
+#settings-container .column-25 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 25% !important; height: inherit; }
+#settings-container .column-26 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 26% !important; height: inherit; }
+#settings-container .column-28 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 28% !important; height: inherit; }
+#settings-container .column-29 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 29% !important; height: inherit; }
+#settings-container .column-30 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 30% !important; height: inherit; }
+#settings-container .column-31 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 31% !important; height: inherit; }
+#settings-container .column-33 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 33% !important; height: inherit; }
+#settings-container .column-35 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 35% !important; height: inherit; }
+#settings-container .column-38 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 38% !important; height: inherit; }
+#settings-container .column-40 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 40% !important; height: inherit; }
+#settings-container .column-45 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 45% !important; height: inherit; }
+#settings-container .column-41 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 41% !important; height: inherit; }
+#settings-container .column-49 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 49% !important; height: inherit; }
+#settings-container .column-50 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 50% !important; height: inherit; }
+#settings-container .column-51 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 51% !important; height: inherit; }
+#settings-container .column-54 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 54% !important; height: inherit; }
+#settings-container .column-57 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 57% !important; height: inherit; }
+#settings-container .column-65 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 65% !important; height: inherit; }
+#settings-container .column-70 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 70% !important; height: inherit; }
+#settings-container .column-80 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 80% !important; height: inherit; }
+#settings-container .column-86 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 86% !important; height: inherit; }
+#settings-container .column-94 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 94% !important; height: inherit; }
+#settings-container .column-97 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 97% !important; height: inherit; }
+#settings-container .column-3.no-border, #settings-container .column-4.no-border, #settings-container .column-5.no-border, #settings-container .column-6.no-border, #settings-container .column-7.no-border, #settings-container .column-8.no-border, #settings-container .column-9.no-border, #settings-container .column-10.no-border, #settings-container .column-11.no-border, #settings-container .column-13.no-border, #settings-container .column-14.no-border, #settings-container .column-15.no-border, #settings-container .column-20.no-border, #settings-container .column-22.no-border, #settings-container .column-25.no-border, #settings-container .column-28.no-border, #settings-container .column-29.no-border, #settings-container .column-30.no-border, #settings-container .column-35.no-border, #settings-container .column-40.no-border, #settings-container .column-41.no-border, #settings-container .column-45.no-border, #settings-container .column-50.no-border, #settings-container .column-51.no-border, #settings-container .column-57.no-border, #settings-container .column-65.no-border, #settings-container .column-70.no-border, #settings-container .column-80.no-border, #settings-container .column-94.no-border, #settings-container .column-97.no-border { border: none; }
+
+#settings-container .form-container { border: solid 1px #ccc; margin: -1px 0px 0px 0px; overflow: hidden; padding: 0; width: 1038px; /*width: 94%;*/ height: auto; }
+#settings-container .form-container .form { float: left; margin: 30px 0px 48px 0px; width: 100%; height: auto; }
+#settings-container .form-container .form .fields { display: block; float: left; font: normal 14px ArialRegular; letter-spacing: .15px; margin: 0px 0px 6px 0px; padding: 0; width: 100%; height: 34px; }
+#settings-container .form-container .form .fields .name { float: left; line-height:34px; margin: 0; padding: 0px 20px 0px 0px; text-align: right; width: 20%; height: 34px; }
+#settings-container .form-container .form .fields .field { float: left; line-height:34px; margin: 0; padding: 0; width: 40%; height: 34px; }
+#settings-container .form-container .form .fields .field span { display: inline-block; }
+#settings-container .form-container .form .fields .spacer { float: left; line-height:34px; margin: 0; padding: 0; width: 40%; height: 34px; }
+#settings-container .form-container .form .fields input { margin: 0px; padding: 0; width: 100%; }
+#settings-container .form-container .form .fields input[type=text], #settings-container .form-container .form .fields input[type=password] { background: #fff; border: solid 1px #ccc; margin: 0; padding: 0px 6px 0px 6px; width: 100%; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+#settings-container .form-container .form .fields select { background: #fff; border: solid 1px #ccc; margin: 0px 2% 0px 0px; padding: 7px 10px 7px 4px; width: 100%; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+#settings-container .form-container .form .fields input[type=text]:focus, #settings-container .form-container .form .fields input[type=password]:focus, #settings-container .form-container .form .fields select:focus { outline: none; }
+#settings-container .form-container .form .fields input[type=submit], #settings-container .form-container .form .fields input[type=button] { background: #0072bc; border: none; color: #fff; display: block; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 24px 0px 0px 0px; outline: none; padding: 0px 20px 0px 20px; text-align: center; text-decoration: none; width: auto; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+/*input[type=checkbox].css-checkbox { border: 0; clip: rect(0 0 0 0); margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; height: 1px;  }
+.web-two-style{ background-image: url(../../_images/icons/content/form-checkboxes.png); }
+input[type=checkbox].css-checkbox.lrg + label.css-label.lrg { background-repeat: no-repeat; background-position: 0px 0px; cursor: pointer; display: inline-block; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 19px; padding-left: 27px; vertical-align: middle; height: 20px; }
+input[type=checkbox].css-checkbox.lrg:checked + label.css-label.lrg{ background-position: 0 -20px; }*/

@@ -1,0 +1,40 @@
+div.graph_na_img{
+    text-align: center;
+    padding-top: 50px;
+}
+
+.reveal-form .fields input[type="submit"] {
+    background: none repeat scroll 0 0 #0072bc;
+    border: medium none;
+    border-radius: 4px;
+    color: #fff;
+    float: right;
+    font: 14px/14px ArialRegular;
+    height: 34px;
+    letter-spacing: 0.15px;
+    margin: 0 0 50px;
+    outline: medium none;
+    padding: 0;
+    text-decoration: none;
+    width: 120px;
+}
+
+#project-add-ticket-data-entry .field-container .field input[type="number"] {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 34px;
+    margin: 0 2% 0 0;
+    padding: 0 5px;
+    width: 96%;
+}
+
+#settings-container .form-container .form .fields input[type="email"], .reveal-add-users input[type="email"] {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 34px;
+    margin: 0 0 6px;
+    padding: 0 6px;
+    width: 100%;
+}

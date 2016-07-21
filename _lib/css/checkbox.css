@@ -1,0 +1,12 @@
+    /* == cross browser checkbox == */
+input[type=checkbox].css-checkbox { border: 0; clip: rect(0 0 0 0); margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; height: 1px;  }
+.web-two-style { background-image: url(../../../_images/icons/content/form-checkboxes.png); }
+.radio-button-style { background-image: url(../../../_images/icons/content/form-radios.png); }
+input[type=checkbox].css-checkbox.lrg + label.css-label.lrg { background-repeat: no-repeat; background-position: 0px 0px; cursor: pointer; display: inline-block; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 19px; padding-left: 27px; vertical-align: middle; height: 20px; }
+input[type=checkbox].css-checkbox.lrg:checked + label.css-label.lrg{ background-position: 0 -20px; }
+
+input[type=radio].css-radiobox { border: 0; clip: rect(0 0 0 0); margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; height: 1px;  }
+.web-two-style { background-image: url(../../../_images/icons/content/form-checkboxes.png); }
+.radio-button-style { background-image: url(../../../_images/icons/content/form-radios.png); }
+input[type=radio].css-radiobox.lrg + label.css-label.lrg { background-repeat: no-repeat; background-position: 0px 0px; cursor: pointer; display: inline-block; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 19px; padding-left: 27px; vertical-align: middle; height: 20px; }
+input[type=radio].css-radiobox.lrg:checked + label.css-label.lrg{ background-position: 0 -20px; }

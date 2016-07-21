@@ -1,0 +1,427 @@
+/* =================== */
+/* == settings page == */
+/* =================== */
+
+
+
+
+
+
+
+
+
+#settings-container { border: none; margin: 7px auto 0px auto; overflow: hidden; padding: 0; width: 840px; /*width: 94%;*/ height: auto; }
+
+/* == intro == */
+#settings-container .intro { color: #4c4c4c; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 16px; margin: 0; overflow: hidden; padding: 0px 0px 27px 0px; width: 1038px; /*width: 94%;*/ height: auto; }
+#settings-container .intro span { color: #00285e; font: normal 18px ArialRegular; }
+
+/* == header == */
+#settings-container .header { margin: 0; overflow: hidden; padding: 0; width: 100%; height: 40px;
+	background: linear-gradient(to bottom, rgb(77, 76, 78) 0%, rgb(66, 65, 67) 100%);
+	background: -ms-linear-gradient(top, rgb(77, 76, 78) 0%, rgb(66, 65, 67) 100%);
+	background: -moz-linear-gradient(top, rgb(77, 76, 78) 0%, rgb(66, 65, 67) 100%);
+	background: -webkit-linear-gradient(top, rgb(77, 76, 78) 0%, rgb(66, 65, 67) 100%);
+	background: -o-linear-gradient(top, rgb(77, 76, 78) 0%, rgb(66, 65, 67) 100%);
+}
+#settings-container .header img { float: left; }
+#settings-container .header p { color: #fff; float: left; font: normal 15px ArialRegular; letter-spacing: .15px; line-height: 40px; margin: 0; padding: 0px 0px 0px 10px; }
+#settings-container .header p span { font: normal 15px ArialBold; letter-spacing: .15px; margin: 0; padding: 0; position: relative; top: 0px; }
+#settings-container .header .divider { background: #1f1e20; float: left; line-height: 40px; margin: 0px 0px 0px 20px; padding: 0; width: 1px; height: auto; }
+#settings-container .header .add { color: #fff; font: normal 12px ArialRegular; line-height: 21px; letter-spacing: .15px; margin: 0px 0px 0px 12px; padding: 6px 17px 6px 12px; position: relative; top: 8px; }
+#settings-container .header .search { background: #fff; border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: #ccc; border-width: 1px; color: #4c4c4c; float: right; margin: 6px 8px 0px 0px; padding: 0; width: 80%; height: 24px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+#settings-container .header .search input { background: none; border: none; }
+#settings-container .header .search input.search { color: #4c4c4c; float: left; font: normal 12px ArialRegular; line-height: 24px; letter-spacing: .15px; margin: -1px 0px 0px 0px; padding: 0px 5px 0px 5px; width: 90%; } 
+#settings-container .header .search input.search:focus { outline: none; }
+#settings-container .header .search input.search-icon { margin: 0; padding: 4px 0px 0px 2px; }
+
+/* == table == */
+#settings-container .titles { border: solid 1px #ccc; color: #4c4c4c; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 40px; margin: 0; overflow: hidden; padding: 0; width: 1038px; /*width: 94%;*/ height: auto;
+	background: linear-gradient(to bottom, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -ms-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -moz-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -webkit-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -o-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+}
+#settings-container .titles.dark { font-size: 16px; text-align: center;
+	background: linear-gradient(to bottom, rgb(235, 235, 235) 0%, rgb(215, 215, 215) 100%);
+	background: -ms-linear-gradient(top, rgb(235, 235, 235) 0%, rgb(215, 215, 215) 100%);
+	background: -moz-linear-gradient(top, rgb(235, 235, 235) 0%, rgb(215, 215, 215) 100%);
+	background: -webkit-linear-gradient(top, rgb(235, 235, 235) 0%, rgb(215, 215, 215) 100%);
+	background: -o-linear-gradient(top, rgb(235, 235, 235) 0%, rgb(215, 215, 215) 100%);
+}
+#settings-container .content { border: solid 1px #ccc; color: #4c4c4c; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 40px; margin: -1px 0px 0px 0px; overflow: hidden; padding: 0; width: 840px; /*width: 94%;*/ height: auto; }
+#settings-container .content.withbg { background: #f5f5f5; }
+#settings-container .content p { line-height: 16px; margin: 0; padding: 0; }
+#settings-container .content select { background: #fff; border: solid 1px #ccc; margin: 0; padding: 7px 10px 7px 4px; width: 100%; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+#settings-container .content select { outline: none; }
+
+#settings-container  textarea { background: none; border: solid 1px #ccc; color: #4c4c4c; font: normal 14px ArialRegular; display: block; line-height: 17px; margin: 0; padding: 5px 6px 0px 6px; width: 100%; height: 104px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+#settings-container  textarea { outline: none; }
+#settings-container input[type=button], #settings-container input[type=submit] { background: #0072bc; border: none; color: #fff; display: block; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 20px 0px 0px 0px; outline: none; padding: 0px 16px 0px 16px; text-align: center; text-decoration: none; width: auto; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#settings-container .column-3 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 3% !important; height: inherit; }
+#settings-container .column-4 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 4% !important; height: inherit; }
+#settings-container .column-5 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 5% !important; height: inherit; }
+#settings-container .column-6 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 6% !important; height: inherit; }
+#settings-container .column-7 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 7% !important; height: inherit; }
+#settings-container .column-8 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 8% !important; height: inherit; }
+#settings-container .column-9 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 9% !important; height: inherit; }
+#settings-container .column-10 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 10% !important; height: inherit; }
+#settings-container .column-11 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 11% !important; height: inherit; }
+#settings-container .column-12 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 12% !important; height: inherit; }
+#settings-container .column-13 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 13% !important; height: inherit; }
+#settings-container .column-14 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 14% !important; height: inherit; }
+#settings-container .column-15 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 15% !important; height: inherit; }
+#settings-container .column-16 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 16% !important; height: inherit; }
+#settings-container .column-18 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 18% !important; height: inherit; }
+#settings-container .column-19 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 19% !important; height: inherit; }
+#settings-container .column-20 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: show; padding: 0px 0px 0px 15px; width: 20% !important; height: inherit; }
+#settings-container .column-22 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 22% !important; height: inherit; }
+#settings-container .column-24 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 24% !important; height: inherit; }
+#settings-container .column-25 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 25% !important; height: inherit; }
+#settings-container .column-26 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 26% !important; height: inherit; }
+#settings-container .column-28 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 28% !important; height: inherit; }
+#settings-container .column-29 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 29% !important; height: inherit; }
+#settings-container .column-30 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 30% !important; height: inherit; }
+#settings-container .column-31 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 31% !important; height: inherit; }
+#settings-container .column-33 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 33% !important; height: inherit; }
+#settings-container .column-35 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 35% !important; height: inherit; }
+#settings-container .column-38 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 38% !important; height: inherit; }
+#settings-container .column-40 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 40% !important; height: inherit; }
+#settings-container .column-45 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 45% !important; height: inherit; }
+#settings-container .column-41 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 41% !important; height: inherit; }
+#settings-container .column-49 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 49% !important; height: inherit; }
+#settings-container .column-50 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 50% !important; height: inherit; }
+#settings-container .column-51 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 51% !important; height: inherit; }
+#settings-container .column-54 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 54% !important; height: inherit; }
+#settings-container .column-57 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 57% !important; height: inherit; }
+#settings-container .column-65 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 65% !important; height: inherit; }
+#settings-container .column-70 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 70% !important; height: inherit; }
+#settings-container .column-74 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 74% !important; height: inherit; }
+#settings-container .column-80 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 80% !important; height: inherit; }
+#settings-container .column-86 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 86% !important; height: inherit; }
+#settings-container .column-94 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 94% !important; height: inherit; }
+#settings-container .column-97 { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; float: left; margin: 0; overflow: hidden; padding: 0px 0px 0px 15px; width: 97% !important; height: inherit; }
+#settings-container .column-3.no-border, #settings-container .column-4.no-border, #settings-container .column-5.no-border, #settings-container .column-6.no-border, #settings-container .column-7.no-border, #settings-container .column-8.no-border, #settings-container .column-9.no-border, #settings-container .column-10.no-border, #settings-container .column-11.no-border, #settings-container .column-13.no-border, #settings-container .column-14.no-border, #settings-container .column-15.no-border, #settings-container .column-20.no-border, #settings-container .column-22.no-border, #settings-container .column-25.no-border, #settings-container .column-28.no-border, #settings-container .column-29.no-border, #settings-container .column-30.no-border, #settings-container .column-35.no-border, #settings-container .column-40.no-border, #settings-container .column-41.no-border, #settings-container .column-45.no-border, #settings-container .column-50.no-border, #settings-container .column-51.no-border, #settings-container .column-57.no-border, #settings-container .column-65.no-border, #settings-container .column-70.no-border, #settings-container .column-80.no-border, #settings-container .column-94.no-border, #settings-container .column-97.no-border { border: none; }
+
+#settings-container .form-container { border: solid 1px #ccc; margin: -1px 0px 0px 0px; overflow: hidden; padding: 0; width: 1038px; /*width: 94%;*/ height: auto; }
+#settings-container .form-container .form { float: left; margin: 30px 0px 48px 0px; width: 100%; height: auto; }
+#settings-container .form-container .form .fields { display: block; float: left; font: normal 14px ArialRegular; letter-spacing: .15px; margin: 0px 0px 6px 0px; padding: 0; width: 100%; height: 34px; }
+#settings-container .form-container .form .fields .name { float: left; line-height:34px; margin: 0; padding: 0px 20px 0px 0px; text-align: right; width: 20%; height: 34px; }
+#settings-container .form-container .form .fields .field { float: left; line-height:34px; margin: 0; padding: 0; width: 40%; height: 34px; }
+#settings-container .form-container .form .fields .field span { display: inline-block; }
+#settings-container .form-container .form .fields .spacer { float: left; line-height:34px; margin: 0; padding: 0; width: 40%; height: 34px; }
+#settings-container .form-container .form .fields input { margin: 0px; padding: 0; width: 100%; }
+#settings-container .form-container .form .fields input[type=text], #settings-container .form-container .form .fields input[type=password] { background: #fff; border: solid 1px #ccc; margin: 0; padding: 0px 6px 0px 6px; width: 100%; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+#settings-container .form-container .form .fields select { background: #fff; border: solid 1px #ccc; margin: 0px 2% 0px 0px; padding: 7px 10px 7px 4px; width: 100%; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+#settings-container .form-container .form .fields input[type=text]:focus, #settings-container .form-container .form .fields input[type=password]:focus, #settings-container .form-container .form .fields select:focus { outline: none; }
+#settings-container .form-container .form .fields input[type=submit], #settings-container .form-container .form .fields input[type=button] { background: #0072bc; border: none; color: #fff; display: block; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 24px 0px 0px 0px; outline: none; padding: 0px 20px 0px 20px; text-align: center; text-decoration: none; width: auto; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+/*input[type=checkbox].css-checkbox { border: 0; clip: rect(0 0 0 0); margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; height: 1px;  }
+.web-two-style{ background-image: url(../../_images/icons/content/form-checkboxes.png); }
+input[type=checkbox].css-checkbox.lrg + label.css-label.lrg { background-repeat: no-repeat; background-position: 0px 0px; cursor: pointer; display: inline-block; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 19px; padding-left: 27px; vertical-align: middle; height: 20px; }
+input[type=checkbox].css-checkbox.lrg:checked + label.css-label.lrg{ background-position: 0 -20px; }*/
+#table-subcontractors, #table-subcontractors td, #table-subcontractors tbody {border-right-color: #ccc !important; border-left-color: #ccc !important; border-width: 1px !important; border-left-width: 1px !important;}
+#table-materials, #table-materials td, #table-materials tbody {border-right-color: #ccc !important; border-left-color: #ccc !important; border-width: 1px !important; border-left-width: 1px !important;}
+#table-waste-manager, #table-waste-manager td, #table-waste-manager tbody {border-right-color: #ccc !important; border-left-color: #ccc !important; border-width: 1px !important; border-left-width: 1px !important;}
+#table-bidsheet, #table-bidsheet td, #table-bidsheet tbody {border-right-color: #ccc !important; border-left-color: #ccc !important; border-width: 1px !important; border-left-width: 1px !important;}
+#table-facilities, #table-facilities td, #table-facilities tbody {border-right-color: #ccc !important; border-left-color: #ccc !important; border-width: 1px !important; border-left-width: 1px !important;}
+.panel-default {border: 1px solid #ccc !important; border-radius: 0 !important;}
+.panel-default>.panel-heading {border: none !important; border-radius: 0 !important;}
+.panel-body {border: none !important; border-radius: 0 !important;}
+.noBottom{border-bottom: none !important; border-radius: 0 !important;}
+
+
+
+
+
+/* ===================== */
+/* == statistics page == */
+/* ===================== */
+
+
+
+
+/* ====================== */
+/* == corporate styles == */
+/* ====================== */
+
+/* == sort by region == */
+#statistics-sortby-region { color: #4c4c4c; border: solid 1px #ccc; font: normal 15px ArialRegular; letter-spacing: .15px; line-height: 56px; margin: 29px auto 0px auto; overflow: hidden; padding: 0; width: 1100px; /*width: 94%;*/ height: 56px;
+	background: linear-gradient(to bottom, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -ms-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -moz-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -webkit-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -o-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+}
+#statistics-sortby-region .column-10 { float: left; margin: 0; padding: 0; width: 10%; height: auto; }
+#statistics-sortby-region .column-10.border { color: #00285e; border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; line-height: 54px; }
+#statistics-sortby-region .column-22 { float: left; margin: 0; padding: 0px 0px 0px 4px; width: 22%; height: auto; }
+#statistics-sortby-region .column-24 { float: left; margin: 0; padding: 0; width: 24%; height: auto; }
+#statistics-sortby-region .column-28 { float: left; margin: 0; padding: 0px 0px 0px 6px; width: 28%; height: auto; }
+#statistics-sortby-region .column-34 { float: left; margin: 0; padding: 0px 0px 0px 6px; width: 34%; height: auto; }
+#statistics-sortby-region .column-40 { float: left; margin: 0; padding: 0px 0px 0px 6px; width: 40%; height: auto; }
+
+#statistics-sortby-region select { background: #fff; border: solid 1px #ccc; margin: 0; padding: 7px 10px 7px 4px; width: 190px; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+#statistics-sortby-region select:focus { outline: none; }
+#statistics-sortby-region input[type=button], #statistics-sortby-region input[type=submit] { background: #0072bc; border: none; color: #fff; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0; outline: none; padding: 0px 22px 0px 22px; text-decoration: none; width: auto; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+
+
+
+
+
+
+
+
+/* == dashboard == */
+/* == recyling rates and materials == */
+#statistics-rate-materials-container .header, #statistics-line-chart-container .header { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: #ccc; border-left-color: transparent !important; border-width: 1px; color: #4c4c4c; font: normal 14px ArialRegular; line-height: 46px; margin: 0; padding: 0; width: 100%; height: auto;
+	background: linear-gradient(to bottom, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -ms-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -moz-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -webkit-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -o-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+}
+
+#statistics-rate-materials-container { margin: 9px 0px 0px 31px; padding: 0; width: 1038px; /*width: 94%;*/ height: auto; }
+#statistics-rate-materials-container .left { border: solid 1px #ccc; float: left; margin: 0; padding: 0; width: 49%; height: 562px; }
+#statistics-rate-materials-container .right { border: solid 1px #ccc; float: left; margin: 0; padding: 0; width: 49%; height: 562px; }
+#statistics-rate-materials-container .spacer { float: left; margin: 0; padding: 0; width: 2%; height: 562px; }
+
+/* == line chart == */
+#statistics-line-chart-container { border: solid 1px #ccc; margin: 30px 0px 0px 31px; padding: 0; width: 1038px; /*width: 94%;*/ height: auto; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================== */
+/* == business unit styles == */
+/* ========================== */
+
+/* == filter / calendar == */
+#statistics-filter { color: #4c4c4c; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 21px; margin: 29px 0px 0px 31px; padding: 0; width: 1038px; /*width: 94%;*/ height: auto; }
+#statistics-filter .left { margin: 0; padding: 0; width: 100%; height: auto; }
+#statistics-filter .left .button-print { background: #0072bc; border: none; color: #fff; float: left; font: normal 10px ArialRegular; letter-spacing: .15px; line-height: 12px; margin: 0px 0px 0px 5px; outline: none; padding: 4px 12px 4px 12px; position: relative; top: 0px; text-decoration: none;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+#statistics-filter .left span.selected { color: #4c4c4c; font: normal 12px ArialBold; letter-spacing: .15px; line-height: 21px; }
+#statistics-filter .left span.divider { color: #ccc; font: normal 17px ArialRegular; letter-spacing: .15px; line-height: 17px; margin: 0px 15px 0px 15px; padding: 0; position: relative; top: -1px; }
+#statistics-filter .right { margin: 0; padding: 0; text-align: right;  width: 100%; height: 21px;}
+
+#statistics-filter .right .filter-calendar { background: url('../../_images/icons/content/calendar.png') no-repeat; float: right; margin: 0px 0px 0px 9px; padding: 0; width: 116px; height: 21px; }
+#statistics-filter .right .input-calendar { background: none; border: none; color: #4c4c4c; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 19px; margin: 0; padding: 0px 7px 0px 5px; width: 96px; height: 19px;
+	appearance: none;
+	-khtml-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	-webkit-appearance: none;
+}
+#statistics-filter .right .filter-button { background: #0072bc; border: none; color: #fff; float: right; font: normal 10px ArialRegular; letter-spacing: .15px; line-height: 12px; margin: 0px 0px 0px 5px; outline: none; padding: 4px 12px 4px 12px; position: relative; top: 0px; text-decoration: none;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+
+
+
+
+
+
+
+
+/* == diversion rates == */
+#statistics-diversion-rate-container { background: url('../../_images/global/statistic-diversion-rate.gif') repeat-x; border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: #ccc; border-width: 1px; margin: 0 auto; overflow: hidden; padding: 0; position: relative; top: -1px; min-width: 1100px; /*height: 56px; */ height: auto; }
+#statistics-diversion-rate-container .rates { color: #333; font: normal 15px ArialRegular; letter-spacing: .15px; line-height: 17px; margin: 14px 0px 0px 0px; padding: 0; text-align: center; }
+#statistics-diversion-rate-container .rates span { font: normal 20px ArialBold; letter-spacing: .15px; }
+#statistics-diversion-rate-container .border-right { border-style: solid; border-top-color: transparent !important; border-right-color: #b3b3b3; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; margin: 0; padding: 14px 0px 0px 0px;  height: 55px; }
+
+
+
+
+
+
+
+
+
+/* == title == */
+#statistics-title { color: #00285e; font: normal 30px ArialRegular; line-height: 32px; margin: 20px 0px 0px 0px; padding: 0; text-align: center; min-width: 400px; /*height: 53px;*/ }
+#statistics-title span { color: #00285e; font: normal 13px ArialRegular; line-height: 15px; margin: 0; padding: 0; position: relative; top: -8px; text-align: center; text-transform: uppercase; }
+
+
+
+
+
+
+
+
+
+/* == carbon footprint == */
+#carbon-title { border: none; color: #666; display: block; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 15px; margin: 0px auto 22px auto; width: 1038px; height: auto; }
+#carbon-title .spacer { float: left; margin: 0; padding: 0; width: 42%; }
+#carbon-title .actual { float: left; margin: 0; padding: 0; width: 29%; }
+#carbon-title .projected { float: left; margin: 0; padding: 0; width: 29%; }
+#carbon-container { border: solid 3px #ccc; margin: 0px auto 0px auto; width: 1038px; height: auto; } 
+#carbon-row { border: solid 1px #ccc; line-height: 50px; margin: 0px auto 0px auto; overflow: hidden; padding: 12px 0px 12px 0px; }
+#carbon-row .withbg { background: #f5f5f5; }
+#carbon-row .img-area { float: left; margin: 0; padding: 0; text-align: center; width: 12%; height: auto; }
+#carbon-row .title { color: #4c4c4c; float: left; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 16px; margin: 0; padding: 12px 0px 0px 0px; position: relative; top: 0px; width: 30%; height: auto; }
+#carbon-row .actual { color: #33537e; float: left; font: normal 20px ArialBold; letter-spacing: .15px; line-height: 22px; margin: 0; padding: 18px 0px 0px 0px; width: 29%; height: auto; }
+#carbon-row .projected { color: #33537e; float: left; font: normal 20px ArialBold; letter-spacing: .15px; line-height: 22px; margin: 0; padding: 18px 0px 0px 0px; width: 29%; height: auto; }
+#carbon-row span.small { color: #33537e; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0; }
+
+
+
+
+
+
+
+
+
+/* == overall content == */
+#statistics-overall-content { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: #ccc; border-left-color: #ccc; border-width: 1px; margin: 0 auto; overflow: hidden; padding: 40px 0px 37px 0px; width: 1100px; min-width: 1100px; height: auto; }
+#statistics-overall-content .content { margin: 0; overflow: hidden; padding: 0px 35px 0px 35px; width: 100%; }
+#statistics-overall-content .content span.line { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: #ccc; border-left-color: transparent !important; border-width: 1px; float: left; font: normal 8px ArialBold; letter-spacing: .15px; line-height: 8px; margin: 0px 0px 8px 0px; padding: 0; width: 100%; }
+#statistics-overall-content .content span.left { color: #4c4c4c; float: left; font: normal 12px ArialBold; letter-spacing: .15px; line-height: 13px; margin: 0; padding: 0; width: 60%; }
+#statistics-overall-content .content span.right { color: #4c4c4c; float: left; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 13px; margin: 0; padding: 0px 30px 0px 0px; width: 40%; }
+
+
+
+
+
+
+
+
+/* == table content == */
+#statistics-table-container { color: #4c4c4c; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 32px auto 0px auto; overflow: hidden; padding: 0; width: 1038px; /*width: 94%;*/ height: auto; }
+#statistics-table-container th.column-title { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: #ccc; border-left-color: transparent !important;  border-top-width: 0px; border-right-width: 0px; border-bottom-width: 3px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0px 0px 9px 16px; width: 24%; }
+#statistics-table-container th.column-title-short { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: #ccc; border-left-color: transparent !important;  border-top-width: 0px; border-right-width: 0px; border-bottom-width: 3px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0px 0px 9px 16px; width: 12%; }
+#statistics-table-container th.column-submitted-by { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: #ccc; border-left-color: transparent !important;  border-top-width: 0px; border-right-width: 0px; border-bottom-width: 3px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0px 0px 9px 16px; width: 12%; }
+#statistics-table-container th.column-view, #statistics-table-container th.column-edit, #statistics-table-container th.column-delete { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: #ccc; border-left-color: transparent !important;  border-top-width: 0px; border-right-width: 0px; border-bottom-width: 3px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0px 0px 9px 16px; width: 6%; }
+#statistics-table-container th.column-stats { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: #ccc; border-left-color: transparent !important;  border-top-width: 0px; border-right-width: 0px; border-bottom-width: 3px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0px 0px 9px 6px; width: 8.44444444%; }
+#statistics-table-container th.column-projects { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: #ccc; border-left-color: transparent !important;  border-top-width: 0px; border-right-width: 0px; border-bottom-width: 3px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0px 0px 9px 6px; width: 9.66666667%; }
+#statistics-table-container th.column-title-footer { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 3px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 9px 0px 9px 16px; width: 24%; }
+#statistics-table-container th.column-title-short-footer { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 3px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 9px 0px 9px 16px; width: 12%; }
+#statistics-table-container th.column-submitted-by-footer { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 3px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 9px 0px 9px 16px; width: 12%; }
+#statistics-table-container th.column-projects-footer { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 3px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 9px 0px 9px 16px; width: 9.66666667%; }
+#statistics-table-container th.column-view-footer, #statistics-table-container th.column-edit-footer, #statistics-table-container th.column-delete-footer { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 3px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 9px 0px 9px 16px; width: 6%; }
+#statistics-table-container th.column-stats-footer { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 3px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 9px 0px 9px 6px; width: 8.44444444%; }
+#statistics-table-container td.column-title { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; line-height: 14px; margin: 0; padding: 9px 0px 9px 19px; vertical-align:middle; width: 24%; }
+#statistics-table-container td.column-title-short { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; line-height: 14px; margin: 0; padding: 9px 0px 9px 19px; vertical-align:middle; width: 12%; }
+#statistics-table-container td.column-submitted-by { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; line-height: 14px; margin: 0; padding: 9px 0px 9px 19px; vertical-align:middle; width: 12%; }
+#statistics-table-container td.column-view, #statistics-table-container td.column-edit, #statistics-table-container td.column-delete { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; line-height: 14px; margin: 0; padding: 9px 0px 9px 19px; vertical-align:middle; width: 6%; }
+#statistics-table-container td.column-stats { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; line-height: 14px; margin: 0; padding: 9px 0px 9px 6px; vertical-align:middle; width: 8.44444444%; }
+#statistics-table-container td.column-projects { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; line-height: 14px; margin: 0; padding: 9px 0px 9px 6px; vertical-align:middle; width: 9.66666667%; }
+
+#statistics-table-container td.column-title-short-rejected { background: #f4d0bb; color: #ce1d00; line-height: 14px; margin: 0; padding: 9px 0px 9px 19px; vertical-align:middle; width: 12%; }
+#statistics-table-container td.column-submitted-by-rejected { background: #f4d0bb; color: #ce1d00; line-height: 14px; margin: 0; padding: 9px 0px 9px 19px; vertical-align:middle; width: 12%; }
+#statistics-table-container td.column-projects-rejected { background: #f4d0bb; color: #ce1d00; line-height: 14px; margin: 0; padding: 9px 0px 9px 6px;  vertical-align:middle; width: 9.66666667%; }
+#statistics-table-container td.column-view-rejected, #statistics-table-container td.column-edit-rejected, #statistics-table-container td.column-delete-rejected { background: #f4d0bb; color: #ce1d00; line-height: 14px; margin: 0; padding: 9px 0px 9px 19px; vertical-align:middle; width: 6%; }
+
+/* == table plan reports content == */
+#statistics-table-container th.column-title-reports { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: #ccc; border-left-color: transparent !important;  border-top-width: 0px; border-right-width: 0px; border-bottom-width: 3px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0px 0px 9px 16px; width: 8.33333333%; }
+#statistics-table-container th.column-stats-reports { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: #ccc; border-left-color: transparent !important;  border-top-width: 0px; border-right-width: 0px; border-bottom-width: 3px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0px 0px 9px 6px; width: 8.33333333%; }
+#statistics-table-container th.column-title-footer-reports { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 3px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 9px 0px 9px 16px; width: 8.33333333%; }
+#statistics-table-container th.column-stats-footer-reports { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 3px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; font: normal 14px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 9px 0px 9px 6px; width: 8.33333333%; }
+#statistics-table-container td.column-title-reports { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; line-height: 14px; margin: 0; padding: 9px 0px 9px 19px; vertical-align:middle; width: 8.33333333%; }
+#statistics-table-container td.column-stats-reports { border-style: solid; border-top-color: #ccc; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: transparent !important;  border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; line-height: 14px; margin: 0; padding: 9px 0px 9px 6px; vertical-align:middle; width: 8.33333333%; }
+#statistics-table-container td.column-stats-reports .graph-container { display: inline-block; width: 100%; margin: 1px 0px 0px 0px; padding: 0px 25% 0px 0px; height: 10px;}
+#statistics-table-container td.column-stats-reports .graph-container .graph { background: #338ec9; display: inline-block; width: 100%; margin: 0; padding: 0; height: 10px;}
+
+.statistics-box { border: solid 2px #ddd; color: #4c4c4c; float: left; margin: 8px 0px 0px 0px; padding: 0; width: 32.6666667%; height: auto;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+.statistics-box .left { float: left; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 6px 0px 6px 6px; width: 70%;  height: auto; }
+.statistics-box .right { float: left; font: normal 12px ArialBold; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 6px 0px 6px 6px; width: 30%;  height: auto; }
+.statistics-box-space { float: left; margin: 0; padding: 0; width: 1%; height: auto; }

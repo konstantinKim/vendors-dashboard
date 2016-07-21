@@ -1,0 +1,69 @@
+/* ========================= */
+/* == recyler search page == */
+/* ========================= */
+
+
+
+
+
+
+
+
+
+/* == recycler finder == */
+#recycler-finder-container { border: none; color: #4c4c4c; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 16px; margin: 7px auto 0px auto; overflow: hidden; padding: 0; width: 1038px; /*width: 94%;*/ height: auto; }
+#recycler-finder-container .header { color: #00285e; font: normal 15px ArialRegular; letter-spacing: .15px; line-height: 17px; margin: 0px 0px 27px 0px; padding: 0; text-align: center; }
+#recycler-finder-container .titles { float: left; font: normal 13px ArialRegular; line-height: 15px; margin: 0px 0px 7px 0px; padding: 0; width: 100%; }
+#recycler-finder-container .form { border: solid 1px #ccc; float: left; margin: 0; padding: 30px 0px 40px 0px; width: 100%;
+	background: linear-gradient(to bottom, rgb(234, 234, 235) 0%, rgb(228, 229, 229) 100%);
+	background: -ms-linear-gradient(top, rgb(234, 234, 235) 0%, rgb(228, 229, 229) 100%);
+	background: -moz-linear-gradient(top, rgb(234, 234, 235) 0%, rgb(228, 229, 229) 100%);
+	background: -webkit-linear-gradient(top, rgb(234, 234, 235) 0%, rgb(228, 229, 229) 100%);
+	background: -o-linear-gradient(top, rgb(234, 234, 235) 0%, rgb(228, 229, 229) 100%);
+}
+#recycler-finder-container .column-1 { float: left; margin: 0; padding: 0; width: 1%; }
+#recycler-finder-container .column-3 { float: left; margin: 0; padding: 0; text-align: right; width: 3%; }
+#recycler-finder-container .column-5 { float: left; margin: 0; padding: 0; width: 5%; }
+#recycler-finder-container .column-10 { float: left; margin: 0; padding: 0; width: 10%; }
+#recycler-finder-container .column-20 { float: left; margin: 0; padding: 0; width: 20%; }
+#recycler-finder-container .column-30 { float: left; margin: 0; padding: 0; width: 30%; }
+#recycler-finder-container .column-15 { float: left; margin: 0; padding: 0; width: 15%; }
+#recycler-finder-container .column-47 { float: left; margin: 0; padding: 0; width: 47%; }
+#recycler-finder-container .column-50 { float: left; margin: 0; padding: 0px 0px 0px 20px; width: 50%; }
+#recycler-finder-container input[type=text] { background: #fff; border: solid 1px #ccc; margin: 0; padding: 0px 5px 0px 5px; width: 100%; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+#recycler-finder-container input[type=text] { outline: none; }
+#recycler-finder-container select { background: #fff; border: solid 1px #ccc; margin: 0; padding: 7px 10px 7px 4px; width: 100%; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+#recycler-finder-container select { outline: none; }
+#recycler-finder-container input.button-search { background: #0072bc; border: none; color: #fff; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 30px; margin: 0; outline: none; padding: 0; text-decoration: none; width: 100%; height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+/* == recycler finder == */
+#recycler-finder-container  .header-bar { border: solid 1px #ccc; color: #4c4c4c; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 45px; margin: 0; overflow: hidden; padding: 0; width: 1038px; /*width: 94%;*/ height: auto;
+	background: linear-gradient(to bottom, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -ms-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -moz-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -webkit-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+	background: -o-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
+}
+#recycler-finder-container .recycler-list-container { border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: #ccc; border-left-color: #ccc; border-width: 1px; color: #00285e; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 20px; float: left; margin: 0; padding: 30px 0px 30px 0px; width: 1038px; height: auto; }
+#recycler-finder-container .recycler-list-container span { font-family: ArialBold; }
+#recycler-finder-container .recycler-list-container span.address { color: #4c4c4c; }
