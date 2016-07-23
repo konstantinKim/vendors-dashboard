@@ -8,11 +8,11 @@ import * as pageActions from '../actions/PageActions'
 
 class App extends Component {
   render() {
-    const { user, page } = this.props    
+    const { user, page, projects } = this.props    
     const { getPhotos } = this.props.pageActions
 
     return <div>
-      <ActiveProjects />
+      <ActiveProjects projects={projects.projects} />
       <User name={user.name} />
       <Page photos={page.photos} year={page.year} getPhotos={getPhotos} fetching={page.fetching}/>
     </div>
@@ -22,7 +22,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    page: state.page
+    page: state.page,
+    projects: state.activeProjects
   }
 }
 

@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   year: 2016,
-  photos: [],
+  photos: [1],
   fetching: false
 }
 
