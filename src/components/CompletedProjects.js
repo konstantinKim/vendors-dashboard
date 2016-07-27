@@ -1,13 +1,14 @@
 import React, { PropTypes, Component } from 'react'
 
 
-export default class ActiveProjects extends Component {
-    render() {
-        const { projects, host } = this.props
+export default class CompletedProjects extends Component {
+    render() {      
+        const { completed } = this.props                
+        const { host } = this.props        
         var projectsListTemplate        
 
-        if (projects.length > 0) {
-            projectsListTemplate = projects.map(function (item, index) {
+        if (completed.length > 0) {
+            projectsListTemplate = completed.map(function (item, index) {
 
                 return (
                     <div key={'project_'+item.id}>
@@ -222,12 +223,12 @@ export default class ActiveProjects extends Component {
             })
         }
         
-        return <div className='componentActiveProjects'>                  
+        return <div className='componentCompletedProjects'>                          
           {projectsListTemplate}            
         </div>
     }
 }
 
-ActiveProjects.propTypes = {
-    projects: PropTypes.array.isRequired
+CompletedProjects.propTypes = {
+    completed: PropTypes.array.isRequired
 }
