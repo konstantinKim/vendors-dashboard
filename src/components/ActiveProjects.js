@@ -19,12 +19,12 @@ export default class ActiveProjects extends Component {
                                      href="projects-add-ticket.html" className="button"><span
                                       style={{font: 'normal 20px ArialRegular', position: 'relative', top: 2}}>+ </span>Add
                                       New Ticket</a>
-                                  <a href={'#collapse'+index} data-parent="#accordion-main" data-toggle="collapse">
+                                  <a href={'#collapse'+item.id} data-parent="#accordion-main" data-toggle="collapse">
                                       <div
                                           style={{color: '#333', margin: '0px 0px -5px 0px', width: '100%', height: '100%', minHeight: '100%'}}
                                           className="panel-heading white">
                                           <span
-                                              style={{borderRight: 'solid 1px #fff', display: 'table-cell', padding: '15px 5px 15px 15px', textAlign: 'right', width: 40, height: '100%', minHeight: '100%'}}>1.</span>
+                                              style={{borderRight: 'solid 1px #fff', display: 'table-cell', padding: '15px 5px 15px 15px', textAlign: 'right', width: 40, height: '100%', minHeight: '100%'}}>{index+1}.</span>
                                           <span
                                               style={{borderRight: 'solid 1px #ccc', display: 'table-cell', padding: '15px 0px 15px 7px', width: 281, height: '100%', minHeight: '100%'}}>
                                             {item.name}<br />
@@ -46,7 +46,7 @@ export default class ActiveProjects extends Component {
                                       </div>
                                   </a>
 
-                                  <div id={'collapse'+index} className="panel-collapse collapse">
+                                  <div id={'collapse'+item.id} className="panel-collapse collapse">
                                       <div className="panel-body">
                                           <div className="row">
                                               <div className="col-ghgrid-8">

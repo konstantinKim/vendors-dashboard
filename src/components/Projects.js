@@ -1,13 +1,42 @@
-import React, { Component } from 'react'
+import React, { PropTypes, Component } from 'react'
 import ActiveProjects from '../components/ActiveProjects'
 import CompletedProjects from '../components/CompletedProjects'
 
 
 export default class Projects extends Component {
+    onTabBtnClick(e) {                                    
+        e.preventDefault()        
+        this.props.switchTab(e.currentTarget.id)
+        if(this.props.activeTab == 'completedList'){
+            return this.props.getCompletedProjects()
+        }
+        return this.props.getCompletedProjects()
+    }
+
+    highlightTab(tabId){
+        if(this.props.activeTab == tabId){
+            return('tabs-projects-selected border');        
+        }
+        return('tabs-projects border');                
+    }
+
+    renderTab(){
+        const { projects } = this.props.projects        
+        const { host, activeTab } = this.props        
+        const { completed } = this.props                        
+
+        if(activeTab == 'activeList'){
+            return(<ActiveProjects projects={projects} host={host} />);                    
+        }
+        if(activeTab == 'completedList'){
+            return(<CompletedProjects completed={completed} host={host} />);                    
+        }        
+    }
+
     render() {                                      
         const { projects } = this.props.projects        
         const { host } = this.props        
-        const { completed } = this.props        
+        const { completed } = this.props                
         
         return <div className='componentActiveProjects'>
             <div className="container-gh" id="global-main-top-bar">
@@ -31,16 +60,16 @@ export default class Projects extends Component {
             <div style={{marginTop: '-2px'}} id="global-main-tabs" className="container-gh">
                 <div style={{position: 'relative', top: '-2px'}} className="row">
                     <div className="col-gh-5">
-                        <a href="haulsub-projects-active.html" className="link-regular">
-                            <span className="tabs-projects-selected border"><img
+                        <a id='activeList' onClick={::this.onTabBtnClick} href="haulsub-projects-active.html" className="link-regular">
+                            <span className={this.highlightTab('activeList')}><img
                                 style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}}
                                 src={host + "/_images/icons/nav/tab-statistics.png"}/>Active Projects (<span
                                 className="blue-text">{projects.length}</span>)</span>
                         </a>
                     </div>
                     <div className="col-gh-5">
-                        <a href="haulsub-projects-completed.html" className="link-regular">
-                            <span className="tabs-projects border"><img
+                        <a id='completedList' onClick={::this.onTabBtnClick} href="haulsub-projects-completed.html" className="link-regular">
+                            <span className={this.highlightTab('completedList')}><img
                                 style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}}
                                 src={host + "/_images/icons/nav/tab-check.png"}/>Completed (<span
                                 className="blue-text">{completed.length}</span>)</span>
@@ -56,10 +85,15 @@ export default class Projects extends Component {
                         <div className="column-19">Turner Project #</div>
                         <div className="column-50 no-border">Tickets</div>
                     </div>
-                </div>                                                
-                <ActiveProjects projects={projects} host={host} />                
-                <CompletedProjects completed={completed} host={host} />                
+                </div>                                                                
+                {
+                    this.renderTab()
+                }                                                
             </div>
         </div>
     }
+}
+
+Projects.propTypes = {
+    activeTab: PropTypes.string.isRequired
 }
