@@ -78,8 +78,6 @@ app.get("/_lib/fonts/italic.ttf", function(req, res) {
   res.sendFile(__dirname + '/_lib/fonts/italic.ttf')
 })
 
-
-
 app.listen(port, function(error) {
   if (error) {
     console.error(error)
