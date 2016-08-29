@@ -5,7 +5,7 @@ import {
 import { BACKEND_HOST } from '../config/settings'
 
 export function getCompletedProjects() {  
-  return dispatch => fetch(BACKEND_HOST)
+  return dispatch => fetch(BACKEND_HOST+'projects.json')
     .then(response => response.json())    
     .then(json => dispatch(setCompletedProjects(json)))
 }

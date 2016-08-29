@@ -4,14 +4,14 @@ import React, { PropTypes, Component } from 'react'
 export default class CompletedProjects extends Component {
     render() {      
         const { completed } = this.props                
-        const { host } = this.props        
+        const { imgHost } = this.props        
         var projectsListTemplate        
 
         if (completed.length > 0) {
             projectsListTemplate = completed.map(function (item, index) {
 
                 return (
-                    <div key={'project_'+item.id}>
+                    <div key={'project_'+item.PROJECT_ID}>
                         <div className="row">
                           <div style={{margin: '0 auto', /*width: '95%', */ width: 1040}} id="accordion-main"
                                className="panel-group">
@@ -20,7 +20,7 @@ export default class CompletedProjects extends Component {
                                      href="projects-add-ticket.html" className="button"><span
                                       style={{font: 'normal 20px ArialRegular', position: 'relative', top: 2}}>+ </span>Add
                                       New Ticket</a>
-                                  <a href={'#collapse'+item.id} data-parent="#accordion-main" data-toggle="collapse">
+                                  <a href={'#collapse'+item.PROJECT_ID} data-parent="#accordion-main" data-toggle="collapse">
                                       <div
                                           style={{color: '#333', margin: '0px 0px -5px 0px', width: '100%', height: '100%', minHeight: '100%'}}
                                           className="panel-heading white">
@@ -29,11 +29,11 @@ export default class CompletedProjects extends Component {
                                           <span
                                               style={{borderRight: 'solid 1px #ccc', display: 'table-cell', padding: '15px 0px 15px 7px', width: 281, height: '100%', minHeight: '100%'}}>
                                             {item.name}<br />
-                                            {item.address}
+                                            {item.street}
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #ccc', display: 'table-cell', padding: '15px 0px 15px 16px', width: 197, height: '100%', minHeight: '100%'}}>
-                                            {item.number}
+                                            {item.turner_number}
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #fff', display: 'table-cell', fontFamily: 'ArialBold', padding: '15px 0px 15px 17px', width: 477, height: '100%', minHeight: '100%'}}>
@@ -47,7 +47,7 @@ export default class CompletedProjects extends Component {
                                       </div>
                                   </a>
 
-                                  <div id={'collapse'+item.id} className="panel-collapse collapse">
+                                  <div id={'collapse'+item.PROJECT_ID} className="panel-collapse collapse">
                                       <div className="panel-body">
                                           <div className="row">
                                               <div className="col-ghgrid-8">
@@ -79,7 +79,7 @@ export default class CompletedProjects extends Component {
                                                       <div className="col-ghgrid-3">
                                                           <img
                                                               style={{padding: '0px 8px 0px 12px', position: 'relative', top: '-2px'}}
-                                                              src={host + "/_images/icons/nav/tab-facilities.png"}/>Hauler and
+                                                              src={imgHost + "/_images/icons/nav/tab-facilities.png"}/>Hauler and
                                                           Subcontractor Ticket Entry
                                                       </div>
                                                       <div className="col-ghgrid-5">
@@ -96,9 +96,9 @@ export default class CompletedProjects extends Component {
                                               </div>
                                               <div className="row">
                                                   <div className="header">
-                                                      <p style={{fontSize: 14, paddingLeft: 18}}>{item.company}
+                                                      <p style={{fontSize: 14, paddingLeft: 18}}>Vendor Company Name
                                                           <span
-                                                              style={{color: '#7fc8ff', fontFamily: 'ArialRegular', paddingLeft: 6}}>{item.address}</span>
+                                                              style={{color: '#7fc8ff', fontFamily: 'ArialRegular', paddingLeft: 6}}>{item.street}</span>
                                                       </p><a
                                                       style={{fontSize: 11, lineHeight: 37, marginLeft: 10, padding: '4px 10px 5px 8px'}}
                                                       href="#" className="button"><span
@@ -127,9 +127,9 @@ export default class CompletedProjects extends Component {
                                                       <span style={{font: 'normal 20px ArialBold'}}>{item.rate}</span>
                                                   </div>
                                               </div>
-                                              {item.facilities.map(function(facility){
+                                              {item.facilities.map(function(facility, f_index){
                                                 return(
-                                                  <div key={'facility_'+facility.id}>
+                                                  <div key={'facility_'+facility.FACILITY_ID+'_'+f_index}>
                                                     <div className="header">
                                                       <p style={{fontSize: 14, paddingLeft: 18}}>{facility.name}</p>                                                      
                                                     </div>
@@ -153,7 +153,7 @@ export default class CompletedProjects extends Component {
                                                     </div>
                                                     {facility.tickets.map(function(ticket){
                                                       return(
-                                                        <div key={'ticket_'+ticket.id}>
+                                                        <div key={'ticket_'+ticket.TICKET_RD_ID}>
                                                             <div className="row">
                                                                 <div style={{margin: '0px 0px 0px -1px'}} id="accordion"
                                                                      className="panel-group">
@@ -175,29 +175,29 @@ export default class CompletedProjects extends Component {
                                                                                     <div className="column-16 no-border">{ticket.submitted_by}</div>
                                                                                     <div className="column-10 no-border">{ticket.weight}</div>
                                                                                     <div className="column-10 no-border">{ticket.recycled}</div>
-                                                                                    <div className="column-11 no-border">{ticket.rate}%</div>
-                                                                                    <div className="column-11 no-border">{ticket.date}</div>                                                                                    
+                                                                                    <div className="column-11 no-border">{ticket.rate_used}%</div>
+                                                                                    <div className="column-11 no-border">{ticket.date_created}</div>                                                                                    
                                                                                     <div
                                                                                         style={{padding: '0px 0px 0px 1px', textAlign: 'center'}}
                                                                                         className="column-5 no-border">
-                                                                                        <a href={"#collapseOne"+ticket.id} data-parent="#accordion"
+                                                                                        <a href={"#collapseOne"+ticket.TICKET_RD_ID} data-parent="#accordion"
                                                                                            data-toggle="collapse"><img
-                                                                                            src={host + "/_images/icons/nav/tab-search.png"}/></a>
+                                                                                            src={imgHost + "/_images/icons/nav/tab-search.png"}/></a>
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 14px'}}
                                                                                          className="column-5 no-border">
                                                                                         <a href="#"><img
-                                                                                            src={host + '/_images/icons/content/pen.png'}/></a>
+                                                                                            src={imgHost + '/_images/icons/content/pen.png'}/></a>
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 10px'}}
                                                                                          className="column-5 no-border">
                                                                                         <a href="#"><img
-                                                                                            src={host + "/_images/icons/content/close-blue.png"}/></a>
+                                                                                            src={imgHost + "/_images/icons/content/close-blue.png"}/></a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div className="panel-collapse collapse" id={"collapseOne"+ticket.id}>
+                                                                        <div className="panel-collapse collapse" id={"collapseOne"+ticket.TICKET_RD_ID}>
                                                                             <div style={{borderTop: 'none'}} className="panel-body">
                                                                                 Image Here                                                                  
                                                                             </div>

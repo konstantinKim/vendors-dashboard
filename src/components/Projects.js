@@ -7,10 +7,10 @@ export default class Projects extends Component {
     onTabBtnClick(e) {                                    
         e.preventDefault()        
         this.props.switchTab(e.currentTarget.id)
-        if(this.props.activeTab == 'completedList'){
+        if(e.currentTarget.id == 'completedList'){
             return this.props.getCompletedProjects()
         }
-        return this.props.getCompletedProjects()
+        return this.props.getActiveProjects()
     }
 
     highlightTab(tabId){
@@ -22,29 +22,28 @@ export default class Projects extends Component {
 
     renderTab(){
         const { projects } = this.props.projects        
-        const { host, activeTab } = this.props        
+        const { imgHost, activeTab } = this.props        
         const { completed } = this.props                        
 
         if(activeTab == 'activeList'){
-            return(<ActiveProjects projects={projects} host={host} />);                    
+            return(<ActiveProjects projects={projects} imgHost={imgHost} />);                    
         }
         if(activeTab == 'completedList'){
-            return(<CompletedProjects completed={completed} host={host} />);                    
+            return(<CompletedProjects completed={completed} imgHost={imgHost} />);                    
         }        
     }
 
     render() {                                      
         const { projects } = this.props.projects        
-        const { host } = this.props        
-        const { completed } = this.props                
-        
+        const { imgHost } = this.props        
+        const { completed } = this.props                        
         return <div className='componentActiveProjects'>
             <div className="container-gh" id="global-main-top-bar">
                 <div className="row">
                     <div className="col-ghgrid-3">
                         <div style={{float: 'left'}}>
                             <img style={{margin: 0, padding: '11px 0px 0px 12px'}}
-                                 src={host + "/_images/icons/content/header-list.png"}/>
+                                 src={imgHost + "/_images/icons/content/header-list.png"}/>
 
                             <p>My Projects List</p>
                         </div>
@@ -63,7 +62,7 @@ export default class Projects extends Component {
                         <a id='activeList' onClick={::this.onTabBtnClick} href="haulsub-projects-active.html" className="link-regular">
                             <span className={this.highlightTab('activeList')}><img
                                 style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}}
-                                src={host + "/_images/icons/nav/tab-statistics.png"}/>Active Projects (<span
+                                src={imgHost + "/_images/icons/nav/tab-statistics.png"}/>Active Projects (<span
                                 className="blue-text">{projects.length}</span>)</span>
                         </a>
                     </div>
@@ -71,7 +70,7 @@ export default class Projects extends Component {
                         <a id='completedList' onClick={::this.onTabBtnClick} href="haulsub-projects-completed.html" className="link-regular">
                             <span className={this.highlightTab('completedList')}><img
                                 style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}}
-                                src={host + "/_images/icons/nav/tab-check.png"}/>Completed (<span
+                                src={imgHost + "/_images/icons/nav/tab-check.png"}/>Completed (<span
                                 className="blue-text">{completed.length}</span>)</span>
                         </a>
                     </div>

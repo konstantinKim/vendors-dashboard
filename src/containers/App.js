@@ -4,35 +4,28 @@ import { connect } from 'react-redux'
 import Header from '../components/Header'
 import Projects from '../components/Projects'
 
-import User from '../components/User'
-import Page from '../components/Page'
-import * as pageActions from '../actions/PageActions'
 import * as projectsActions from '../actions/ProjectsActions'
+import * as activeProjectsActions from '../actions/ActiveProjectsActions'
 import * as completedProjectsActions from '../actions/CompletedProjectsActions'
 
-import { BACKEND_HOST } from '../config/settings'
+import { IMG_HOST } from '../config/settings'
 
 class App extends Component {
   render() {
-    const { user, page, projects, completed, projectsPage } = this.props    
-    const { getPhotos } = this.props.pageActions
+    const { projects, completed, projectsPage } = this.props        
     const { switchTab } = this.props.projectsActions
     const { getCompletedProjects } = this.props.completedProjectsActions
+    const { getActiveProjects } = this.props.activeProjectsActions    
 
     return <div>
-      <Header host={BACKEND_HOST} /> 
-      <Projects projects={projects} completed={completed.projects} activeTab={projectsPage.activeTab} switchTab={switchTab} getCompletedProjects={getCompletedProjects} host={BACKEND_HOST} />
-
-      <User name={user.name} />
-      <Page photos={page.photos} year={page.year} getPhotos={getPhotos} fetching={page.fetching}/>
+      <Header imgHost={IMG_HOST} />       
+      <Projects projects={projects} completed={completed.projects} activeTab={projectsPage.activeTab} switchTab={switchTab} getCompletedProjects={getCompletedProjects} getActiveProjects={getActiveProjects} imgHost={IMG_HOST} />      
     </div>
   }
 }
 
 function mapStateToProps(state) {
-  return {
-    user: state.user,
-    page: state.page,
+  return {    
     projects: state.activeProjects,
     completed: state.completedProjects,
     projectsPage: state.projects
@@ -40,9 +33,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    pageActions: bindActionCreators(pageActions, dispatch),
+  return {    
     projectsActions: bindActionCreators(projectsActions, dispatch),
+    activeProjectsActions: bindActionCreators(activeProjectsActions, dispatch),
     completedProjectsActions: bindActionCreators(completedProjectsActions, dispatch)
   }
 }
