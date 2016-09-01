@@ -6,12 +6,16 @@ import CompletedProjects from '../components/CompletedProjects'
 export default class Projects extends Component {
     onTabBtnClick(e) {                                    
         e.preventDefault()        
-        this.props.switchTab(e.currentTarget.id)
+        
         if(e.currentTarget.id == 'completedList'){
-            return this.props.getCompletedProjects()
+             this.props.getCompletedProjects()
         }
-        return this.props.getActiveProjects()
-    }
+        if(e.currentTarget.id == 'activeList'){
+            this.props.getActiveProjects()
+        }
+    
+        return this.props.switchTab(e.currentTarget.id)
+    }    
 
     highlightTab(tabId){
         if(this.props.activeTab == tabId){
@@ -26,17 +30,24 @@ export default class Projects extends Component {
         const { completed } = this.props                        
 
         if(activeTab == 'activeList'){
-            return(<ActiveProjects projects={projects} imgHost={imgHost} />);                    
+            return(<ActiveProjects projects={projects} imgHost={imgHost}/>);                    
         }
         if(activeTab == 'completedList'){
             return(<CompletedProjects completed={completed} imgHost={imgHost} />);                    
         }        
     }
 
+    syncData(){                
+        if(this.props.projects.sync == 'False'){
+            this.props.getActiveProjects()
+            this.props.projectsActions.getCompletedCount()
+
+        }        
+    }
+
     render() {                                      
         const { projects } = this.props.projects        
-        const { imgHost } = this.props        
-        const { completed } = this.props                        
+        const { imgHost, projectsPage } = this.props                
         return <div className='componentActiveProjects'>
             <div className="container-gh" id="global-main-top-bar">
                 <div className="row">
@@ -71,7 +82,7 @@ export default class Projects extends Component {
                             <span className={this.highlightTab('completedList')}><img
                                 style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}}
                                 src={imgHost + "/_images/icons/nav/tab-check.png"}/>Completed (<span
-                                className="blue-text">{completed.length}</span>)</span>
+                                className="blue-text">{projectsPage.completedCount}</span>)</span>
                         </a>
                     </div>
                 </div>
@@ -86,9 +97,10 @@ export default class Projects extends Component {
                     </div>
                 </div>                                                                
                 {
-                    this.renderTab()
+                    this.renderTab()                    
                 }                                                
             </div>
+            {this.syncData()}                                    
         </div>
     }
 }

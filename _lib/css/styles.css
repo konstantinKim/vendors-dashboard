@@ -472,7 +472,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 .reveal-add-users .column-50.no-border { border: none; }
 
 .reveal-add-users .forms { border: solid 1px #ccc; color: #4c4c4c; font: normal 14px ArialRegular; letter-spacing: .15px; margin: -1px auto 40px auto; overflow: hidden; padding: 30px 0px 24px 0px; width: 938px; /*width: 94%;*/ height: auto; }
-.reveal-add-users input[type=text], #settings-container .form-container .form .fields input[type=password] { background: #fff; border: solid 1px #ccc; margin: 0px 0px 6px 0px; padding: 0px 6px 0px 6px; width: 100%; height: 34px;
+.reveal-add-users input[type=text], .reveal-add-users input[type=email], #settings-container .form-container .form .fields input[type=password] { background: #fff; border: solid 1px #ccc; margin: 0px 0px 6px 0px; padding: 0px 6px 0px 6px; width: 100%; height: 34px;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;

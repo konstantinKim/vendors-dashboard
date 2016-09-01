@@ -86,7 +86,7 @@ export default class ActiveProjects extends Component {
                                                               style={{font: 'normal 12px ArialRegular', padding: '6px 6px 0px 0px', textAlign: 'right'}}>
                                                               Number of Tickets Uploaded ({item.tickets_count})&nbsp;&nbsp;
                                                               <a style={{padding: '6px 14px 7px 12px'}}
-                                                                 href="projects-add-ticket.html" className="button"><span
+                                                                 href="#" data-reveal-id="add_new_ticket" data-animation="fade" data-project-id={item.PROJECT_ID} className="button"><span
                                                                   style={{fontSize: 20, position: 'relative', top: 3}}>+</span>
                                                                   Add New Ticket</a>                                                              
                                                           </div>
@@ -223,7 +223,7 @@ export default class ActiveProjects extends Component {
         }
         
         return <div className='componentActiveProjects'>                  
-          {projectsListTemplate}            
+          {projectsListTemplate}                      
         </div>
     }
 }

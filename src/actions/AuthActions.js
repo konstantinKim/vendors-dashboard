@@ -32,4 +32,3 @@ function setAuthData(data) {
   //window.location = '/'    
   //return { type: 'GET_LOGIN_ERROR', payload: data };
 }
-
