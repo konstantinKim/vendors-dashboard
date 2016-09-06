@@ -7,7 +7,7 @@ export default class Login extends Component {
   }
 
   render() {    
-    const { imgHost } = this.props
+    const { imgHost } = this.props  
     return <div>      
       <div>
         <div id="global-main-top-bar" className="container-gh">

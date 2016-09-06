@@ -480,6 +480,22 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 	-o-border-radius: 4px;
 	-webkit-border-radius: 4px;
 }
+
+.reveal-add-users select { 
+	background: #fff; 
+	border: solid 1px #ccc; 
+	margin: 0px 0px 6px 0px; 
+	padding: 0px 6px 0px 6px; 
+	width: 100%; 
+	height: 34px;
+	border-radius: 4px;
+	-kthml-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
 .reveal-add-users input[type=text]:focus, .reveal-add-users input[type=password]:focus { outline: none; }
 .reveal-add-users input[type=button], .reveal-add-users input[type=submit] { background: #0072bc; border: none; color: #fff; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 24px 0px 0px 0px; outline: none; padding: 0px 20px 0px 20px; text-align: center; text-decoration: none; width: auto; height: 34px;
 	border-radius: 4px;

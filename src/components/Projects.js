@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import ActiveProjects from '../components/ActiveProjects'
 import CompletedProjects from '../components/CompletedProjects'
+import AddTicketForm from '../components/AddTicketForm'
 
 
 export default class Projects extends Component {
@@ -41,13 +42,13 @@ export default class Projects extends Component {
         if(this.props.projects.sync == 'False'){
             this.props.getActiveProjects()
             this.props.projectsActions.getCompletedCount()
-
+            this.props.projectsActions.getMaterials()
         }        
     }
 
     render() {                                      
         const { projects } = this.props.projects        
-        const { imgHost, projectsPage } = this.props                
+        const { imgHost, projectsPage, activeProjectsActions } = this.props                
         return <div className='componentActiveProjects'>
             <div className="container-gh" id="global-main-top-bar">
                 <div className="row">
@@ -101,6 +102,7 @@ export default class Projects extends Component {
                 }                                                
             </div>
             {this.syncData()}                                    
+            <AddTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} />
         </div>
     }
 }

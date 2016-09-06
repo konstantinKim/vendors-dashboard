@@ -6,7 +6,7 @@ import { BACKEND_HOST, REQUEST_HEADERS } from '../config/settings'
 import { checkResponseStatus } from '../store/enhancers/checkStatus'
 
 export function getCompletedProjects() {  
-  return dispatch => fetch(BACKEND_HOST+'projects/completed.json', REQUEST_HEADERS)
+  return dispatch => fetch(BACKEND_HOST+'projects/completed.json', {headers: REQUEST_HEADERS})
     .then(checkResponseStatus)    
     .then(response => response.json())    
     .then(json => dispatch(setCompletedProjects(json)))    

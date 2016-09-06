@@ -21,6 +21,9 @@ app.get("/login", function(req, res) {
 app.get("/_lib/css/vendor/bootstrap.css", function(req, res) {
   res.sendFile(__dirname + '/_lib/css/vendor/bootstrap.css')
 })
+app.get("/_lib/css/vendor/bootstrap-datepicker.css", function(req, res) {
+  res.sendFile(__dirname + '/_lib/css/vendor/bootstrap-datepicker.css')
+})
 app.get("/_lib/css/vendor/bootstrap-datatables.css", function(req, res) {
   res.sendFile(__dirname + '/_lib/css/vendor/bootstrap-datatables.css')
 })

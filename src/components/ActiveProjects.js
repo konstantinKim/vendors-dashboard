@@ -2,15 +2,19 @@ import React, { PropTypes, Component } from 'react'
 
 
 export default class ActiveProjects extends Component {
+    /*getCountTickets(item){      
+      for(var i in item.facilities){
+        return item.facilities[i].tickets.length
+      }
+    }*/
     render() {
         const { projects, imgHost } = this.props
-        var projectsListTemplate        
-
+        //const getCountTickets = this.getCountTickets
+        var projectsListTemplate                
         if (projects.length > 0) {
-            projectsListTemplate = projects.map(function (item, index) {
-
-                return (
-                    <div key={'project_'+item.PROJECT_ID}>
+            projectsListTemplate = projects.map(function (item, index) {                              
+                return (                  
+                    <div key={'project_'+item.PROJECT_ID}>                                                                        
                         <div className="row">
                           <div style={{margin: '0 auto', /*width: '95%', */ width: 1040}} id="accordion-main"
                                className="panel-group">

@@ -13,6 +13,7 @@
     
     <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/vendor/bootstrap.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/vendor/bootstrap-datatables.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/vendor/bootstrap-datepicker.css">
     <!-- global styles -->
     <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/styles.css">
     <!-- settings styles -->
@@ -108,9 +109,17 @@
     <script type="text/javascript" src="/_lib/js/vendor/highcharts.js"></script>
     <script type="text/javascript" src="/_lib/js/vendor/jquery.datatables.js"></script>
     <script type="text/javascript" src="/_lib/js/vendor/bootstrap.datatables.js"></script>
-	<script type='text/javascript' src="/_lib/js/vendor/bootstrap.min.js"></script>
+	<script type='text/javascript' src="/_lib/js/vendor/bootstrap.min.js"></script>    
 
     <script src="/static/bundle.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.calendar').datepicker().on('changeDay', function (e) {
+                $('.calendar').datepicker('hide');
+            });
+        })                
+    </script>
 
   </body>
 </html>
