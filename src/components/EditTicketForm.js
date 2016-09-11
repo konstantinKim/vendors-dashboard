@@ -1,9 +1,36 @@
 import React, { Component } from 'react'
 
-export default class EditTicketForm extends Component {          
+export default class EditTicketForm extends Component {
+  isSelected(a, b){
+    if(a == b){
+      return 'selected'
+    }
+    return ''
+  }          
+
+  onChangeMaterial(e) {            
+    var materialId = e.currentTarget.value
+    var cityId = this.props.editTicketForm.CITY_ID
+    return this.props.projectsActions.getFacilities(cityId, materialId)    
+  }    
 
   render() { 
-    const { imgHost, editTicketForm } = this.props       
+    const myself = this
+    const { imgHost, editTicketForm, projectsPage } = this.props  
+    
+    var materialsList
+    materialsList = projectsPage.materials.map(function (item) {      
+      return (          
+          <option selected={myself.isSelected(item.MATERIAL_ID, editTicketForm.MATERIAL_ID)} key={'mat_'+item.MATERIAL_ID} value={item.MATERIAL_ID}>{item.name}</option>        
+      )
+    })     
+
+    var facilitiesList
+    facilitiesList = projectsPage.facilities.map(function (item) {
+      return (        
+          <option selected={myself.isSelected(item.FACILITY_ID, editTicketForm.FACILITY_ID)} key={'fac_'+item.FACILITY_ID} value={item.FACILITY_ID}>{item.name}</option>        
+      )
+    })
 
     return <div>                  
       <div id="edit_ticket" className="reveal-add-users">        
@@ -19,8 +46,9 @@ export default class EditTicketForm extends Component {
                 <div className="column-35 no-border"><input type="text" placeholder={editTicketForm.ticket} name="ticket" defaultValue={editTicketForm.ticket} /></div>
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Material *</div>
                 <div className="column-40 no-border">
-                      <select name="MATERIAL_ID" required="required" defaultValue={editTicketForm.MATERIAL_ID}>
-                        <option value=''>-- Select Material --</option>                        
+                      <select onChange={::this.onChangeMaterial} name="MATERIAL_ID" required="required" defaultValue={editTicketForm.MATERIAL_ID}>
+                        <option value=''>-- Select Material --</option>
+                        {materialsList}                        
                       </select>
                 </div>
               </div>                
@@ -31,6 +59,7 @@ export default class EditTicketForm extends Component {
                 <div className="column-40 no-border">
                       <select name="FACILITY_ID" required defaultValue={editTicketForm.FACILITY_ID}>
                         <option value=''>-- Select Facility --</option>                        
+                        {facilitiesList}
                       </select>
                 </div>
               </div>               

@@ -2,7 +2,8 @@ import {
   SET_UPDATE_TICKET_DATA
 } from '../constants/EditTicketForm'
 
-const initialState = {  
+const initialState = {
+  CITY_ID: 0,  
   TICKET_ID: 0,
   ticket: '',
   MATERIAL_ID: 0,
@@ -19,6 +20,7 @@ export default function editTicketForm(state = initialState, action) {
 
     case SET_UPDATE_TICKET_DATA:            
       return { ...state, 
+        CITY_ID: action.CITY_ID,
         TICKET_ID: action.payload.TICKET_RD_ID,
         ticket:  action.payload.ticket,
         MATERIAL_ID:  action.payload.MATERIAL_ID,

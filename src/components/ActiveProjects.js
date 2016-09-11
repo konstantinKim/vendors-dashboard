@@ -12,7 +12,9 @@ export default class ActiveProjects extends Component {
           var project_index = e.currentTarget.attributes.getNamedItem('data-project-index').value                    
           var facility_index = e.currentTarget.attributes.getNamedItem('data-facility-index').value                    
           var ticket_index = e.currentTarget.attributes.getNamedItem('data-ticket-index').value                              
-          return this.props.editTicketFormActions.setUpdateTicketData(this.props.projects[project_index].facilities[facility_index].tickets[ticket_index])
+          var ticket = this.props.projects[project_index].facilities[facility_index].tickets[ticket_index]
+          this.props.projectsActions.getFacilities(this.props.projects[project_index].CITY_ID, ticket.MATERIAL_ID)
+          return this.props.editTicketFormActions.setUpdateTicketData(ticket, this.props.projects[project_index].CITY_ID)
     }
 
     render() {        

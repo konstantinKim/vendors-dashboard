@@ -9,8 +9,8 @@ import {
 const initialState = {  
   activeTab: 'activeList',
   completedCount: '0',
-  materials: [{'MATERIAL_ID':'0', 'name': 'Mat 1'}],
-  facilities: [{'FACILITY_ID':'0', 'name': 'FACILITY 1'}]
+  materials: [],
+  facilities: []
 }
 
 export default function projects(state = initialState, action) {

@@ -28,11 +28,11 @@ export default class Projects extends Component {
 
     renderTab(){
         const { projects } = this.props.projects        
-        const { imgHost, activeTab } = this.props        
+        const { imgHost, activeTab, projectsActions } = this.props        
         const { completed } = this.props                        
 
         if(activeTab == 'activeList'){
-            return(<ActiveProjects projects={projects} imgHost={imgHost} addTicketFormActions={this.props.addTicketFormActions} editTicketFormActions={this.props.editTicketFormActions}/>);                    
+            return(<ActiveProjects projects={projects} imgHost={imgHost} addTicketFormActions={this.props.addTicketFormActions} editTicketFormActions={this.props.editTicketFormActions} projectsActions={projectsActions} />);                    
         }
         if(activeTab == 'completedList'){
             return(<CompletedProjects completed={completed} imgHost={imgHost} />);                    
@@ -104,7 +104,7 @@ export default class Projects extends Component {
             </div>
             {this.syncData()}                                    
             <AddTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} addTicketFormActions={addTicketFormActions} addTicketForm={addTicketForm} projectsActions={projectsActions} disableAddTicketForm={disableAddTicketForm}  />
-            <EditTicketForm imgHost={imgHost} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions}  />
+            <EditTicketForm imgHost={imgHost} projectsPage={projectsPage} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} projectsActions={projectsActions}  />
         </div>
     }
 }

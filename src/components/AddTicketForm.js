@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class AddTicketForm extends Component {      
+export default class AddTicketForm extends Component {        
   onAddTicketSubmit(e) {        
     e.preventDefault()    
     if(this.props.disableAddTicketForm == 'False'){
