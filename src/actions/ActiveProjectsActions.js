@@ -1,19 +1,21 @@
 import {  
   GET_ACTIVE_SUCCESS,
-  POST_ADD_TICKET_SUCCESS
+  POST_ADD_TICKET_SUCCESS,
+  POST_ADD_TICKET_REQUEST  
 } from '../constants/ActiveProjects'
 
 import { BACKEND_HOST, REQUEST_HEADERS, TOKEN } from '../config/settings'
 import { checkResponseStatus } from '../store/enhancers/checkStatus'
 
 export function getActiveProjects() {    
+	console.log(REQUEST_HEADERS)
   return dispatch => fetch(BACKEND_HOST+'projects.json', {headers: REQUEST_HEADERS})
     .then(checkResponseStatus)    
     .then(response => response.json())    
     .then(json => dispatch(setActiveProjects(json)))    
 }
 
-export function addTicket(data, file) {      
+export function addTicket(data, file) {      	
   var formData  = new FormData();  
   for (var i = 0; i < data.length; i++) {      
     if(data[i].name != 'image'){
@@ -23,7 +25,9 @@ export function addTicket(data, file) {
 
   formData.append('image', file.files[0]);
 
-  return dispatch => fetch(BACKEND_HOST+'tickets_rd.json', 
+  return dispatch => {
+    dispatch(addTicketRequest());
+    fetch(BACKEND_HOST+'tickets_rd.json', 
     {
         headers: {'Accept': '*/*', 'Authorization': 'Bearer ' + TOKEN},        
         method: 'POST',        
@@ -32,6 +36,7 @@ export function addTicket(data, file) {
     .then(checkResponseStatus)    
     .then(response => response.json())    
     .then(json => dispatch(setNewTicket(json)))
+  }    
 }
 
 function setActiveProjects(data) { 
@@ -39,9 +44,12 @@ function setActiveProjects(data) {
 }
 
 function setNewTicket(data) { 
- return { type: POST_ADD_TICKET_SUCCESS, payload: data};
+ return { type: POST_ADD_TICKET_SUCCESS, payload: data };
 }
 
+function addTicketRequest() {       
+  return { type: POST_ADD_TICKET_REQUEST, payload: 'True' };    
+}
 
 
 

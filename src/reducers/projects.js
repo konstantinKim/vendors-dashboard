@@ -1,13 +1,16 @@
 import {  
   SWITCH_TAB,
   SET_COMPLETED_COUNT_SUCCESS,
-  SET_MATERIALS_SUCCESS
+  SET_MATERIALS_SUCCESS,
+  SET_FACILITIES_REQUEST,
+  SET_FACILITIES_SUCCESS
 } from '../constants/Projects'
 
 const initialState = {  
   activeTab: 'activeList',
   completedCount: '0',
-  materials: [{'MATERIAL_ID':'1', 'name': 'Mat 1'}, {'MATERIAL_ID':'2', 'name': 'Mat 2'}]
+  materials: [{'MATERIAL_ID':'0', 'name': 'Mat 1'}],
+  facilities: [{'FACILITY_ID':'0', 'name': 'FACILITY 1'}]
 }
 
 export default function projects(state = initialState, action) {
@@ -22,6 +25,12 @@ export default function projects(state = initialState, action) {
     case SET_MATERIALS_SUCCESS:      
       return { ...state, materials: action.payload }  
 
+    case SET_FACILITIES_SUCCESS:      
+      return { ...state, facilities: action.payload }    
+    
+    case SET_FACILITIES_REQUEST:      
+      return { ...state, facilities: action.payload }    
+      
     default:
       return state;
   }

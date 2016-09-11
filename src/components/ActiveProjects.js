@@ -1,16 +1,24 @@
 import React, { PropTypes, Component } from 'react'
 
 
-export default class ActiveProjects extends Component {
-    /*getCountTickets(item){      
-      for(var i in item.facilities){
-        return item.facilities[i].tickets.length
-      }
-    }*/
-    render() {
-        const { projects, imgHost } = this.props
-        //const getCountTickets = this.getCountTickets
-        var projectsListTemplate                
+export default class ActiveProjects extends Component {                        
+    identifyTicket(e){          
+          var projectId = e.target.attributes.getNamedItem('data-project-id').value
+          var cityId = e.target.attributes.getNamedItem('data-project-city-id').value
+          return this.props.addTicketFormActions.identifyTicket(projectId, cityId)
+    }
+
+    setUpdateTicketData(e){                              
+          var project_index = e.currentTarget.attributes.getNamedItem('data-project-index').value                    
+          var facility_index = e.currentTarget.attributes.getNamedItem('data-facility-index').value                    
+          var ticket_index = e.currentTarget.attributes.getNamedItem('data-ticket-index').value                              
+          return this.props.editTicketFormActions.setUpdateTicketData(this.props.projects[project_index].facilities[facility_index].tickets[ticket_index])
+    }
+
+    render() {        
+        const { projects, imgHost } = this.props                                
+        const self = this
+        var projectsListTemplate                                        
         if (projects.length > 0) {
             projectsListTemplate = projects.map(function (item, index) {                              
                 return (                  
@@ -19,8 +27,8 @@ export default class ActiveProjects extends Component {
                           <div style={{margin: '0 auto', /*width: '95%', */ width: 1040}} id="accordion-main"
                                className="panel-group">
                               <div style={{background: 'none', marginTop: '-2px'}} className="panel panel-default">
-                                  <a style={{float: 'right', marginBottom: '-33px', padding: '2px 17px 5px 10px', position: 'relative', top: 10, right: '10%'}}
-                                     href="projects-add-ticket.html" className="button"><span
+                                  <a onClick={::self.identifyTicket} style={{float: 'right', marginBottom: '-33px', padding: '2px 17px 5px 10px', position: 'relative', top: 10, right: '10%'}}
+                                     href="#" data-reveal-id="add_new_ticket" data-animation="fade" data-project-id={item.PROJECT_ID} data-project-city-id={item.CITY_ID} className="button"><span
                                       style={{font: 'normal 20px ArialRegular', position: 'relative', top: 2}}>+ </span>Add
                                       New Ticket</a>
                                   <a href={'#collapse'+item.PROJECT_ID} data-parent="#accordion-main" data-toggle="collapse">
@@ -40,8 +48,7 @@ export default class ActiveProjects extends Component {
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #fff', display: 'table-cell', fontFamily: 'ArialBold', padding: '15px 0px 15px 17px', width: 477, height: '100%', minHeight: '100%'}}>
-                                            Number of tickets added: (<span className="blue-text">{item.tickets_count}</span>)
-                                              {/*<span class="button add-ticket-button"><span style="font: normal 20px ArialRegular; position: relative; top: 2px; z-index: 9999;">+ </span>Add New Ticket</span>*/}
+                                            Number of tickets added: (<span className="blue-text">{item.tickets_count}</span>)                                              
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #fff', display: 'table-cell', padding: 0, width: 40, height: '100%', minHeight: '100%'}}>
@@ -89,8 +96,8 @@ export default class ActiveProjects extends Component {
                                                           <div
                                                               style={{font: 'normal 12px ArialRegular', padding: '6px 6px 0px 0px', textAlign: 'right'}}>
                                                               Number of Tickets Uploaded ({item.tickets_count})&nbsp;&nbsp;
-                                                              <a style={{padding: '6px 14px 7px 12px'}}
-                                                                 href="#" data-reveal-id="add_new_ticket" data-animation="fade" data-project-id={item.PROJECT_ID} className="button"><span
+                                                              <a onClick={::self.identifyTicket} style={{padding: '6px 14px 7px 12px'}}
+                                                                 href="#" data-reveal-id="add_new_ticket" data-animation="fade" data-project-id={item.PROJECT_ID} data-project-city-id={item.CITY_ID} className="button add_new_ticket_btn"><span
                                                                   style={{fontSize: 20, position: 'relative', top: 3}}>+</span>
                                                                   Add New Ticket</a>                                                              
                                                           </div>
@@ -154,7 +161,7 @@ export default class ActiveProjects extends Component {
                                                             <div style={{padding: 0}} className="column-5 no-border">Delete</div>
                                                         </div>
                                                     </div>
-                                                    {facility.tickets.map(function(ticket){
+                                                    {facility.tickets.map(function(ticket, t_index){
                                                       return(
                                                         <div key={'ticket_'+ticket.TICKET_RD_ID}>
                                                             <div className="row">
@@ -179,7 +186,7 @@ export default class ActiveProjects extends Component {
                                                                                     <div className="column-10 no-border">{ticket.weight}</div>
                                                                                     <div className="column-10 no-border">{ticket.recycled}</div>
                                                                                     <div className="column-11 no-border">{ticket.rate_used}%</div>
-                                                                                    <div className="column-11 no-border">{ticket.date_created}</div>                                                                                    
+                                                                                    <div className="column-11 no-border">{ticket.thedate}</div>                                                                                    
                                                                                     <div
                                                                                         style={{padding: '0px 0px 0px 1px', textAlign: 'center'}}
                                                                                         className="column-5 no-border">
@@ -189,7 +196,7 @@ export default class ActiveProjects extends Component {
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 14px'}}
                                                                                          className="column-5 no-border">
-                                                                                        <a href="#"><img
+                                                                                        <a onClick={::self.setUpdateTicketData} data-reveal-id="edit_ticket" data-project-index={index} data-facility-index={f_index} data-ticket-index={t_index} href="#"><img
                                                                                             src={imgHost + '/_images/icons/content/pen.png'}/></a>
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 10px'}}
@@ -201,8 +208,8 @@ export default class ActiveProjects extends Component {
                                                                             </div>
                                                                         </div>
                                                                         <div className="panel-collapse collapse" id={"collapseOne"+ticket.TICKET_RD_ID}>
-                                                                            <div style={{borderTop: 'none'}} className="panel-body">
-                                                                                Image Here                                                                  
+                                                                            <div style={{borderTop: 'none', textAlign: 'center'}} className="panel-body">
+                                                                                <img src={imgHost + ticket.image}/>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -226,7 +233,7 @@ export default class ActiveProjects extends Component {
             })
         }
         
-        return <div className='componentActiveProjects'>                  
+        return <div className='componentActiveProjects'>                            
           {projectsListTemplate}                      
         </div>
     }

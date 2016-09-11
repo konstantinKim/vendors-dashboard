@@ -176,7 +176,7 @@ export default class CompletedProjects extends Component {
                                                                                     <div className="column-10 no-border">{ticket.weight}</div>
                                                                                     <div className="column-10 no-border">{ticket.recycled}</div>
                                                                                     <div className="column-11 no-border">{ticket.rate_used}%</div>
-                                                                                    <div className="column-11 no-border">{ticket.date_created}</div>                                                                                    
+                                                                                    <div className="column-11 no-border">{ticket.thedate}</div>                                                                                    
                                                                                     <div
                                                                                         style={{padding: '0px 0px 0px 1px', textAlign: 'center'}}
                                                                                         className="column-5 no-border">

@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import ActiveProjects from '../components/ActiveProjects'
 import CompletedProjects from '../components/CompletedProjects'
 import AddTicketForm from '../components/AddTicketForm'
+import EditTicketForm from '../components/EditTicketForm'
 
 
 export default class Projects extends Component {
@@ -31,7 +32,7 @@ export default class Projects extends Component {
         const { completed } = this.props                        
 
         if(activeTab == 'activeList'){
-            return(<ActiveProjects projects={projects} imgHost={imgHost}/>);                    
+            return(<ActiveProjects projects={projects} imgHost={imgHost} addTicketFormActions={this.props.addTicketFormActions} editTicketFormActions={this.props.editTicketFormActions}/>);                    
         }
         if(activeTab == 'completedList'){
             return(<CompletedProjects completed={completed} imgHost={imgHost} />);                    
@@ -47,8 +48,8 @@ export default class Projects extends Component {
     }
 
     render() {                                      
-        const { projects } = this.props.projects        
-        const { imgHost, projectsPage, activeProjectsActions } = this.props                
+        const { projects, disableAddTicketForm } = this.props.projects                        
+        const { imgHost, projectsPage, activeProjectsActions, addTicketForm, addTicketFormActions, projectsActions, editTicketForm, editTicketFormActions } = this.props                
         return <div className='componentActiveProjects'>
             <div className="container-gh" id="global-main-top-bar">
                 <div className="row">
@@ -102,7 +103,8 @@ export default class Projects extends Component {
                 }                                                
             </div>
             {this.syncData()}                                    
-            <AddTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} />
+            <AddTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} addTicketFormActions={addTicketFormActions} addTicketForm={addTicketForm} projectsActions={projectsActions} disableAddTicketForm={disableAddTicketForm}  />
+            <EditTicketForm imgHost={imgHost} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions}  />
         </div>
     }
 }

@@ -1,7 +1,9 @@
 import {  
   SWITCH_TAB,
   SET_COMPLETED_COUNT_SUCCESS,
-  SET_MATERIALS_SUCCESS
+  SET_MATERIALS_SUCCESS,
+  SET_FACILITIES_REQUEST,
+  SET_FACILITIES_SUCCESS
 } from '../constants/Projects'
 
 import { BACKEND_HOST, REQUEST_HEADERS } from '../config/settings'
@@ -33,6 +35,16 @@ export function getMaterials() {
         .then(json => dispatch(setMaterials(json)))    
 }
 
+export function getFacilities(city_id, material_id) {    
+    return dispatch => {
+        dispatch(setFacilitiesPreloader());
+        fetch(BACKEND_HOST+'facilities/city/'+city_id+'/material/'+material_id+'.json', {headers: REQUEST_HEADERS})
+        .then(checkResponseStatus)    
+        .then(response => response.json())    
+        .then(json => dispatch(setFacilities(json)))     
+    }
+}
+
 function setCompletedCount(data) {     
  return { type: SET_COMPLETED_COUNT_SUCCESS, payload: data };
 }
@@ -45,4 +57,19 @@ function setMaterials(data) {
     }
   }
   return { type: SET_MATERIALS_SUCCESS, payload: materials };
+}
+
+function setFacilitiesPreloader() {     
+  var facilities = [{'FACILITY_ID':'', 'name': 'Please wait. Loading...'}]    
+  return { type: SET_FACILITIES_REQUEST, payload: facilities };    
+}
+
+function setFacilities(data) {     
+  var facilities = []
+  if (typeof data.data != 'undefined' && data.data.length) {
+    for (var i in data.data){      
+      facilities.push(data.data[i].attributes)  
+    }
+  }
+  return { type: SET_FACILITIES_SUCCESS, payload: facilities };
 }

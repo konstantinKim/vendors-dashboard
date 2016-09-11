@@ -3,9 +3,25 @@ import React, { Component } from 'react'
 export default class AddTicketForm extends Component {      
   onAddTicketSubmit(e) {        
     e.preventDefault()    
-    var inputs = document.querySelectorAll("#add_new_ticket input, #add_new_ticket select");        
-    return this.props.activeProjectsActions.addTicket(inputs, this.refs['ticket_file'])
+    if(this.props.disableAddTicketForm == 'False'){
+      var inputs = document.querySelectorAll("#add_new_ticket input, #add_new_ticket select");        
+      return this.props.activeProjectsActions.addTicket(inputs, this.refs['ticket_file'])
+    }
+    alert('Loading... Please wait.')    
   }  
+
+  getAddButtonStatus() {            
+    if(this.props.disableAddTicketForm == 'False'){
+      return 'Add Ticket'
+    }
+    return 'Processing...'
+  }    
+
+  onChangeMaterial(e) {            
+    var materialId = e.currentTarget.value
+    var cityId = this.props.addTicketForm.cityId
+    return this.props.projectsActions.getFacilities(cityId, materialId)
+  }    
 
   render() {    
     const { imgHost, projectsPage } = this.props     
@@ -16,11 +32,19 @@ export default class AddTicketForm extends Component {
       )
     })    
 
+    var facilitiesList
+    facilitiesList = projectsPage.facilities.map(function (item) {
+      return (        
+          <option key={'fac_'+item.FACILITY_ID} value={item.FACILITY_ID}>{item.name}</option>        
+      )
+    })    
+
     return <div>                  
       <div id="add_new_ticket" className="reveal-add-users">        
         <div>
           <form encType='multipart/form-data' id="add_ticket_form" onSubmit={::this.onAddTicketSubmit}>
-            <input type="hidden" defaultValue="1" name="PROJECT_ID" />
+            <input id="add_ticket_project_id" ref="add_ticket_project_id" type="hidden" defaultValue={this.props.addTicketForm.projectId} name="PROJECT_ID" required="required" />
+            <input id="add_ticket_city_id" ref="add_ticket_city_id" type="hidden" defaultValue={this.props.addTicketForm.cityId} name="CITY_ID" required="required" />
             <div style={{marginTop: 19}} className="titles">
               <img style={{margin: '-1px 0px 0px 0px', padding: '0px 12px 0px 12px'}} src={imgHost + "/_images/icons/content/add.png"} />Add Ticket
             </div>
@@ -30,7 +54,7 @@ export default class AddTicketForm extends Component {
                 <div className="column-35 no-border"><input type="text" placeholder="enter ticket number" required="required" name="ticket" /></div>
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Material *</div>
                 <div className="column-40 no-border">
-                      <select name="MATERIAL_ID" required="required">
+                      <select onChange={::this.onChangeMaterial} name="MATERIAL_ID" required="required">
                         <option value=''>-- Select Material --</option>
                         {materialsList}                                                                                              
                       </select>
@@ -43,7 +67,7 @@ export default class AddTicketForm extends Component {
                 <div className="column-40 no-border">
                       <select name="FACILITY_ID" required>
                         <option value=''>-- Select Facility --</option>
-                        {materialsList}                                                                                              
+                        {facilitiesList}                                                                                              
                       </select>
                 </div>
               </div>               
@@ -78,7 +102,7 @@ export default class AddTicketForm extends Component {
               <div className="row">
                 <div className="content no-border">
                   <div style={{margin: '-6px 0px 0px 0px', padding: 0}} className="column-50 no-border">&nbsp;</div>
-                  <div style={{margin: '-6px 0px 0px 0px', padding: '0px 20px 0px 0px', textAlign: 'right'}} className="column-50 no-border"><input type="submit" defaultValue="Add Ticket" name /></div>
+                  <div style={{margin: '-6px 0px 0px 0px', padding: '0px 20px 0px 0px', textAlign: 'right'}} className="column-50 no-border"><input type="submit" defaultValue={::this.getAddButtonStatus()} name /></div>
                 </div>
               </div>
             </div>
