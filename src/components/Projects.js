@@ -7,15 +7,7 @@ import EditTicketForm from '../components/EditTicketForm'
 
 export default class Projects extends Component {
     onTabBtnClick(e) {                                    
-        e.preventDefault()        
-        
-        if(e.currentTarget.id == 'completedList'){
-             this.props.getCompletedProjects()
-        }
-        if(e.currentTarget.id == 'activeList'){
-            this.props.getActiveProjects()
-        }
-    
+        e.preventDefault()                        
         return this.props.switchTab(e.currentTarget.id)
     }    
 
@@ -28,23 +20,20 @@ export default class Projects extends Component {
 
     renderTab(){
         const { projects } = this.props.projects        
-        const { imgHost, activeTab, projectsActions } = this.props        
+        const { imgHost, activeTab, projectsActions, activeProjectsActions, projectsPage, getCompletedProjects } = this.props        
         const { completed } = this.props                        
 
         if(activeTab == 'activeList'){
-            return(<ActiveProjects projects={projects} imgHost={imgHost} addTicketFormActions={this.props.addTicketFormActions} editTicketFormActions={this.props.editTicketFormActions} projectsActions={projectsActions} />);                    
+            return(<ActiveProjects activeProjectsActions={activeProjectsActions} projects={projects} imgHost={imgHost} addTicketFormActions={this.props.addTicketFormActions} editTicketFormActions={this.props.editTicketFormActions} projectsActions={projectsActions} projectsPage={projectsPage} />);                    
         }
         if(activeTab == 'completedList'){
-            return(<CompletedProjects completed={completed} imgHost={imgHost} />);                    
+            return(<CompletedProjects completed={completed} imgHost={imgHost} getCompletedProjects={getCompletedProjects} />);                    
         }        
     }
 
-    syncData(){                
-        if(this.props.projects.sync == 'False'){
-            this.props.getActiveProjects()
-            this.props.projectsActions.getCompletedCount()
-            this.props.projectsActions.getMaterials()
-        }        
+    componentWillMount(){                                
+        this.props.projectsActions.getCompletedCount()
+        this.props.projectsActions.getMaterials()        
     }
 
     render() {                                      
@@ -101,10 +90,9 @@ export default class Projects extends Component {
                 {
                     this.renderTab()                    
                 }                                                
-            </div>
-            {this.syncData()}                                    
+            </div>            
             <AddTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} addTicketFormActions={addTicketFormActions} addTicketForm={addTicketForm} projectsActions={projectsActions} disableAddTicketForm={disableAddTicketForm}  />
-            <EditTicketForm imgHost={imgHost} projectsPage={projectsPage} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} projectsActions={projectsActions}  />
+            <EditTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} projectsActions={projectsActions}  />
         </div>
     }
 }

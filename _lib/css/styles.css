@@ -92,7 +92,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 /* == main header  == */
 #header-container { margin: 0 auto; padding: 0; /*width: 100%;*/ width: 1100px; min-width: 1100px; height: 100px; }
 #header-container .logo { margin: 0; padding: 29px 0px 0px 0px; position: relative; left: -10px; height: auto; }
-#header-container .user { background: url(../../_images/global/user.gif) no-repeat; cursor: pointer; float: right; margin: 28px 0px 0px 0px; padding: 0; width: 205px; height: 44px; }
+#header-container .user { cursor: pointer; float: right; margin: 28px 0px 0px 0px; padding: 0; width: 205px; height: 44px; }
 #header-container .disposed { background: url(../../_images/global/chart-disposed.gif) no-repeat; float: right; margin: 28px 20px 0px 0px; padding: 0; width: 114px; height: 44px; }
 #header-container .recycled { background: url(../../_images/global/chart-recycled.gif) no-repeat; float: right; margin: 28px 10px 0px 0px; padding: 0; width: 114px; height: 44px; }
 #header-container .reused { background: url(../../_images/global/chart-reused.gif) no-repeat; float: right; margin: 28px 10px 0px 0px; padding: 0; width: 114px; height: 44px; }

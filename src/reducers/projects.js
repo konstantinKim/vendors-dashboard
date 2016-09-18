@@ -10,7 +10,7 @@ const initialState = {
   activeTab: 'activeList',
   completedCount: '0',
   materials: [],
-  facilities: []
+  facilities: []  
 }
 
 export default function projects(state = initialState, action) {

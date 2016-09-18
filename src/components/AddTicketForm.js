@@ -39,6 +39,18 @@ export default class AddTicketForm extends Component {
       )
     })    
 
+    let percentage = []
+    for (var i = 100; i > 0; i = i-5){
+       percentage.push({'percentage':i})
+    }
+    
+    let percentageOptions
+    percentageOptions = percentage.map(function (item) {
+      return (        
+          <option key={'perc_'+item.percentage} value={item.percentage}>{item.percentage}%</option>        
+      )
+    })        
+
     return <div>                  
       <div id="add_new_ticket" className="reveal-add-users">        
         <div>
@@ -81,9 +93,7 @@ export default class AddTicketForm extends Component {
                     <option value='pounds'>Pounds</option>
                   </select>
                   <select name="percentage" required="required" style={{width: '80px'}}>
-                    <option value='100'>100%</option>
-                    <option value='95'>95%</option>
-                    <option value='90'>90%</option>
+                    {percentageOptions}
                   </select>
                 </div>
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border"></div>

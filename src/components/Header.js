@@ -1,8 +1,49 @@
 import React, { Component } from 'react'
 
 export default class Header extends Component {
-  render() {    
+  onTabBtnClick(e) {                                    
+        e.preventDefault()                                  
+        return this.props.switchTab(e.currentTarget.id)
+  }
+
+  highlightTab(tabId){
+      if(this.props.activeTab == tabId){
+          return('sub-nav-selected');        
+      }
+      return('sub-nav');                
+  }
+
+  highlightMenu(menuId, location){      
+      if(location == menuId){
+          return('-selected');        
+      }
+      return('');                
+  }
+
+
+
+  render() {        
     const { imgHost } = this.props
+    var location = window.location.pathname
+    var subNav
+    if(this.highlightMenu('/', location) != ''){
+      subNav = <div className="col-ghgrid-8">
+                <a id='activeList' onClick={::this.onTabBtnClick} href="haulsub-projects-active.html" className={this.highlightTab('activeList') + " padding"}>ACTIVE PROJECTS</a>
+                <a id='completedList' onClick={::this.onTabBtnClick} style={{padding: '0px 14px 0px 12px'}} className={this.highlightTab('completedList')} href="haulsub-projects-completed.html">COMPLETED PROJECTS</a>
+              </div>
+    }
+    if(this.highlightMenu('/statistics', location) != ''){
+      subNav = <div className="col-ghgrid-8">
+        <a id="overview" onClick={::this.onTabBtnClick} href="haulsub-statistics-overview.html" className={this.highlightTab('overview') + " padding"}>RECYCLING TOTALS</a>
+        <a id="carbonFootprint" onClick={::this.onTabBtnClick} href="haulsub-statistics-carbon-footprint.html" className={this.highlightTab('carbonFootprint') + " padding"}>CARBON FOOTPRINT</a>
+        <a id="materials" onClick={::this.onTabBtnClick} href="haulsub-statistics-materials-recycled.html" className={this.highlightTab('materials') + " padding"}>MATERIALS RECYCLED</a>
+        <a id="facilities" onClick={::this.onTabBtnClick} href="haulsub-statistics-facilities-used.html" className={this.highlightTab('facilities') + " padding"}>FACILITIES USED</a>
+        <a id="projectTypes" onClick={::this.onTabBtnClick} href="haulsub-statistics-project-types.html" className={this.highlightTab('projectTypes') + " padding"}>PROJECT TYPES</a>
+        <a id="buildingTypes" onClick={::this.onTabBtnClick} href="haulsub-statistics-building-types.html" className={this.highlightTab('buildingTypes') + " padding"}>BUILDING TYPES</a>
+        <a id="haulingTypes" onClick={::this.onTabBtnClick} href="haulsub-statistics-hauling-types.html" className={this.highlightTab('haulingTypes')} style={{padding: '0px 14px 0px 12px'}}>HAULING TYPES</a>        
+      </div>
+    }
+    
     return <div>
       <div>
         {/* top most header */}
@@ -44,16 +85,17 @@ export default class Header extends Component {
         <div className="container-gh">
           <div id="global-nav-container" className="row">
             <div className="col-ghgrid-1">
-              <a href="haulsub-projects-active.html" className="link-regular">
-                <span className="nav-selected nav-home-selected">
+              <a href="/" className="link-regular">
+                <span className={"nav" + this.highlightMenu('/', location) + " nav-home"}>
                   <span style={{position: 'relative', top: 44}}>HOME</span><br />
-                  <img style={{margin: '2px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/home-white.png"} className="global-nav-home-hover" />
+                  <img style={{margin: '2px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/home-dark.png"} className="global-nav-home" /><br />
+                  <img style={{margin: '50px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/home-white.png"} className="global-nav-home-hover" />
                 </span>
               </a>
             </div>
             <div className="col-ghgrid-1">
-              <a href="haulsub-statistics-overview.html" className="link-regular">
-                <span className="nav nav-statistics">
+              <a href="/statistics" className="link-regular">
+                <span className={"nav" + this.highlightMenu('/statistics', location) + " nav-statistics"}>
                   <span style={{position: 'relative', top: 44}}>STATISTICS</span><br />
                   <img style={{margin: '2px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/statistics-dark.png"} className="global-nav-statistics" /><br />
                   <img style={{margin: '50px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/statistics-white.png"} className="global-nav-statistics-hover" />
@@ -117,16 +159,15 @@ export default class Header extends Component {
           </div>
         </div>
         {/* sub nav */}
+                
         <div id="global-sub-nav-container">
           <div className="container-gh">
             <div style={{textAlign: 'left'}} id="global-sub-nav" className="row">
-              <div className="col-ghgrid-8">
-                <a href="haulsub-projects-active.html" className="sub-nav-selected padding">ACTIVE PROJECTS</a>
-                <a style={{padding: '0px 14px 0px 12px'}} href="haulsub-projects-completed.html" className="sub-nav">COMPLETED PROJECTS</a>
-              </div>
+              {subNav}
             </div>
           </div>
         </div>
+
       </div>
 
     </div>

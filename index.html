@@ -106,7 +106,7 @@
 
 	<script type="text/javascript" src="/_lib/js/vendor/jquery.easing.min.js"></script>
 	<script type="text/javascript" src="/_lib/js/vendor/jquery-easing-compatibility.js"></script>
-    <script type="text/javascript" src="/_lib/js/vendor/highcharts.js"></script>
+    
     <script type="text/javascript" src="/_lib/js/vendor/jquery.datatables.js"></script>
     <script type="text/javascript" src="/_lib/js/vendor/bootstrap.datatables.js"></script>
 	<script type='text/javascript' src="/_lib/js/vendor/bootstrap.min.js"></script>    
@@ -119,10 +119,12 @@
                 $('.calendar').datepicker('hide');
             });
 
-            /*$('body').on('click', '.add_new_ticket_btn', function(e){
-                alert(1)
-            })*/
-        })                
+            
+        })  
+
+        function setDataTable(id){
+            $('#'+id).dataTable();
+        }              
     </script>
 
   </body>

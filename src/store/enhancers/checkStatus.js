@@ -6,7 +6,9 @@ export const checkResponseStatus = function(response){
     }
 
     if (response.status == 401) {
-        window.location = '/login'
+        alert(response.statusText)
+        return response
+        //window.location = '/login'
     }    
     
     var error = new Error(response.statusText)

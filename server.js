@@ -18,6 +18,14 @@ app.get("/login", function(req, res) {
   res.sendFile(__dirname + '/index.html')
 })
 
+app.get("/statistics", function(req, res) {
+  res.sendFile(__dirname + '/index.html')
+})
+
+app.get("/settings", function(req, res) {
+  res.sendFile(__dirname + '/index.html')
+})
+
 app.get("/_lib/css/vendor/bootstrap.css", function(req, res) {
   res.sendFile(__dirname + '/_lib/css/vendor/bootstrap.css')
 })

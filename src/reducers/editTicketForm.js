@@ -1,5 +1,6 @@
 import {  
-  SET_UPDATE_TICKET_DATA
+  SET_UPDATE_TICKET_DATA,
+  DISABLE_FORM
 } from '../constants/EditTicketForm'
 
 const initialState = {
@@ -12,7 +13,9 @@ const initialState = {
   weight: '',
   units: 'tons',
   percentage: 100,
-  submitted_by: ''
+  submitted_by: '',
+  isDisabled: 'False',
+  indexes: {}
 }
 
 export default function editTicketForm(state = initialState, action) {
@@ -29,8 +32,12 @@ export default function editTicketForm(state = initialState, action) {
         weight:  action.payload.weight,
         units:  action.payload.units,
         percentage:  action.payload.percentage,
-        submitted_by:  action.payload.submitted_by
+        submitted_by:  action.payload.submitted_by,
+        indexes: action.indexes
       }    
+
+    case DISABLE_FORM:
+      return { ...state, isDisabled: action.payload }
 
     default:
       return state;

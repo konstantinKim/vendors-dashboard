@@ -2,7 +2,12 @@ import React, { PropTypes, Component } from 'react'
 
 
 export default class CompletedProjects extends Component {
+    componentWillMount(){                        
+        this.props.getCompletedProjects()        
+    }      
+
     render() {      
+        var ReactHighcharts = require('react-highcharts');        
         const { completed } = this.props                
         const { imgHost } = this.props        
         var projectsListTemplate        
@@ -16,10 +21,7 @@ export default class CompletedProjects extends Component {
                           <div style={{margin: '0 auto', /*width: '95%', */ width: 1040}} id="accordion-main"
                                className="panel-group">
                               <div style={{background: 'none', marginTop: '-2px'}} className="panel panel-default">
-                                  <a style={{float: 'right', marginBottom: '-33px', padding: '2px 17px 5px 10px', position: 'relative', top: 10, right: '10%'}}
-                                     href="projects-add-ticket.html" className="button"><span
-                                      style={{font: 'normal 20px ArialRegular', position: 'relative', top: 2}}>+ </span>Add
-                                      New Ticket</a>
+                                  
                                   <a href={'#collapse'+item.PROJECT_ID} data-parent="#accordion-main" data-toggle="collapse">
                                       <div
                                           style={{color: '#333', margin: '0px 0px -5px 0px', width: '100%', height: '100%', minHeight: '100%'}}
@@ -37,8 +39,7 @@ export default class CompletedProjects extends Component {
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #fff', display: 'table-cell', fontFamily: 'ArialBold', padding: '15px 0px 15px 17px', width: 477, height: '100%', minHeight: '100%'}}>
-                                            Number of tickets added: (<span className="blue-text">{item.tickets_count}</span>)
-                                              {/*<span class="button add-ticket-button"><span style="font: normal 20px ArialRegular; position: relative; top: 2px; z-index: 9999;">+ </span>Add New Ticket</span>*/}
+                                            Number of tickets added: (<span className="blue-text">{item.tickets_count}</span>)                                              
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #fff', display: 'table-cell', padding: 0, width: 40, height: '100%', minHeight: '100%'}}>
@@ -58,18 +59,9 @@ export default class CompletedProjects extends Component {
                                               </div>
                                           </div>
                                           <div className="row">
-                                              <div className="col-ghgrid-8">
-                                                  <div
-                                                      style={{color: '#fff', font: 'normal 10px ArialRegular', letterSpacing: '.15px', lineHeight: 14, float: 'right', margin: '-80px 2% 0px 0px', textAlign: 'center'}}>
-                                                      <br />
-                                                      <a href="#" className="link-regular"><span
-                                                          style={{margin: '0px 0px 4px 0px', lineHeight:'15px'}}
-                                                          className="rounded-corner">Export Recycling<br />Tickets To Excel</span></a>
-                                                      <a href="#" className="link-regular"><span className="rounded-corner"
-                                                                                                 style={{lineHeight:'15px'}}>Export Savlage<br />Tickets To Excel</span></a>
-                                                  </div>
-                                                  <div id="chart-donut-container">
-                                                      <div id="chart-donut-ticket"/>
+                                              <div className="col-ghgrid-8">                                                  
+                                                  <div id="chart-donut-container" style={{margin: '0 auto', width: '600px'}}>                                                                                                                                                              
+                                                      <ReactHighcharts id={'chart_'+item.PROJECT_ID} config={item.chartConfig} ref={'chart_'+item.PROJECT_ID}></ReactHighcharts>
                                                   </div>
                                               </div>
                                           </div>
@@ -85,11 +77,7 @@ export default class CompletedProjects extends Component {
                                                       <div className="col-ghgrid-5">
                                                           <div
                                                               style={{font: 'normal 12px ArialRegular', padding: '6px 6px 0px 0px', textAlign: 'right'}}>
-                                                              Number of Tickets Uploaded ({item.tickets_count})&nbsp;&nbsp;
-                                                              <a style={{padding: '6px 14px 7px 12px'}}
-                                                                 href="projects-add-ticket.html" className="button"><span
-                                                                  style={{fontSize: 20, position: 'relative', top: 3}}>+</span>
-                                                                  Add New Ticket</a>                                                              
+                                                              Number of Tickets Uploaded ({item.tickets_count})&nbsp;&nbsp;                                                              
                                                           </div>
                                                       </div>
                                                   </div>

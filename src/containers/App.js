@@ -12,15 +12,15 @@ import * as editTicketFormActions from '../actions/EditTicketFormActions'
 
 import { IMG_HOST } from '../config/settings'
 
-class App extends Component {
-  render() {
+class App extends Component {  
+  render() {    
     const { projects, completed, projectsPage, sync, projectsActions, activeProjectsActions, addTicketForm, addTicketFormActions, editTicketForm, editTicketFormActions } = this.props                    
     const { switchTab } = this.props.projectsActions
     const { getCompletedProjects } = this.props.completedProjectsActions
     const { getActiveProjects } = this.props.activeProjectsActions        
     return <div>
-      <Header imgHost={IMG_HOST} />       
-      <Projects projects={projects} projectsActions={projectsActions} completed={completed.projects} activeTab={projectsPage.activeTab} projectsPage={projectsPage} switchTab={switchTab} getCompletedProjects={getCompletedProjects} getActiveProjects={getActiveProjects} imgHost={IMG_HOST} sync={sync} activeProjectsActions={activeProjectsActions} addTicketForm={addTicketForm} addTicketFormActions={addTicketFormActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} />               
+      <Header imgHost={IMG_HOST} switchTab={switchTab} activeTab={projectsPage.activeTab} />       
+      <Projects projects={projects} projectsActions={projectsActions} completed={completed.projects} activeTab={projectsPage.activeTab} projectsPage={projectsPage} switchTab={switchTab} getCompletedProjects={getCompletedProjects} getActiveProjects={getActiveProjects} imgHost={IMG_HOST} sync={sync} activeProjectsActions={activeProjectsActions} addTicketForm={addTicketForm} addTicketFormActions={addTicketFormActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} />                     
     </div>
   }
 }

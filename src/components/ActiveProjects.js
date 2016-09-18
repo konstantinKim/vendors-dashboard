@@ -1,7 +1,11 @@
 import React, { PropTypes, Component } from 'react'
 
 
-export default class ActiveProjects extends Component {                        
+export default class ActiveProjects extends Component {   
+    componentWillMount(){                        
+        this.props.activeProjectsActions.getActiveProjects()        
+    }      
+
     identifyTicket(e){          
           var projectId = e.target.attributes.getNamedItem('data-project-id').value
           var cityId = e.target.attributes.getNamedItem('data-project-city-id').value
@@ -14,17 +18,27 @@ export default class ActiveProjects extends Component {
           var ticket_index = e.currentTarget.attributes.getNamedItem('data-ticket-index').value                              
           var ticket = this.props.projects[project_index].facilities[facility_index].tickets[ticket_index]
           this.props.projectsActions.getFacilities(this.props.projects[project_index].CITY_ID, ticket.MATERIAL_ID)
-          return this.props.editTicketFormActions.setUpdateTicketData(ticket, this.props.projects[project_index].CITY_ID)
+          return this.props.editTicketFormActions.setUpdateTicketData(ticket, this.props.projects[project_index].CITY_ID, {'project_index': project_index, 'facility_index': facility_index, 'ticket_index': ticket_index})
     }
 
-    render() {        
-        const { projects, imgHost } = this.props                                
-        const self = this
+    deleteTicket(e){
+          e.preventDefault()
+          var project_index = e.currentTarget.attributes.getNamedItem('data-project-index').value                    
+          var facility_index = e.currentTarget.attributes.getNamedItem('data-facility-index').value                    
+          var ticket_index = e.currentTarget.attributes.getNamedItem('data-ticket-index').value                              
+          var ticket = this.props.projects[project_index].facilities[facility_index].tickets[ticket_index]                    
+          return this.props.activeProjectsActions.deleteTicket(ticket, {'project_index': project_index, 'facility_index': facility_index, 'ticket_index': ticket_index})
+    }        
+
+    render() {                                                        
+        var ReactHighcharts = require('react-highcharts');        
+        const { projects, imgHost } = this.props                                        
+        const self = this        
         var projectsListTemplate                                        
         if (projects.length > 0) {
-            projectsListTemplate = projects.map(function (item, index) {                              
-                return (                  
-                    <div key={'project_'+item.PROJECT_ID}>                                                                        
+            projectsListTemplate = projects.map(function (item, index) {                                                                            
+                return (                                        
+                    <div key={'project_'+item.PROJECT_ID}>                                                                                                                                                                        
                         <div className="row">
                           <div style={{margin: '0 auto', /*width: '95%', */ width: 1040}} id="accordion-main"
                                className="panel-group">
@@ -70,18 +84,9 @@ export default class ActiveProjects extends Component {
                                               </div>
                                           </div>
                                           <div className="row">
-                                              <div className="col-ghgrid-8">
-                                                  <div
-                                                      style={{color: '#fff', font: 'normal 10px ArialRegular', letterSpacing: '.15px', lineHeight: 14, float: 'right', margin: '-80px 2% 0px 0px', textAlign: 'center'}}>
-                                                      <br />
-                                                      <a href="#" className="link-regular"><span
-                                                          style={{margin: '0px 0px 4px 0px', lineHeight:'15px'}}
-                                                          className="rounded-corner">Export Recycling<br />Tickets To Excel</span></a>
-                                                      <a href="#" className="link-regular"><span className="rounded-corner"
-                                                                                                 style={{lineHeight:'15px'}}>Export Savlage<br />Tickets To Excel</span></a>
-                                                  </div>
-                                                  <div id="chart-donut-container">
-                                                      <div id="chart-donut-ticket"/>
+                                              <div className="col-ghgrid-8">                                                  
+                                                  <div id="chart-donut-container" style={{margin: '0 auto', width: '600px'}}>                                                                                                                                                              
+                                                      <ReactHighcharts id={'chart_'+item.PROJECT_ID} config={item.chartConfig} ref={'chart_'+item.PROJECT_ID}></ReactHighcharts>
                                                   </div>
                                               </div>
                                           </div>
@@ -203,7 +208,7 @@ export default class ActiveProjects extends Component {
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 10px'}}
                                                                                          className="column-5 no-border">
-                                                                                        <a href="#"><img
+                                                                                        <a onClick={::self.deleteTicket} data-project-index={index} data-facility-index={f_index} data-ticket-index={t_index} href="#"><img
                                                                                             src={imgHost + "/_images/icons/content/close-blue.png"}/></a>
                                                                                     </div>
                                                                                 </div>
@@ -235,7 +240,7 @@ export default class ActiveProjects extends Component {
             })
         }
         
-        return <div className='componentActiveProjects'>                            
+        return <div className='componentActiveProjects'>                                      
           {projectsListTemplate}                      
         </div>
     }
