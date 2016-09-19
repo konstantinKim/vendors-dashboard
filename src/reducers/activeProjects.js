@@ -2,14 +2,20 @@ import {
   GET_ACTIVE_SUCCESS,
   POST_ADD_TICKET_SUCCESS,
   POST_ADD_TICKET_REQUEST,
+  POST_ADD_TICKET_ERROR,
   PATCH_UPDATE_TICKET_SUCCESS,
-  DELETE_TICKET_SUCCESS
+  PATCH_UPDATE_TICKET_ERROR,
+  DELETE_TICKET_SUCCESS,
+  ON_OFF_EDIT_TICKET_FORM
 } from '../constants/ActiveProjects'
 
 
 const initialState = {  
   sync: 'False',  
   disableAddTicketForm: 'False',
+  isDisableEditTicketForm: 'False',
+  addTicketError: '',
+  editTicketError: '',
   projects: []  
 }
 
@@ -117,7 +123,7 @@ export default function activeProjects(state = initialState, action) {
       return { ...state, projects: data, sync: 'True' }
 
     case POST_ADD_TICKET_REQUEST:        
-        return { ...state, disableAddTicketForm: action.payload }
+        return { ...state, disableAddTicketForm: action.payload, addTicketError: '' }        
 
     case POST_ADD_TICKET_SUCCESS:              
       var newProjects = state.projects
@@ -145,7 +151,17 @@ export default function activeProjects(state = initialState, action) {
 
       newProjects[project_index] = setChartConfig(setStatistic(newProjects[project_index]))       
 
+      window.closePopUp()       
+      window.doMessage('Ticket Successfully Added', 'Success')
+      window.resetForm('add_ticket_form')
+
       return { ...state, projects: state.projects, disableAddTicketForm: 'False' }
+
+    case POST_ADD_TICKET_ERROR:
+      return { ...state, disableAddTicketForm: 'False', addTicketError: action.payload }
+
+    case ON_OFF_EDIT_TICKET_FORM:
+        return { ...state, isDisableEditTicketForm: action.payload, editTicketError: '' }
 
     case PATCH_UPDATE_TICKET_SUCCESS:
       var project = state.projects[action.indexes.project_index]
@@ -182,8 +198,15 @@ export default function activeProjects(state = initialState, action) {
       
       newProjects = state.projects
       newProjects[action.indexes.project_index] = setChartConfig(setStatistic(project)) 
+
+      window.closePopUp()       
+      window.doMessage('Ticket Successfully Updated', 'Success')
       
-      return { ...state, projects: newProjects }
+      return { ...state, projects: newProjects, isDisableEditTicketForm: 'False' }
+
+    case PATCH_UPDATE_TICKET_ERROR:
+        return { ...state, editTicketError: action.payload, isDisableEditTicketForm: 'False' }
+
 
     case DELETE_TICKET_SUCCESS:
       newProjects = state.projects
@@ -199,6 +222,8 @@ export default function activeProjects(state = initialState, action) {
       }
 
       newProjects[action.indexes.project_index] = setChartConfig(setStatistic(project)) 
+
+      window.doMessage('Ticket Deleted', 'Success')
 
       return { ...state, projects: newProjects }
 

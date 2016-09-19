@@ -1,6 +1,6 @@
 import {  
   SET_UPDATE_TICKET_DATA,
-  SET_UPDATE_TICKET_PERCENTAGE
+  ON_OFF_FORM,
 } from '../constants/EditTicketForm'
 
 export function setUpdateTicketData(ticket, city_id, indexes=null) {  
@@ -14,11 +14,11 @@ export function setUpdateTicketData(ticket, city_id, indexes=null) {
   }
 }
 
-export function disableForm() {    
+export function onOffForm(status) {    
   return (dispatch) => {        
     dispatch({
-      type: SET_UPDATE_TICKET_PERCENTAGE,      
-      payload: 'True'      
+      type: ON_OFF_FORM,      
+      payload: status      
     })    
   }
 }

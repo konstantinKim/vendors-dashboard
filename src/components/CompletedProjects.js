@@ -134,9 +134,9 @@ export default class CompletedProjects extends Component {
                                                                  className="column-5 no-border">View
                                                             </div>
                                                             <div style={{padding: '0px 0px 0px 10px'}}
-                                                                 className="column-5 no-border">Edit
+                                                                 className="column-5 no-border">&nbsp;
                                                             </div>
-                                                            <div style={{padding: 0}} className="column-5 no-border">Delete</div>
+                                                            <div style={{padding: 0}} className="column-5 no-border">&nbsp;</div>
                                                         </div>
                                                     </div>
                                                     {facility.tickets.map(function(ticket){
@@ -174,20 +174,18 @@ export default class CompletedProjects extends Component {
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 14px'}}
                                                                                          className="column-5 no-border">
-                                                                                        <a href="#"><img
-                                                                                            src={imgHost + '/_images/icons/content/pen.png'}/></a>
+                                                                                        <a href="#">&nbsp;</a>
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 10px'}}
                                                                                          className="column-5 no-border">
-                                                                                        <a href="#"><img
-                                                                                            src={imgHost + "/_images/icons/content/close-blue.png"}/></a>
+                                                                                        <a href="#">&nbsp;</a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div className="panel-collapse collapse" id={"collapseOne"+ticket.TICKET_RD_ID}>
                                                                             <div style={{borderTop: 'none'}} className="panel-body">
-                                                                                Image Here                                                                  
+                                                                                <img src={imgHost + ticket.image}/>
                                                                             </div>
                                                                         </div>
                                                                     </div>

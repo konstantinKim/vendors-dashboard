@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
+import Errors from '../components/Errors'
 
 export default class AddTicketForm extends Component {        
+  componentDidMount(){
+    window.setCalendar('addTicketFormCalendar');
+  }
+
   onAddTicketSubmit(e) {        
     e.preventDefault()    
     if(this.props.disableAddTicketForm == 'False'){
       var inputs = document.querySelectorAll("#add_new_ticket input, #add_new_ticket select");        
       return this.props.activeProjectsActions.addTicket(inputs, this.refs['ticket_file'])
     }
-    alert('Loading... Please wait.')    
+    alert('Processing. Please wait.')    
   }  
 
   getAddButtonStatus() {            
@@ -15,6 +20,13 @@ export default class AddTicketForm extends Component {
       return 'Add Ticket'
     }
     return 'Processing...'
+  }    
+
+  showErrors() {            
+    if(this.props.addTicketError != ''){
+      return (<Errors errorString={this.props.addTicketError} />)
+    }
+    return ''
   }    
 
   onChangeMaterial(e) {            
@@ -60,7 +72,8 @@ export default class AddTicketForm extends Component {
             <div style={{marginTop: 19}} className="titles">
               <img style={{margin: '-1px 0px 0px 0px', padding: '0px 12px 0px 12px'}} src={imgHost + "/_images/icons/content/add.png"} />Add Ticket
             </div>
-            <div className="forms">                                
+            {::this.showErrors()}
+            <div className="forms">                                              
               <div className="row">
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket # *</div>
                 <div className="column-35 no-border"><input type="text" placeholder="enter ticket number" required="required" name="ticket" /></div>
@@ -74,7 +87,7 @@ export default class AddTicketForm extends Component {
               </div>                
               <div className="row">
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket Date *</div>
-                <div className="column-35 no-border"><input type="text" placeholder="enter ticket date" required="required" name="thedate" className="calendar" ref="calendar" data-date-format="yyyy-mm-dd" /></div>
+                <div className="column-35 no-border"><input type="text" placeholder="enter ticket date" required="required" name="thedate" className="addTicketFormCalendar" ref="calendar" data-date-format="yyyy-mm-dd" /></div>
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Facility *</div>
                 <div className="column-40 no-border">
                       <select name="FACILITY_ID" required>

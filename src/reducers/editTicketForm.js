@@ -1,6 +1,6 @@
 import {  
   SET_UPDATE_TICKET_DATA,
-  DISABLE_FORM
+  ON_OFF_FORM
 } from '../constants/EditTicketForm'
 
 const initialState = {
@@ -36,7 +36,7 @@ export default function editTicketForm(state = initialState, action) {
         indexes: action.indexes
       }    
 
-    case DISABLE_FORM:
+    case ON_OFF_FORM:
       return { ...state, isDisabled: action.payload }
 
     default:

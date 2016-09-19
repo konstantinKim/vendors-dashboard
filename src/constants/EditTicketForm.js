@@ -1,2 +1,2 @@
 export const SET_UPDATE_TICKET_DATA = 'SET_UPDATE_TICKET_DATA'
-export const DISABLE_FORM = 'DISABLE_FORM'
+export const ON_OFF_FORM = 'ON_OFF_FORM'

@@ -73,10 +73,32 @@
     <script>window.jQuery || document.write('<script src="/_lib/js/vendor/jquery-1.10.0.min.js"><\/script>')</script>
     <script type="text/javascript" src="/_lib/js/vendor/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="/_lib/js/scripts.js"></script>
-    <script type="text/javascript" src="/_lib/js/vendor/jquery.reveal.js"></script>
+    <script type="text/javascript" src="/_lib/js/vendor/jquery.reveal.js"></script>        
 
 </head>
-  <body>  		      	    
+  <body>
+    <script type="text/javascript">
+        function setCalendar(className){
+            $('.'+className).datepicker().on('changeDay', function (e) {
+                $('.'+className).datepicker('hide');
+            });                        
+        }
+    </script>  		      	    
+    <div class="modal fade" id="myAlert" tabindex="-1">
+        <div class="modal-dialog" style="top:35%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div id="root">
     	
@@ -117,14 +139,42 @@
         $(document).ready(function(){
             $('.calendar').datepicker().on('changeDay', function (e) {
                 $('.calendar').datepicker('hide');
-            });
-
-            
-        })  
+            });                        
+        })          
 
         function setDataTable(id){
             $('#'+id).dataTable();
         }              
+
+        function closePopUp(){
+            $('div.reveal-add-users a.close-reveal-modal').trigger("click");
+        }
+        
+        function doMessage(message, title){
+            if(typeof(title)==='undefined'){
+                title = 'Warning';
+            }
+            $("#myAlert .modal-title").html(title);
+            $("#myAlert .modal-body").html(message);
+            $("#myAlert").modal();
+        }
+
+        function resetForm(formId){            
+            $("#"+formId).trigger("reset");
+        }
+
+        function scrollToDiv(element,navheight){
+            var elWrapped = $(element);
+
+            var offset = elWrapped.offset();
+            var offsetTop = offset.top;
+            var totalScroll = offsetTop-navheight;
+         
+            $('body,html').animate({
+                    scrollTop: totalScroll
+            }, 500);
+        }
+
     </script>
 
   </body>

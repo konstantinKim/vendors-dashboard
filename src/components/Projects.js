@@ -37,7 +37,7 @@ export default class Projects extends Component {
     }
 
     render() {                                      
-        const { projects, disableAddTicketForm } = this.props.projects                        
+        const { projects, disableAddTicketForm, isDisableEditTicketForm, addTicketError, editTicketError } = this.props.projects                        
         const { imgHost, projectsPage, activeProjectsActions, addTicketForm, addTicketFormActions, projectsActions, editTicketForm, editTicketFormActions } = this.props                
         return <div className='componentActiveProjects'>
             <div className="container-gh" id="global-main-top-bar">
@@ -91,8 +91,8 @@ export default class Projects extends Component {
                     this.renderTab()                    
                 }                                                
             </div>            
-            <AddTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} addTicketFormActions={addTicketFormActions} addTicketForm={addTicketForm} projectsActions={projectsActions} disableAddTicketForm={disableAddTicketForm}  />
-            <EditTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} projectsActions={projectsActions}  />
+            <AddTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} addTicketFormActions={addTicketFormActions} addTicketForm={addTicketForm} projectsActions={projectsActions} disableAddTicketForm={disableAddTicketForm} addTicketError={addTicketError}  />
+            <EditTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} projectsActions={projectsActions} isDisableEditTicketForm={isDisableEditTicketForm} editTicketError={editTicketError} />
         </div>
     }
 }

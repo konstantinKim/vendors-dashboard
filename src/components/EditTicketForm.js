@@ -1,21 +1,40 @@
 import React, { Component } from 'react'
+import Errors from '../components/Errors'
 
 export default class EditTicketForm extends Component {  
+  componentDidMount(){
+    window.setCalendar('editTicketFormCalendar');
+  }
+
   onUpdateTicketSubmit(e) {
     e.preventDefault()    
-    if(this.props.editTicketForm.isDisabled == 'False'){
-      var inputs = document.querySelectorAll("#edit_ticket_form input, #edit_ticket_form select");        
-      return this.props.activeProjectsActions.updateTicket(inputs, this.refs['ticket_file'], this.props.editTicketForm)
+    if(this.props.isDisableEditTicketForm == 'False'){      
+      var inputs = document.querySelectorAll("#edit_ticket_form input, #edit_ticket_form select");              
+      return this.props.activeProjectsActions.updateTicket(inputs, this.refs['ticket_file'], this.props.editTicketForm)      
     }
     alert('Loading... Please wait.')    
   }  
+
+  getFormStatus() {
+    if(this.props.isDisableEditTicketForm == 'False'){
+      return 'Update'
+    }
+    return 'Processing...'
+  }    
 
   isSelected(a, b){
     if(a == b){
       return 'selected'
     }
     return ''
-  }          
+  }      
+
+  showErrors() {            
+    if(this.props.editTicketError != ''){
+      return (<Errors errorString={this.props.editTicketError} />)
+    }
+    return ''
+  }        
 
   onChangeMaterial(e) {            
     var materialId = e.currentTarget.value
@@ -66,6 +85,7 @@ export default class EditTicketForm extends Component {
             <div style={{marginTop: 19}} className="titles">
               <img style={{margin: '-1px 0px 0px 0px', padding: '0px 12px 0px 12px'}} src={imgHost + "/_images/icons/content/add.png"} />Edit Ticket
             </div>
+            {::this.showErrors()}
             <div className="forms">                                
               <div className="row">
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket # *</div>
@@ -80,7 +100,7 @@ export default class EditTicketForm extends Component {
               </div>                
               <div className="row">
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket Date *</div>
-                <div className="column-35 no-border"><input type="text" name="thedate" className="calendar" ref="update_calendar" data-date-format="yyyy-mm-dd" value={editTicketForm.thedate} onChange={::this.handleFormChange} /></div>
+                <div className="column-35 no-border"><input type="text" name="thedate" className="editTicketFormCalendar" ref="update_calendar" data-date-format="yyyy-mm-dd" value={editTicketForm.thedate} onChange={::this.handleFormChange} /></div>
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Facility *</div>
                 <div className="column-40 no-border">
                       <select name="FACILITY_ID" required value={editTicketForm.FACILITY_ID} onChange={::this.handleFormChange}>
@@ -118,7 +138,7 @@ export default class EditTicketForm extends Component {
               <div className="row">
                 <div className="content no-border">
                   <div style={{margin: '-6px 0px 0px 0px', padding: 0}} className="column-50 no-border">&nbsp;</div>
-                  <div style={{margin: '-6px 0px 0px 0px', padding: '0px 20px 0px 0px', textAlign: 'right'}} className="column-50 no-border"><input type="submit" value="Update" /></div>
+                  <div style={{margin: '-6px 0px 0px 0px', padding: '0px 20px 0px 0px', textAlign: 'right'}} className="column-50 no-border"><input type="submit" value={::this.getFormStatus()} /></div>
                 </div>
               </div>
             </div>

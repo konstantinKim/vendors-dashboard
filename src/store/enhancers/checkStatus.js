@@ -6,13 +6,15 @@ export const checkResponseStatus = function(response){
     }
 
     if (response.status == 401) {
-        alert(response.statusText)
-        return response
-        //window.location = '/login'
+        //alert(response.statusText)
+        //return response
+        window.location = '/login'
     }    
     
-    var error = new Error(response.statusText)
-    error.response = response
-    alert(error)
-    throw error
+    //var error = new Error(response.statusText)
+    //error.response = response
+    //return error
+    //console.log(response)
+    //console.log(response.json)
+    return response
   }

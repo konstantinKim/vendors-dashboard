@@ -23,11 +23,14 @@ export default class ActiveProjects extends Component {
 
     deleteTicket(e){
           e.preventDefault()
-          var project_index = e.currentTarget.attributes.getNamedItem('data-project-index').value                    
-          var facility_index = e.currentTarget.attributes.getNamedItem('data-facility-index').value                    
-          var ticket_index = e.currentTarget.attributes.getNamedItem('data-ticket-index').value                              
-          var ticket = this.props.projects[project_index].facilities[facility_index].tickets[ticket_index]                    
-          return this.props.activeProjectsActions.deleteTicket(ticket, {'project_index': project_index, 'facility_index': facility_index, 'ticket_index': ticket_index})
+          if(confirm('Are you sure you want to delete?')){
+            var project_index = e.currentTarget.attributes.getNamedItem('data-project-index').value                    
+            var facility_index = e.currentTarget.attributes.getNamedItem('data-facility-index').value                    
+            var ticket_index = e.currentTarget.attributes.getNamedItem('data-ticket-index').value                              
+            var ticket = this.props.projects[project_index].facilities[facility_index].tickets[ticket_index]                    
+            return this.props.activeProjectsActions.deleteTicket(ticket, {'project_index': project_index, 'facility_index': facility_index, 'ticket_index': ticket_index})
+          }
+          return false;          
     }        
 
     render() {                                                        
@@ -170,7 +173,7 @@ export default class ActiveProjects extends Component {
                                                     </div>
                                                     {facility.tickets.map(function(ticket, t_index){
                                                       return(
-                                                        <div key={'ticket_'+ticket.TICKET_RD_ID}>
+                                                        <div id={"row_ticket_"+ticket.TICKET_RD_ID} key={'ticket_'+ticket.TICKET_RD_ID}>
                                                             <div className="row">
                                                                 <div style={{margin: '0px 0px 0px -1px'}} id="accordion"
                                                                      className="panel-group">
@@ -203,7 +206,7 @@ export default class ActiveProjects extends Component {
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 14px'}}
                                                                                          className="column-5 no-border">
-                                                                                        <a onClick={::self.setUpdateTicketData} data-reveal-id="edit_ticket" data-project-index={index} data-facility-index={f_index} data-ticket-index={t_index} href="#"><img
+                                                                                        <a onClick={::self.setUpdateTicketData} data-reveal-id="edit_ticket" data-animation="fade" data-project-index={index} data-facility-index={f_index} data-ticket-index={t_index} href="#"><img
                                                                                             src={imgHost + '/_images/icons/content/pen.png'}/></a>
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 10px'}}
