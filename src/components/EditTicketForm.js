@@ -39,8 +39,9 @@ export default class EditTicketForm extends Component {
   onChangeMaterial(e) {            
     var materialId = e.currentTarget.value
     var cityId = this.props.editTicketForm.CITY_ID
+    var projectId = this.props.editTicketForm.PROJECT_ID
     this.handleFormChange(e)
-    return this.props.projectsActions.getFacilities(cityId, materialId)    
+    return this.props.projectsActions.getFacilities(cityId, materialId, projectId)    
   }    
 
   handleFormChange(e){    
@@ -64,6 +65,13 @@ export default class EditTicketForm extends Component {
           <option key={'fac_'+item.FACILITY_ID} value={item.FACILITY_ID}>{item.name}</option>        
       )
     })
+
+    var selectedFacilitiesList
+    selectedFacilitiesList = projectsPage.selectedFacilities.map(function (item) {
+      return (        
+          <option key={'sel_fac_'+item.FACILITY_ID} value={item.FACILITY_ID}>{item.name}</option>        
+      )
+    })    
 
     let percentage = []
     for (var i = 100; i > 0; i = i-5){
@@ -106,6 +114,9 @@ export default class EditTicketForm extends Component {
                       <select name="FACILITY_ID" required value={editTicketForm.FACILITY_ID} onChange={::this.handleFormChange}>
                         <option value=''>-- Select Facility --</option>                        
                         {facilitiesList}
+                        <optgroup label="Project Selected Facilities">
+                          {selectedFacilitiesList}
+                        </optgroup> 
                       </select>
                 </div>
               </div>               

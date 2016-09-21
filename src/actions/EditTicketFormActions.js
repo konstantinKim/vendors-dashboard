@@ -3,13 +3,14 @@ import {
   ON_OFF_FORM,
 } from '../constants/EditTicketForm'
 
-export function setUpdateTicketData(ticket, city_id, indexes=null) {  
+export function setUpdateTicketData(ticket, city_id, indexes, project_id) {  
   return (dispatch) => {        
     dispatch({
       type: SET_UPDATE_TICKET_DATA,
       payload: ticket,
       CITY_ID: city_id,
-      indexes: indexes
+      indexes: indexes,
+      PROJECT_ID: project_id
     })    
   }
 }

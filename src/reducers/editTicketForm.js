@@ -6,6 +6,7 @@ import {
 const initialState = {
   CITY_ID: 0,  
   TICKET_ID: 0,
+  PROJECT_ID: 0,
   ticket: '',
   MATERIAL_ID: 0,
   thedate: '',
