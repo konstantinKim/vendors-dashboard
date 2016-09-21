@@ -32,7 +32,8 @@ export default class AddTicketForm extends Component {
   onChangeMaterial(e) {            
     var materialId = e.currentTarget.value
     var cityId = this.props.addTicketForm.cityId
-    return this.props.projectsActions.getFacilities(cityId, materialId)
+    var projectId = this.props.addTicketForm.projectId
+    return this.props.projectsActions.getFacilities(cityId, materialId, projectId)
   }    
 
   render() {    
@@ -48,6 +49,13 @@ export default class AddTicketForm extends Component {
     facilitiesList = projectsPage.facilities.map(function (item) {
       return (        
           <option key={'fac_'+item.FACILITY_ID} value={item.FACILITY_ID}>{item.name}</option>        
+      )
+    })    
+
+    var selectedFacilitiesList
+    selectedFacilitiesList = projectsPage.selectedFacilities.map(function (item) {
+      return (        
+          <option key={'sel_fac_'+item.FACILITY_ID} value={item.FACILITY_ID}>{item.name}</option>        
       )
     })    
 
@@ -93,6 +101,9 @@ export default class AddTicketForm extends Component {
                       <select name="FACILITY_ID" required>
                         <option value=''>-- Select Facility --</option>
                         {facilitiesList}                                                                                              
+                        <optgroup label="Project Selected Facilities">
+                          {selectedFacilitiesList}
+                        </optgroup> 
                       </select>
                 </div>
               </div>               

@@ -35,10 +35,10 @@ export function getMaterials() {
         .then(json => dispatch(setMaterials(json)))    
 }
 
-export function getFacilities(city_id, material_id) {    
+export function getFacilities(city_id, material_id, projectId) {    
     return dispatch => {
         dispatch(setFacilitiesPreloader());
-        fetch(BACKEND_HOST+'facilities/city/'+city_id+'/material/'+material_id+'.json', {headers: REQUEST_HEADERS})
+        fetch(BACKEND_HOST+'facilities/city/'+city_id+'/material/'+material_id+'/project/'+projectId+'.json', {headers: REQUEST_HEADERS})
         .then(checkResponseStatus)    
         .then(response => response.json())    
         .then(json => dispatch(setFacilities(json)))     
@@ -67,9 +67,15 @@ function setFacilitiesPreloader() {
 function setFacilities(data) {     
   var facilities = []
   if (typeof data.data != 'undefined' && data.data.length) {
-    for (var i in data.data){      
+    for (let i in data.data){      
       facilities.push(data.data[i].attributes)  
     }
   }
-  return { type: SET_FACILITIES_SUCCESS, payload: facilities };
+  var selected_facilities = []
+  if (typeof data.selected_facilities.data != 'undefined' && data.selected_facilities.data.length) {
+    for (let i in data.selected_facilities.data){      
+      selected_facilities.push(data.selected_facilities.data[i].attributes)
+    }
+  }
+  return { type: SET_FACILITIES_SUCCESS, payload: facilities, selectedFacilities: selected_facilities };
 }

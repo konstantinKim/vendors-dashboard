@@ -10,7 +10,8 @@ const initialState = {
   activeTab: 'activeList',
   completedCount: '0',
   materials: [],
-  facilities: []  
+  facilities: [],
+  selectedFacilities: []  
 }
 
 export default function projects(state = initialState, action) {
@@ -26,7 +27,7 @@ export default function projects(state = initialState, action) {
       return { ...state, materials: action.payload }  
 
     case SET_FACILITIES_SUCCESS:      
-      return { ...state, facilities: action.payload }    
+      return { ...state, facilities: action.payload, selectedFacilities: action.selectedFacilities }    
     
     case SET_FACILITIES_REQUEST:      
       return { ...state, facilities: action.payload }    
