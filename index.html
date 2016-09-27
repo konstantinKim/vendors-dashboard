@@ -175,6 +175,17 @@
             }, 500);
         }
 
+        function changeTicketTypeForm(type, projectId){
+            closePopUp();
+            if('sr' == type){
+                $("#reveal_add_new_ticket_sr").trigger("click");
+            }
+            if('rd' == type){
+                $("#add_ticket_btn_"+projectId).trigger("click");
+            }
+            return false;
+        }
+
     </script>
 
   </body>

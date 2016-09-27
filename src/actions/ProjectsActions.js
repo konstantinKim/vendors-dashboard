@@ -2,8 +2,10 @@ import {
   SWITCH_TAB,
   SET_COMPLETED_COUNT_SUCCESS,
   SET_MATERIALS_SUCCESS,
+  SET_SALVAGE_MATERIALS_SUCCESS,
   SET_FACILITIES_REQUEST,
-  SET_FACILITIES_SUCCESS
+  SET_FACILITIES_SUCCESS,
+  SET_SALVAGE_FACILITIES_SUCCESS
 } from '../constants/Projects'
 
 import { BACKEND_HOST, REQUEST_HEADERS } from '../config/settings'
@@ -35,6 +37,13 @@ export function getMaterials() {
         .then(json => dispatch(setMaterials(json)))    
 }
 
+export function getSalvageMaterials() {    
+    return dispatch => fetch(BACKEND_HOST+'materials/salvage.json', {headers: REQUEST_HEADERS})
+        .then(checkResponseStatus)    
+        .then(response => response.json())    
+        .then(json => dispatch(setSalvageMaterials(json)))    
+}
+
 export function getFacilities(city_id, material_id, projectId) {    
     return dispatch => {
         dispatch(setFacilitiesPreloader());
@@ -42,6 +51,15 @@ export function getFacilities(city_id, material_id, projectId) {
         .then(checkResponseStatus)    
         .then(response => response.json())    
         .then(json => dispatch(setFacilities(json)))     
+    }
+}
+
+export function getSalvageFacilities(city_id, material_id, projectId) {    
+    return dispatch => {        
+        fetch(BACKEND_HOST+'facilities/city/'+city_id+'/material/'+material_id+'/project/'+projectId+'.json', {headers: REQUEST_HEADERS})
+        .then(checkResponseStatus)    
+        .then(response => response.json())    
+        .then(json => dispatch(setSalvageFacilities(json)))     
     }
 }
 
@@ -57,6 +75,16 @@ function setMaterials(data) {
     }
   }
   return { type: SET_MATERIALS_SUCCESS, payload: materials };
+}
+
+function setSalvageMaterials(data) {     
+  var materials = []
+  if (typeof data.data != 'undefined' && data.data.length) {
+    for (var i in data.data){      
+      materials.push(data.data[i].attributes)  
+    }
+  }
+  return { type: SET_SALVAGE_MATERIALS_SUCCESS, payload: materials };
 }
 
 function setFacilitiesPreloader() {     
@@ -78,4 +106,20 @@ function setFacilities(data) {
     }
   }
   return { type: SET_FACILITIES_SUCCESS, payload: facilities, selectedFacilities: selected_facilities };
+}
+
+function setSalvageFacilities(data) {     
+  var facilities = []
+  if (typeof data.data != 'undefined' && data.data.length) {
+    for (let i in data.data){      
+      facilities.push(data.data[i].attributes)  
+    }
+  }
+  var selected_facilities = []
+  if (typeof data.selected_facilities.data != 'undefined' && data.selected_facilities.data.length) {
+    for (let i in data.selected_facilities.data){      
+      selected_facilities.push(data.selected_facilities.data[i].attributes)
+    }
+  }
+  return { type: SET_SALVAGE_FACILITIES_SUCCESS, payload: facilities, selectedFacilities: selected_facilities };
 }

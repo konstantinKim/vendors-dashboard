@@ -6,6 +6,7 @@ import App from './containers/App'
 import LoginContainer from './containers/Login'
 import Statistics from './containers/Statistics'
 import Settings from './containers/Settings'
+import SignUp from './containers/SignUp'
 
 import './styles/app.css'
 import configureStore from './store/configureStore'
@@ -23,6 +24,9 @@ if(location == '/statistics'){
 }
 if(location == '/settings'){	
 	currentContainer = <Settings />
+}
+if(location == '/signup'){	
+	currentContainer = <SignUp />
 }
 
 render(

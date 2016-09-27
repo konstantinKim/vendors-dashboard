@@ -36,6 +36,13 @@ export default class AddTicketForm extends Component {
     return this.props.projectsActions.getFacilities(cityId, materialId, projectId)
   }    
 
+  onChangeTicketType(e) {    
+    let cityId = this.props.addTicketForm.cityId
+    let projectId = this.props.addTicketForm.projectId
+    this.props.projectsActions.getSalvageFacilities(cityId, 7, projectId)         
+    return window.changeTicketTypeForm(e.currentTarget.value, this.props.addTicketForm.projectId)
+  }    
+
   render() {    
     const { imgHost, projectsPage } = this.props     
     var materialsList
@@ -78,32 +85,29 @@ export default class AddTicketForm extends Component {
             <input id="add_ticket_project_id" ref="add_ticket_project_id" type="hidden" defaultValue={this.props.addTicketForm.projectId} name="PROJECT_ID" required="required" />
             <input id="add_ticket_city_id" ref="add_ticket_city_id" type="hidden" defaultValue={this.props.addTicketForm.cityId} name="CITY_ID" required="required" />
             <div style={{marginTop: 19}} className="titles">
-              <img style={{margin: '-1px 0px 0px 0px', padding: '0px 12px 0px 12px'}} src={imgHost + "/_images/icons/content/add.png"} />Add Ticket
+              <img style={{margin: '-1px 0px 0px 0px', padding: '0px 12px 0px 12px'}} src={imgHost + "/_images/icons/content/add.png"} />Add Recycle and Dispose Ticket
             </div>
             {::this.showErrors()}
             <div className="forms">                                              
               <div className="row">
-                <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket # *</div>
+                <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket Type *</div>
+                <div className="column-35 no-border">
+                  <select onChange={::this.onChangeTicketType} name="type" required="required" value="rd">
+                    <option value='rd'>Recycle and Dispose</option>      
+                    <option value='sr'>Salvage and Reuse</option>      
+                  </select>                  
+                </div>                
+                <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Ticket # *</div>
                 <div className="column-35 no-border"><input type="text" placeholder="enter ticket number" required="required" name="ticket" /></div>
-                <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Material *</div>
-                <div className="column-40 no-border">
-                      <select onChange={::this.onChangeMaterial} name="MATERIAL_ID" required="required">
-                        <option value=''>-- Select Material --</option>
-                        {materialsList}                                                                                              
-                      </select>
-                </div>
               </div>                
               <div className="row">
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket Date *</div>
                 <div className="column-35 no-border"><input type="text" placeholder="enter ticket date" required="required" name="thedate" className="addTicketFormCalendar" ref="calendar" data-date-format="yyyy-mm-dd" /></div>
-                <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Facility *</div>
-                <div className="column-40 no-border">
-                      <select name="FACILITY_ID" required>
-                        <option value=''>-- Select Facility --</option>
-                        {facilitiesList}                                                                                              
-                        <optgroup label="Project Selected Facilities">
-                          {selectedFacilitiesList}
-                        </optgroup> 
+                <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Material *</div>
+                <div className="column-35 no-border">
+                      <select onChange={::this.onChangeMaterial} name="MATERIAL_ID" required="required">
+                        <option value=''>-- Select Material --</option>
+                        {materialsList}                                                                                              
                       </select>
                 </div>
               </div>               
@@ -120,18 +124,24 @@ export default class AddTicketForm extends Component {
                     {percentageOptions}
                   </select>
                 </div>
-                <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border"></div>
-                <div className="column-40 no-border">
-                      
-                </div>
+                <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Facility *</div>
+                <div className="column-35 no-border">
+                      <select name="FACILITY_ID" required>
+                        <option value=''>-- Select Facility --</option>
+                        {facilitiesList}                                                                                              
+                        <optgroup label="Project Selected Facilities">
+                          {selectedFacilitiesList}
+                        </optgroup> 
+                      </select>
+                </div>                
               </div>                 
               <div className="row">
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Submitted By *</div>
-                <div className="column-35 no-border"><input type="text" placeholder="" required="required" name="submitted_by" /></div>
+                <div className="column-35 no-border"><input type="text" placeholder="" required="required" name="submitted_by" /></div>                
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Image *</div>
-                <div className="column-40 no-border">
+                <div className="column-35 no-border">
                       <input ref="ticket_file" type="file" name="image" required="required" />
-                </div>
+                </div>              
               </div>                
               <div className="row">
                 <div className="content no-border">

@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import ActiveProjects from '../components/ActiveProjects'
 import CompletedProjects from '../components/CompletedProjects'
 import AddTicketForm from '../components/AddTicketForm'
+import AddTicketSrForm from '../components/AddTicketSrForm'
 import EditTicketForm from '../components/EditTicketForm'
 
 
@@ -34,6 +35,7 @@ export default class Projects extends Component {
     componentWillMount(){                                
         this.props.projectsActions.getCompletedCount()
         this.props.projectsActions.getMaterials()        
+        this.props.projectsActions.getSalvageMaterials()        
     }
 
     render() {                                      
@@ -92,7 +94,8 @@ export default class Projects extends Component {
                 }                                                
             </div>            
             <AddTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} addTicketFormActions={addTicketFormActions} addTicketForm={addTicketForm} projectsActions={projectsActions} disableAddTicketForm={disableAddTicketForm} addTicketError={addTicketError}  />
-            <EditTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} projectsActions={projectsActions} isDisableEditTicketForm={isDisableEditTicketForm} editTicketError={editTicketError} />
+            <AddTicketSrForm imgHost={imgHost} projectsPage={projectsPage} addTicketForm={addTicketForm} />
+            <EditTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} projectsActions={projectsActions} isDisableEditTicketForm={isDisableEditTicketForm} editTicketError={editTicketError} />            
         </div>
     }
 }

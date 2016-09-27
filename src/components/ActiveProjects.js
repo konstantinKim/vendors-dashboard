@@ -46,7 +46,7 @@ export default class ActiveProjects extends Component {
                           <div style={{margin: '0 auto', /*width: '95%', */ width: 1040}} id="accordion-main"
                                className="panel-group">
                               <div style={{background: 'none', marginTop: '-2px'}} className="panel panel-default">
-                                  <a onClick={::self.identifyTicket} style={{float: 'right', marginBottom: '-33px', padding: '2px 17px 5px 10px', position: 'relative', top: 10, right: '10%'}}
+                                  <a id={"add_ticket_btn_"+item.PROJECT_ID} onClick={::self.identifyTicket} style={{float: 'right', marginBottom: '-33px', padding: '2px 17px 5px 10px', position: 'relative', top: 10, right: '10%'}}
                                      href="#" data-reveal-id="add_new_ticket" data-animation="fade" data-project-id={item.PROJECT_ID} data-project-city-id={item.CITY_ID} className="button"><span
                                       style={{font: 'normal 20px ArialRegular', position: 'relative', top: 2}}>+ </span>Add
                                       New Ticket</a>
@@ -160,7 +160,7 @@ export default class ActiveProjects extends Component {
                                                             <div className="column-16 no-border">Submitted By</div>
                                                             <div className="column-10 no-border">Weight</div>
                                                             <div className="column-10 no-border">Recycled</div>
-                                                            <div className="column-11 no-border">Diversion %</div>
+                                                            <div className="column-11 no-border">Applied %</div>
                                                             <div className="column-11 no-border">Date</div>                                                            
                                                             <div style={{padding: 0, textAlign: 'center'}}
                                                                  className="column-5 no-border">View
@@ -195,7 +195,7 @@ export default class ActiveProjects extends Component {
                                                                                     <div className="column-16 no-border">{ticket.submitted_by}</div>
                                                                                     <div className="column-10 no-border">{ticket.weight}</div>
                                                                                     <div className="column-10 no-border">{ticket.recycled}</div>
-                                                                                    <div className="column-11 no-border">{ticket.rate_used}%</div>
+                                                                                    <div className="column-11 no-border">{ticket.percentage}%</div>
                                                                                     <div className="column-11 no-border">{ticket.thedate}</div>                                                                                    
                                                                                     <div
                                                                                         style={{padding: '0px 0px 0px 1px', textAlign: 'center'}}
