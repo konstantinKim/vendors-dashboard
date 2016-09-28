@@ -85,7 +85,7 @@ export default class Projects extends Component {
                 <div id="settings-container">
                     <div className="titles">
                         <div className="column-31">Project Address</div>
-                        <div className="column-19">Turner Project #</div>
+                        <div className="column-19">Project #</div>
                         <div className="column-50 no-border">Tickets</div>
                     </div>
                 </div>                                                                

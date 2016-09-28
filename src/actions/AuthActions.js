@@ -28,10 +28,12 @@ function checkSignUpStatus(response) {
 }
 
 export function login(username, password) {  		
-  return dispatch => fetch(BACKEND_HOST+'auth.json', { headers: {'Accept': 'application/json','Content-Type': 'application/json', 'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(username + ':' + password)))}})
+  return dispatch => {
+   fetch(BACKEND_HOST+'auth.json', { headers: {'Accept': 'application/json','Content-Type': 'application/json', 'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(username + ':' + password)))}})
   .then(checkStatus)
   .then(response => response.json())      
-  .then(json => dispatch(setAuthData(json)))    
+  .then(json => dispatch(setAuthData(json)))  
+  }
 }
 
 export function signUp(token, password) {     
@@ -48,22 +50,26 @@ export function signUp(token, password) {
     })
     .then(checkSignUpStatus)
     .then(response => response.json())    
-    .then(json => dispatch(setAuthData(json)))
+    .then(json => dispatch(setAuthData(json)))    
   }    
 }
 
 function setAuthData(data) {     
   
   console.log(data.error)
-  if(data.error != undefined){    
+  if(data.error != undefined || data.token == undefined){    
     //console.log('error')    
     //return { type: 'GET_LOGIN_ERROR', payload: data };
     alert(data.error)    
+    throw new Error(data.error)
   }
   else{
     // Put the object into storage
     localStorage.clear();
-    localStorage.setItem('token', data);
+    localStorage.setItem('token', data.token);        
+    localStorage.setItem('email', data.email);
+    localStorage.setItem('name', data.contact);
+    localStorage.setItem('company', data.company);
     window.location = '/'    
   }
   

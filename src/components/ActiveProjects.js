@@ -63,7 +63,7 @@ export default class ActiveProjects extends Component {
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #ccc', display: 'table-cell', padding: '15px 0px 15px 16px', width: 197, height: '100%', minHeight: '100%'}}>
-                                            {item.turner_number}
+                                            {item.tracking}
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #fff', display: 'table-cell', fontFamily: 'ArialBold', padding: '15px 0px 15px 17px', width: 477, height: '100%', minHeight: '100%'}}>
@@ -81,14 +81,14 @@ export default class ActiveProjects extends Component {
                                           <div className="row">
                                               <div className="col-ghgrid-8">
                                                   <div style={{marginTop: 25}} id="statistics-title">
-                                                      Tickets Entered By Haulers and Subs<br />
-                                                      <span>SEPARATED BY HAULERS AND SUBS</span>
+                                                      Facilities Usage<br />
+                                                      <span>Separated by Facility/Reuse Option</span>
                                                   </div>
                                               </div>
                                           </div>
                                           <div className="row">
                                               <div className="col-ghgrid-8">                                                  
-                                                  <div id="chart-donut-container" style={{margin: '0 auto', width: '600px'}}>                                                                                                                                                              
+                                                  <div id="chart-donut-container" style={{margin: '0 auto', width: '900px'}}>
                                                       <ReactHighcharts id={'chart_'+item.PROJECT_ID} config={item.chartConfig} ref={'chart_'+item.PROJECT_ID}></ReactHighcharts>
                                                   </div>
                                               </div>
@@ -99,8 +99,8 @@ export default class ActiveProjects extends Component {
                                                       <div className="col-ghgrid-3">
                                                           <img
                                                               style={{padding: '0px 8px 0px 12px', position: 'relative', top: '-2px'}}
-                                                              src={imgHost + "/_images/icons/nav/tab-facilities.png"}/>Hauler and
-                                                          Subcontractor Ticket Entry
+                                                              src={imgHost + "/_images/icons/nav/tab-facilities.png"}/>Facilities Usage and
+                                                           Ticket Entry
                                                       </div>
                                                       <div className="col-ghgrid-5">
                                                           <div
@@ -116,7 +116,7 @@ export default class ActiveProjects extends Component {
                                               </div>
                                               <div className="row">
                                                   <div className="header">
-                                                      <p style={{fontSize: 14, paddingLeft: 18}}>Vendor Company Name
+                                                      <p style={{fontSize: 14, paddingLeft: 18}}>
                                                           <span
                                                               style={{color: '#7fc8ff', fontFamily: 'ArialRegular', paddingLeft: 6}}>{item.street}</span>
                                                       </p><a
@@ -143,8 +143,8 @@ export default class ActiveProjects extends Component {
                                                   </div>
                                                   <div style={{lineHeight: '56px', marginTop: '-1px', width: '100%'}}
                                                        className="titles dark">
-                                                      Diversion Rate for this Hauler or Subcontractor&nbsp;&nbsp;–&nbsp;&nbsp;
-                                                      <span style={{font: 'normal 20px ArialBold'}}>{item.rate}</span>
+                                                      Diversion Rate &nbsp;&nbsp;–&nbsp;&nbsp;
+                                                      <span style={{font: 'normal 20px ArialBold'}}>{item.rate}%</span>
                                                   </div>
                                               </div>
                                               {item.facilities.map(function(facility, f_index){
@@ -152,6 +152,24 @@ export default class ActiveProjects extends Component {
                                                   <div key={'facility_'+facility.FACILITY_ID+'_'+f_index}>
                                                     <div className="header">
                                                       <p style={{fontSize: 14, paddingLeft: 18}}>{facility.name}</p>                                                      
+                                                    </div>
+                                                    <div>
+                                                      <div style={{lineHeight: '26px', fontSize: '14px', marginTop: '-1px', width: '100%'}}
+                                                           className="titles dark">
+                                                          <div style={{borderRight: 'solid 1px #bbb'}} className="column-50">
+                                                              Tickets entered for this facility&nbsp;&nbsp;–&nbsp;&nbsp;<span
+                                                              style={{font: 'normal 16px ArialBold'}}>{facility.tickets.length}</span></div>
+                                                          <div className="column-50">Tons taken to this facility&nbsp;&nbsp;–&nbsp;&nbsp;
+                                                              <span style={{font: 'normal 16px ArialBold'}}>{facility.tons_taken}</span></div>
+                                                      </div>
+                                                      <div style={{lineHeight: '26px', fontSize: '14px', marginTop: '-1px', width: '100%'}}
+                                                           className="titles dark">
+                                                          <div style={{borderRight: 'solid 1px #bbb'}} className="column-50">
+                                                              Materials taken to this facility&nbsp;&nbsp;–&nbsp;&nbsp;<span
+                                                              style={{font: 'normal 16px ArialBold'}}>{facility.materials_taken}</span></div>
+                                                          <div className="column-50">Tons recycled at this facility&nbsp;&nbsp;–&nbsp;&nbsp;
+                                                              <span style={{font: 'normal 16px ArialBold'}}>{facility.tons_recycled}</span></div>
+                                                      </div>
                                                     </div>
                                                     <div className="row">
                                                         <div style={{width: '100%'}} className="content">

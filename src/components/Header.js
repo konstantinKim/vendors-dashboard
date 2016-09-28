@@ -76,7 +76,7 @@ export default class Header extends Component {
             </div>
             <div className="col-ghgrid-6">
               <div className="user">
-                <p>Welcome <span className="name">Dean R.</span></p>
+                <p>Welcome <span className="name">{localStorage.getItem('name')}</span></p>
               </div>              
             </div>
           </div>
