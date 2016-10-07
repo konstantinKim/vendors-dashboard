@@ -1,0 +1,2 @@
+export const SET_UPDATE_TICKET_SR_DATA = 'SET_UPDATE_TICKET_SR_DATA'
+export const ON_OFF_FORM = 'ON_OFF_FORM'

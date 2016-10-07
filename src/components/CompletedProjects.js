@@ -112,7 +112,7 @@ export default class CompletedProjects extends Component {
                                                   <div style={{lineHeight: '56px', marginTop: '-1px', width: '100%'}}
                                                        className="titles dark">
                                                       Diversion Rate&nbsp;&nbsp;–&nbsp;&nbsp;
-                                                      <span style={{font: 'normal 20px ArialBold'}}>{item.rate}</span>
+                                                      <span style={{font: 'normal 20px ArialBold'}}>{item.rate}%</span>
                                                   </div>
                                               </div>
                                               {item.facilities.map(function(facility, f_index){
@@ -157,7 +157,7 @@ export default class CompletedProjects extends Component {
                                                             <div style={{padding: 0}} className="column-5 no-border">&nbsp;</div>
                                                         </div>
                                                     </div>
-                                                    {facility.tickets.map(function(ticket){
+                                                    {facility.tickets.map(function(ticket, t_index){
                                                       return(
                                                         <div key={'ticket_'+ticket.TICKET_RD_ID}>
                                                             <div className="row">
@@ -172,13 +172,13 @@ export default class CompletedProjects extends Component {
                                                                             <div style={{margin: 0, width: '100%'}} id="settings-container">
                                                                                 <div style={{border: 'none', width: '100%'}}
                                                                                      className="content">
-                                                                                    <div className="column-3 no-border">1.</div>
+                                                                                    <div className="column-3 no-border">{t_index+1}.</div>
                                                                                     <div
                                                                                         style={{borderLeft: 'none', fontFamily: 'ArialBold', padding: 0}}
                                                                                         className="column-13 no-border">{ticket.ticket}
                                                                                     </div>
-                                                                                    <div className="column-11 no-border">{ticket.material}</div>
-                                                                                    <div className="column-16 no-border">{ticket.submitted_by}</div>
+                                                                                    <div className="column-11 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={ticket.material}>{ticket.material}</div>
+                                                                                    <div className="column-16 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={ticket.submitted_by}>{ticket.submitted_by}</div>
                                                                                     <div className="column-10 no-border">{ticket.weight}</div>
                                                                                     <div className="column-10 no-border">{ticket.recycled}</div>
                                                                                     <div className="column-11 no-border">{ticket.rate_used}%</div>
@@ -216,6 +216,96 @@ export default class CompletedProjects extends Component {
                                                   </div>                                                  
                                                 )
                                               })}                                                                                                                                          
+                                              {/* end FACILITIES list. */}
+                                              {item.reused_types.map(function(rtype, rt_index){ 
+                                                return(
+                                                  <div key={'rtype_'+rt_index}>
+                                                    <div className="header">
+                                                      <p style={{fontSize: 14, paddingLeft: 18}}>{rtype.name}</p>                                                      
+                                                    </div>                                                                                                                                                          
+                                                    <div style={{lineHeight: '26px', fontSize: '14px', marginTop: '-1px', width: '100%'}}
+                                                           className="titles dark">
+                                                          <div style={{borderRight: 'solid 1px #bbb'}} className="column-50">
+                                                              Tickets entered for this reuse type&nbsp;&nbsp;–&nbsp;&nbsp;<span
+                                                              style={{font: 'normal 16px ArialBold'}}>{rtype.tickets.length}</span></div>
+                                                          <div className="column-50">Tons taken to this reuse type&nbsp;&nbsp;–&nbsp;&nbsp;
+                                                              <span style={{font: 'normal 16px ArialBold'}}>{rtype.tons_taken}</span></div>
+                                                    </div>
+                                                    <div className="row">
+                                                        <div style={{width: '100%'}} className="content">
+                                                            <div className="column-16 no-border">Ticket #</div>
+                                                            <div className="column-11 no-border">Material</div>
+                                                            <div className="column-16 no-border">Submitted By</div>
+                                                            <div className="column-10 no-border">Weight</div>
+                                                            <div className="column-10 no-border">Recycled</div>
+                                                            <div className="column-11 no-border">Applied %</div>
+                                                            <div className="column-11 no-border">Date</div>                                                            
+                                                            <div style={{padding: 0, textAlign: 'center'}}
+                                                                 className="column-5 no-border">View
+                                                            </div>                                                            
+                                                        </div>
+                                                    </div>
+                                                    {rtype.tickets.map(function(sr_ticket, srt_index){
+                                                      return(
+                                                        <div id={"row_sr_ticket_"+sr_ticket.TICKET_SR_ID} key={'sr_ticket_'+sr_ticket.TICKET_SR_ID}>
+                                                            <div className="row">
+                                                                <div style={{margin: '0px 0px 0px -1px'}} id="accordion"
+                                                                     className="panel-group">
+                                                                    {/* list */}
+                                                                    <div
+                                                                        style={{background: 'none', marginTop: '-2px', width: '100.1% !important'}}
+                                                                        className="panel panel-default">
+                                                                        <div style={{lineHeight: 40, height: 40}}
+                                                                             className="panel-heading white panel-content">
+                                                                            <div style={{margin: 0, width: '100%'}} id="settings-container">
+                                                                                <div style={{border: 'none', width: '100%'}}
+                                                                                     className="content">
+                                                                                    <div className="column-3 no-border">{srt_index+1}.</div>
+                                                                                    <div
+                                                                                        style={{borderLeft: 'none', fontFamily: 'ArialBold', padding: 0}}
+                                                                                        className="column-13 no-border">{sr_ticket.ticket?sr_ticket.ticket:'N/A'}
+                                                                                    </div>
+                                                                                    <div className="column-11 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={sr_ticket.material}>{sr_ticket.material}</div>
+                                                                                    <div className="column-16 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={sr_ticket.submitted_by}>{sr_ticket.submitted_by}</div>
+                                                                                    <div className="column-10 no-border">{sr_ticket.weight}</div>
+                                                                                    <div className="column-10 no-border">{sr_ticket.weight}</div>
+                                                                                    <div className="column-11 no-border">{sr_ticket.percentage}%</div>
+                                                                                    <div className="column-11 no-border">{sr_ticket.thedate_ticket}</div>                                                                                    
+                                                                                    <div
+                                                                                        style={{padding: '0px 0px 0px 1px', textAlign: 'center'}}
+                                                                                        className="column-5 no-border">
+                                                                                        <a href={"#collapseSrImage"+sr_ticket.TICKET_SR_ID} data-parent="#accordion"
+                                                                                           data-toggle="collapse"><img
+                                                                                            src={imgHost + "/_images/icons/nav/tab-search.png"}/></a>
+                                                                                    </div>                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="panel-collapse collapse" id={"collapseSrImage"+sr_ticket.TICKET_SR_ID}>
+
+                                                                            <div style={{borderTop: 'none', textAlign: 'center'}} className="panel-body">
+                                                                                <div style={{border: 'none', textAlign: 'left', padding: '10px 15px'}} className="panel-body">
+                                                                                  <b>Description: </b> {sr_ticket.description} <br />
+                                                                                  <b>Inventory: </b>  {sr_ticket.salvage_materials}<br />
+                                                                                  <b>Facility: </b>  {sr_ticket.facility}<br />
+                                                                                </div>
+                                                                                <img width="185px" style={{padding:'5px'}} src={imgHost + sr_ticket.image}/>
+                                                                                <img width="185px" style={{padding:'5px'}} src={imgHost + sr_ticket.material_image}/>
+                                                                                <img width="185px" style={{padding:'5px'}} src={imgHost + sr_ticket.material_image2}/>
+                                                                                <img width="185px" style={{padding:'5px'}} src={imgHost + sr_ticket.material_image3}/>
+                                                                                <img width="185px" style={{padding:'5px'}} src={imgHost + sr_ticket.material_image4}/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    {/* end list */}
+                                                                </div>
+                                                            </div>
+                                                        </div>                                                        
+                                                      )
+                                                    })}
+                                                  </div>
+                                                )
+                                              })}
                                           </div>
                                       </div>
                                   </div>

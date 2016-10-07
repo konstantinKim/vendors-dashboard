@@ -108,7 +108,7 @@ export default class EditTicketForm extends Component {
               </div>                
               <div className="row">
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket Date *</div>
-                <div className="column-35 no-border"><input type="text" name="thedate" className="editTicketFormCalendar" ref="update_calendar" data-date-format="yyyy-mm-dd" value={editTicketForm.thedate} onChange={::this.handleFormChange} /></div>
+                <div className="column-35 no-border"><input type="text" name="thedate" className="editTicketFormCalendar" ref="update_calendar" data-date-format="yyyy-mm-dd" value={editTicketForm.thedate} onChange={::this.handleFormChange} readOnly="readonly" /></div>
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Facility *</div>
                 <div className="column-40 no-border">
                       <select name="FACILITY_ID" required value={editTicketForm.FACILITY_ID} onChange={::this.handleFormChange}>

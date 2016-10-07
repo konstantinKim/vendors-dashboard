@@ -20,7 +20,11 @@ export default class Header extends Component {
       return('');                
   }
 
-
+  onLogOutClick(e) {                                    
+        e.preventDefault()                                  
+        localStorage.clear()
+        window.location = '/login'
+  }
 
   render() {        
     const { imgHost } = this.props
@@ -148,7 +152,7 @@ export default class Header extends Component {
               </a>
             </div>
             <div className="col-ghgrid-1">
-              <a href="#" className="link-regular">
+              <a  href="#" onClick={::this.onLogOutClick} className="link-regular">
                 <span className="nav nav-log-out">
                   <span style={{position: 'relative', top: 44}}>LOG OUT</span><br />
                   <img style={{margin: '2px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/log-out-dark.png"} className="global-nav-log-out" /><br />

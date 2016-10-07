@@ -4,6 +4,7 @@ import CompletedProjects from '../components/CompletedProjects'
 import AddTicketForm from '../components/AddTicketForm'
 import AddTicketSrForm from '../components/AddTicketSrForm'
 import EditTicketForm from '../components/EditTicketForm'
+import EditTicketSrForm from '../components/EditTicketSrForm'
 
 
 export default class Projects extends Component {
@@ -25,7 +26,7 @@ export default class Projects extends Component {
         const { completed } = this.props                        
 
         if(activeTab == 'activeList'){
-            return(<ActiveProjects activeProjectsActions={activeProjectsActions} projects={projects} imgHost={imgHost} addTicketFormActions={this.props.addTicketFormActions} editTicketFormActions={this.props.editTicketFormActions} projectsActions={projectsActions} projectsPage={projectsPage} />);                    
+            return(<ActiveProjects activeProjectsActions={activeProjectsActions} projects={projects} imgHost={imgHost} addTicketFormActions={this.props.addTicketFormActions} editTicketFormActions={this.props.editTicketFormActions} projectsActions={projectsActions} projectsPage={projectsPage} editTicketSrFormActions={this.props.editTicketSrFormActions} />);                    
         }
         if(activeTab == 'completedList'){
             return(<CompletedProjects completed={completed} imgHost={imgHost} getCompletedProjects={getCompletedProjects} />);                    
@@ -39,8 +40,8 @@ export default class Projects extends Component {
     }
 
     render() {                                      
-        const { projects, disableAddTicketForm, isDisableEditTicketForm, addTicketError, editTicketError } = this.props.projects                        
-        const { imgHost, projectsPage, activeProjectsActions, addTicketForm, addTicketFormActions, projectsActions, editTicketForm, editTicketFormActions } = this.props                
+        const { projects, disableAddTicketForm, isDisableEditTicketForm, isDisableEditTicketSrForm, addTicketError, editTicketError, editTicketSrError } = this.props.projects                        
+        const { imgHost, projectsPage, activeProjectsActions, addTicketForm, addTicketFormActions, projectsActions, editTicketForm, editTicketFormActions, addTicketSrForm, addTicketSrFormActions, editTicketSrForm, editTicketSrFormActions } = this.props                
         return <div className='componentActiveProjects'>
             <div className="container-gh" id="global-main-top-bar">
                 <div className="row">
@@ -94,8 +95,9 @@ export default class Projects extends Component {
                 }                                                
             </div>            
             <AddTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} addTicketFormActions={addTicketFormActions} addTicketForm={addTicketForm} projectsActions={projectsActions} disableAddTicketForm={disableAddTicketForm} addTicketError={addTicketError}  />
-            <AddTicketSrForm imgHost={imgHost} projectsPage={projectsPage} addTicketForm={addTicketForm} />
+            <AddTicketSrForm imgHost={imgHost} projectsPage={projectsPage} addTicketForm={addTicketForm} activeProjectsActions={activeProjectsActions} disableAddTicketForm={disableAddTicketForm} addTicketSrForm={addTicketSrForm} addTicketSrFormActions={addTicketSrFormActions} addTicketError={addTicketError} />
             <EditTicketForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} projectsActions={projectsActions} isDisableEditTicketForm={isDisableEditTicketForm} editTicketError={editTicketError} />            
+            <EditTicketSrForm imgHost={imgHost} projectsPage={projectsPage} activeProjectsActions={activeProjectsActions} editTicketSrForm={editTicketSrForm} editTicketSrFormActions={editTicketSrFormActions} isDisableEditTicketSrForm={isDisableEditTicketSrForm} editTicketSrError={editTicketSrError} />            
         </div>
     }
 }

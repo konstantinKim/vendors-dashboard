@@ -40,6 +40,7 @@ export default class AddTicketForm extends Component {
     let cityId = this.props.addTicketForm.cityId
     let projectId = this.props.addTicketForm.projectId
     this.props.projectsActions.getSalvageFacilities(cityId, 7, projectId)         
+    this.props.activeProjectsActions.clearAddTicketError()              
     return window.changeTicketTypeForm(e.currentTarget.value, this.props.addTicketForm.projectId)
   }    
 
@@ -86,9 +87,9 @@ export default class AddTicketForm extends Component {
             <input id="add_ticket_city_id" ref="add_ticket_city_id" type="hidden" defaultValue={this.props.addTicketForm.cityId} name="CITY_ID" required="required" />
             <div style={{marginTop: 19}} className="titles">
               <img style={{margin: '-1px 0px 0px 0px', padding: '0px 12px 0px 12px'}} src={imgHost + "/_images/icons/content/add.png"} />Add Recycle and Dispose Ticket
-            </div>
-            {::this.showErrors()}
+            </div>            
             <div className="forms">                                              
+              {::this.showErrors()}
               <div className="row">
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket Type *</div>
                 <div className="column-35 no-border">
@@ -102,7 +103,7 @@ export default class AddTicketForm extends Component {
               </div>                
               <div className="row">
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket Date *</div>
-                <div className="column-35 no-border"><input type="text" placeholder="enter ticket date" required="required" name="thedate" className="addTicketFormCalendar" ref="calendar" data-date-format="yyyy-mm-dd" /></div>
+                <div className="column-35 no-border"><input type="text" placeholder="enter ticket date" required="required" name="thedate" className="addTicketFormCalendar" ref="calendar" data-date-format="yyyy-mm-dd" readOnly="readonly" /></div>
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-10 no-border">Material *</div>
                 <div className="column-35 no-border">
                       <select onChange={::this.onChangeMaterial} name="MATERIAL_ID" required="required">

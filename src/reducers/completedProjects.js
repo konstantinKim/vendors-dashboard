@@ -8,6 +8,7 @@ const initialState = {
 
 function setChartConfig(project) {       
   var dataChart = []
+  var facUsedIds = []
   for (let fi = 0; fi < project.facilities.length; fi++){
     let fw = 0    
     for (let ti = 0; ti < project.facilities[fi].tickets.length; ti++){                  
@@ -17,9 +18,33 @@ function setChartConfig(project) {
     fac.push(project.facilities[fi].name)
     fac.push(fw) 
     dataChart.push(fac)
-  }    
-  
-    
+    facUsedIds.push(project.facilities[fi].FACILITY_ID)
+  } 
+
+  for (let fi = 0; fi < project.reused_types.length; fi++){
+    let fw = 0    
+    for (let ti = 0; ti < project.reused_types[fi].tickets.length; ti++){                  
+      fw = parseFloat(project.reused_types[fi].tickets[ti].weight)
+      
+      if(!facUsedIds.includes(project.reused_types[fi].tickets[ti].FACILITY_ID) && project.reused_types[fi].tickets[ti].facility){
+        let fac = []
+        fac.push(project.reused_types[fi].tickets[ti].facility)
+        fac.push(fw) 
+        dataChart.push(fac)      
+      }
+      else{
+        for (let chart_i = 0; chart_i < dataChart.length; chart_i++){                  
+          if(dataChart[chart_i][0] == project.reused_types[fi].tickets[ti].facility){
+            dataChart[chart_i][1] = dataChart[chart_i][1] + fw
+            break
+          }
+        }
+      }
+      facUsedIds.push(project.reused_types[fi].tickets[ti].FACILITY_ID)
+    }    
+  }   
+
+
 
   var conf = {
     chart: { backgroundColor:'none', border: 'none', margin: [0, 0, 0, 0], width: '900' },
@@ -101,12 +126,30 @@ function setStatistic(project) {
 
       facilityTotalTons += parseFloat(project.facilities[facility_index].tickets[ticket_index].weight)
       facilityTotalRecycled += parseFloat(project.facilities[facility_index].tickets[ticket_index].recycled)
-    }
+    }    
 
     totalTicketsCount += ticketsCount
     project.facilities[facility_index].tons_taken = facilityTotalTons
     project.facilities[facility_index].tons_recycled = facilityTotalRecycled
     project.facilities[facility_index].materials_taken = facilityMaterialsTaken.length
+  }
+  
+  for (let rt_index = 0; rt_index < project.reused_types.length; rt_index++){
+    let ticketsCount = project.reused_types[rt_index].tickets.length
+    let rtTotalTons = 0
+    for (let ticket_index = 0; ticket_index < ticketsCount; ticket_index++){            
+      totalTons += parseFloat(project.reused_types[rt_index].tickets[ticket_index].weight) 
+      totalRecycled += parseFloat(project.reused_types[rt_index].tickets[ticket_index].weight) 
+
+      rtTotalTons += parseFloat(project.reused_types[rt_index].tickets[ticket_index].weight)      
+
+      if(!materialsHauled.includes(project.reused_types[rt_index].tickets[ticket_index].MATERIAL_ID)){
+        materialsHauled.push(project.reused_types[rt_index].tickets[ticket_index].MATERIAL_ID)        
+      }                    
+    }    
+
+    totalTicketsCount += ticketsCount
+    project.reused_types[rt_index].tons_taken = rtTotalTons        
   }
   
   project.materials_hauled = materialsHauled.length

@@ -83,6 +83,11 @@
                 $('.'+className).datepicker('hide');
             });                        
         }
+
+        function setSelectedRadionButton(btnClass, ctId){
+            $("input."+btnClass).removeAttr("checked");
+            $("input."+btnClass+"[value="+ctId+"]").attr("checked", "checked");
+        }
     </script>  		      	    
     <div class="modal fade" id="myAlert" tabindex="-1">
         <div class="modal-dialog" style="top:35%">
@@ -184,7 +189,7 @@
                 $("#add_ticket_btn_"+projectId).trigger("click");
             }
             return false;
-        }
+        }        
 
     </script>
 

@@ -21,6 +21,15 @@ export default class ActiveProjects extends Component {
           return this.props.editTicketFormActions.setUpdateTicketData(ticket, this.props.projects[project_index].CITY_ID, {'project_index': project_index, 'facility_index': facility_index, 'ticket_index': ticket_index}, this.props.projects[project_index].PROJECT_ID)
     }
 
+    setUpdateTicketSrData(e){                              
+          var project_index = e.currentTarget.attributes.getNamedItem('data-project-index').value
+          var rtype_index = e.currentTarget.attributes.getNamedItem('data-rtype-index').value                    
+          var ticket_index = e.currentTarget.attributes.getNamedItem('data-ticket-index').value                              
+          var ticket = this.props.projects[project_index].reused_types[rtype_index].tickets[ticket_index]
+          this.props.projectsActions.getSalvageFacilities(this.props.projects[project_index].CITY_ID, 7, this.props.projects[project_index].PROJECT_ID)
+          return this.props.editTicketSrFormActions.setUpdateTicketSrData(ticket, {'project_index': project_index, 'rtype_index': rtype_index, 'ticket_index': ticket_index}, this.props.projects[project_index].CITY_ID)
+    }
+
     deleteTicket(e){
           e.preventDefault()
           if(confirm('Are you sure you want to delete?')){
@@ -29,6 +38,18 @@ export default class ActiveProjects extends Component {
             var ticket_index = e.currentTarget.attributes.getNamedItem('data-ticket-index').value                              
             var ticket = this.props.projects[project_index].facilities[facility_index].tickets[ticket_index]                    
             return this.props.activeProjectsActions.deleteTicket(ticket, {'project_index': project_index, 'facility_index': facility_index, 'ticket_index': ticket_index})
+          }
+          return false;          
+    }        
+
+    deleteSrTicket(e){
+          e.preventDefault()
+          if(confirm('Are you sure you want to delete?')){
+            var project_index = e.currentTarget.attributes.getNamedItem('data-project-index').value                    
+            var rtype_index = e.currentTarget.attributes.getNamedItem('data-rtype-index').value                    
+            var ticket_index = e.currentTarget.attributes.getNamedItem('data-ticket-index').value                              
+            var ticket = this.props.projects[project_index].reused_types[rtype_index].tickets[ticket_index]                    
+            return this.props.activeProjectsActions.deleteSrTicket(ticket, {'project_index': project_index, 'rtype_index': rtype_index, 'ticket_index': ticket_index})
           }
           return false;          
     }        
@@ -204,13 +225,13 @@ export default class ActiveProjects extends Component {
                                                                             <div style={{margin: 0, width: '100%'}} id="settings-container">
                                                                                 <div style={{border: 'none', width: '100%'}}
                                                                                      className="content">
-                                                                                    <div className="column-3 no-border">1.</div>
+                                                                                    <div className="column-3 no-border">{t_index+1}.</div>
                                                                                     <div
                                                                                         style={{borderLeft: 'none', fontFamily: 'ArialBold', padding: 0}}
                                                                                         className="column-13 no-border">{ticket.ticket}
                                                                                     </div>
-                                                                                    <div className="column-11 no-border">{ticket.material}</div>
-                                                                                    <div className="column-16 no-border">{ticket.submitted_by}</div>
+                                                                                    <div className="column-11 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={ticket.material}>{ticket.material}</div>
+                                                                                    <div className="column-16 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={ticket.submitted_by}>{ticket.submitted_by}</div>
                                                                                     <div className="column-10 no-border">{ticket.weight}</div>
                                                                                     <div className="column-10 no-border">{ticket.recycled}</div>
                                                                                     <div className="column-11 no-border">{ticket.percentage}%</div>
@@ -249,7 +270,111 @@ export default class ActiveProjects extends Component {
                                                     })}                                                    
                                                   </div>                                                  
                                                 )
-                                              })}                                                                                                                                          
+                                              })}
+                                              {/* end FACILITIES list. */}
+                                              {item.reused_types.map(function(rtype, rt_index){ 
+                                                return(
+                                                  <div key={'rtype_'+rt_index}>
+                                                    <div className="header">
+                                                      <p style={{fontSize: 14, paddingLeft: 18}}>{rtype.name}</p>                                                      
+                                                    </div>                                                                                                                                                          
+                                                    <div style={{lineHeight: '26px', fontSize: '14px', marginTop: '-1px', width: '100%'}}
+                                                           className="titles dark">
+                                                          <div style={{borderRight: 'solid 1px #bbb'}} className="column-50">
+                                                              Tickets entered for this reuse type&nbsp;&nbsp;–&nbsp;&nbsp;<span
+                                                              style={{font: 'normal 16px ArialBold'}}>{rtype.tickets.length}</span></div>
+                                                          <div className="column-50">Tons taken to this reuse type&nbsp;&nbsp;–&nbsp;&nbsp;
+                                                              <span style={{font: 'normal 16px ArialBold'}}>{rtype.tons_taken}</span></div>
+                                                    </div>
+                                                    <div className="row">
+                                                        <div style={{width: '100%'}} className="content">
+                                                            <div className="column-16 no-border">Ticket #</div>
+                                                            <div className="column-11 no-border">Material</div>
+                                                            <div className="column-16 no-border">Submitted By</div>
+                                                            <div className="column-10 no-border">Weight</div>
+                                                            <div className="column-10 no-border">Recycled</div>
+                                                            <div className="column-11 no-border">Applied %</div>
+                                                            <div className="column-11 no-border">Date</div>                                                            
+                                                            <div style={{padding: 0, textAlign: 'center'}}
+                                                                 className="column-5 no-border">View
+                                                            </div>
+                                                            <div style={{padding: '0px 0px 0px 10px'}}
+                                                                 className="column-5 no-border">Edit
+                                                            </div>
+                                                            <div style={{padding: 0}} className="column-5 no-border">Delete</div>
+                                                        </div>
+                                                    </div>
+                                                    {rtype.tickets.map(function(sr_ticket, srt_index){
+                                                      return(
+                                                        <div id={"row_sr_ticket_"+sr_ticket.TICKET_SR_ID} key={'sr_ticket_'+sr_ticket.TICKET_SR_ID}>
+                                                            <div className="row">
+                                                                <div style={{margin: '0px 0px 0px -1px'}} id="accordion"
+                                                                     className="panel-group">
+                                                                    {/* list */}
+                                                                    <div
+                                                                        style={{background: 'none', marginTop: '-2px', width: '100.1% !important'}}
+                                                                        className="panel panel-default">
+                                                                        <div style={{lineHeight: 40, height: 40}}
+                                                                             className="panel-heading white panel-content">
+                                                                            <div style={{margin: 0, width: '100%'}} id="settings-container">
+                                                                                <div style={{border: 'none', width: '100%'}}
+                                                                                     className="content">
+                                                                                    <div className="column-3 no-border">{srt_index+1}.</div>
+                                                                                    <div
+                                                                                        style={{borderLeft: 'none', fontFamily: 'ArialBold', padding: 0}}
+                                                                                        className="column-13 no-border">{sr_ticket.ticket?sr_ticket.ticket:'N/A'}
+                                                                                    </div>
+                                                                                    <div className="column-11 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={sr_ticket.material}>{sr_ticket.material}</div>
+                                                                                    <div className="column-16 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={sr_ticket.submitted_by}>{sr_ticket.submitted_by}</div>
+                                                                                    <div className="column-10 no-border">{sr_ticket.weight}</div>
+                                                                                    <div className="column-10 no-border">{sr_ticket.weight}</div>
+                                                                                    <div className="column-11 no-border">{sr_ticket.percentage}%</div>
+                                                                                    <div className="column-11 no-border">{sr_ticket.thedate_ticket}</div>                                                                                    
+                                                                                    <div
+                                                                                        style={{padding: '0px 0px 0px 1px', textAlign: 'center'}}
+                                                                                        className="column-5 no-border">
+                                                                                        <a href={"#collapseSrImage"+sr_ticket.TICKET_SR_ID} data-parent="#accordion"
+                                                                                           data-toggle="collapse"><img
+                                                                                            src={imgHost + "/_images/icons/nav/tab-search.png"}/></a>
+                                                                                    </div>
+                                                                                    <div style={{padding: '0px 0px 0px 14px'}}
+                                                                                         className="column-5 no-border">
+                                                                                        <a onClick={::self.setUpdateTicketSrData} data-reveal-id="edit_ticket_sr" data-animation="fade" data-project-index={index} data-rtype-index={rt_index} data-ticket-index={srt_index} href="#"><img
+                                                                                            src={imgHost + '/_images/icons/content/pen.png'}/></a>
+                                                                                    </div>
+                                                                                    <div style={{padding: '0px 0px 0px 10px'}}
+                                                                                         className="column-5 no-border">
+                                                                                        <a onClick={::self.deleteSrTicket} data-project-index={index} data-rtype-index={rt_index} data-ticket-index={srt_index} href="#"><img
+                                                                                            src={imgHost + "/_images/icons/content/close-blue.png"}/></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="panel-collapse collapse" id={"collapseSrImage"+sr_ticket.TICKET_SR_ID}>
+
+                                                                            <div style={{borderTop: 'none', textAlign: 'center'}} className="panel-body">
+                                                                                <div style={{border: 'none', textAlign: 'left', padding: '10px 15px'}} className="panel-body">
+                                                                                  <b>Description: </b> {sr_ticket.description} <br />
+                                                                                  <b>Inventory: </b>  {sr_ticket.salvage_materials}<br />
+                                                                                  <b>Facility: </b>  {sr_ticket.facility}<br />
+                                                                                </div>
+                                                                                <img width="185px" style={{padding:'5px'}} src={imgHost + sr_ticket.image}/>
+                                                                                <img width="185px" style={{padding:'5px'}} src={imgHost + sr_ticket.material_image}/>
+                                                                                <img width="185px" style={{padding:'5px'}} src={imgHost + sr_ticket.material_image2}/>
+                                                                                <img width="185px" style={{padding:'5px'}} src={imgHost + sr_ticket.material_image3}/>
+                                                                                <img width="185px" style={{padding:'5px'}} src={imgHost + sr_ticket.material_image4}/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    {/* end list */}
+                                                                </div>
+                                                            </div>
+                                                        </div>                                                        
+                                                      )
+                                                    })}
+                                                  </div>
+                                                )
+                                              })}
                                           </div>
                                       </div>
                                   </div>

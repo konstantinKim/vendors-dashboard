@@ -8,19 +8,21 @@ import * as projectsActions from '../actions/ProjectsActions'
 import * as activeProjectsActions from '../actions/ActiveProjectsActions'
 import * as completedProjectsActions from '../actions/CompletedProjectsActions'
 import * as addTicketFormActions from '../actions/AddTicketFormActions'
+import * as addTicketSrFormActions from '../actions/AddTicketSrFormActions'
 import * as editTicketFormActions from '../actions/EditTicketFormActions'
+import * as editTicketSrFormActions from '../actions/EditTicketSrFormActions'
 
 import { IMG_HOST } from '../config/settings'
 
 class App extends Component {  
   render() {    
-    const { projects, completed, projectsPage, sync, projectsActions, activeProjectsActions, addTicketForm, addTicketFormActions, editTicketForm, editTicketFormActions } = this.props                    
+    const { projects, completed, projectsPage, sync, projectsActions, activeProjectsActions, addTicketForm, addTicketFormActions, editTicketForm, editTicketFormActions, addTicketSrForm, addTicketSrFormActions, editTicketSrForm, editTicketSrFormActions } = this.props                    
     const { switchTab } = this.props.projectsActions
     const { getCompletedProjects } = this.props.completedProjectsActions
     const { getActiveProjects } = this.props.activeProjectsActions        
     return <div>
       <Header imgHost={IMG_HOST} switchTab={switchTab} activeTab={projectsPage.activeTab} />       
-      <Projects projects={projects} projectsActions={projectsActions} completed={completed.projects} activeTab={projectsPage.activeTab} projectsPage={projectsPage} switchTab={switchTab} getCompletedProjects={getCompletedProjects} getActiveProjects={getActiveProjects} imgHost={IMG_HOST} sync={sync} activeProjectsActions={activeProjectsActions} addTicketForm={addTicketForm} addTicketFormActions={addTicketFormActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} />                     
+      <Projects projects={projects} projectsActions={projectsActions} completed={completed.projects} activeTab={projectsPage.activeTab} projectsPage={projectsPage} switchTab={switchTab} getCompletedProjects={getCompletedProjects} getActiveProjects={getActiveProjects} imgHost={IMG_HOST} sync={sync} activeProjectsActions={activeProjectsActions} addTicketForm={addTicketForm} addTicketFormActions={addTicketFormActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} addTicketSrForm={addTicketSrForm} addTicketSrFormActions={addTicketSrFormActions} editTicketSrForm={editTicketSrForm} editTicketSrFormActions={editTicketSrFormActions} />                     
     </div>
   }
 }
@@ -31,7 +33,9 @@ function mapStateToProps(state) {
     completed: state.completedProjects,    
     projectsPage: state.projects,
     addTicketForm: state.addTicketForm,
-    editTicketForm: state.editTicketForm
+    addTicketSrForm: state.addTicketSrForm,
+    editTicketForm: state.editTicketForm,
+    editTicketSrForm: state.editTicketSrForm
   }
 }
 
@@ -41,7 +45,9 @@ function mapDispatchToProps(dispatch) {
     activeProjectsActions: bindActionCreators(activeProjectsActions, dispatch),
     completedProjectsActions: bindActionCreators(completedProjectsActions, dispatch),
     addTicketFormActions: bindActionCreators(addTicketFormActions, dispatch),
-    editTicketFormActions: bindActionCreators(editTicketFormActions, dispatch)
+    addTicketSrFormActions: bindActionCreators(addTicketSrFormActions, dispatch),
+    editTicketFormActions: bindActionCreators(editTicketFormActions, dispatch),
+    editTicketSrFormActions: bindActionCreators(editTicketSrFormActions, dispatch)
   }
 }
 
