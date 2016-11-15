@@ -118,9 +118,7 @@ export default class ActiveProjects extends Component {
                                               <div className="row">
                                                   <div style={{width: '100%'}} className="titles">
                                                       <div className="col-ghgrid-3">
-                                                          <img
-                                                              style={{padding: '0px 8px 0px 12px', position: 'relative', top: '-2px'}}
-                                                              src={imgHost + "/_images/icons/nav/tab-facilities.png"}/>Facilities Usage and
+                                                          <span className="icon fa fa-recycle" style={{margin: '0px 5px 0px 5px'}}></span>Facilities Usage and
                                                            Ticket Entry
                                                       </div>
                                                       <div className="col-ghgrid-5">
@@ -139,7 +137,7 @@ export default class ActiveProjects extends Component {
                                                   <div className="header">
                                                       <p style={{fontSize: 14, paddingLeft: 18}}>
                                                           <span
-                                                              style={{color: '#7fc8ff', fontFamily: 'ArialRegular', paddingLeft: 6}}>{item.street}</span>
+                                                              style={{fontFamily: 'ArialRegular', paddingLeft: 6}}>{item.street}</span>
                                                       </p><a
                                                       style={{fontSize: 11, lineHeight: 37, marginLeft: 10, padding: '4px 10px 5px 8px'}}
                                                       href="#" className="button"><span
@@ -240,18 +238,19 @@ export default class ActiveProjects extends Component {
                                                                                         style={{padding: '0px 0px 0px 1px', textAlign: 'center'}}
                                                                                         className="column-5 no-border">
                                                                                         <a href={"#collapseOne"+ticket.TICKET_RD_ID} data-parent="#accordion"
-                                                                                           data-toggle="collapse"><img
-                                                                                            src={imgHost + "/_images/icons/nav/tab-search.png"}/></a>
+                                                                                           data-toggle="collapse"><span className="icon fa fa-search" style={{margin: '0px 0px 0px 0px'}}></span></a>
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 14px'}}
                                                                                          className="column-5 no-border">
-                                                                                        <a onClick={::self.setUpdateTicketData} data-reveal-id="edit_ticket" data-animation="fade" data-project-index={index} data-facility-index={f_index} data-ticket-index={t_index} href="#"><img
-                                                                                            src={imgHost + '/_images/icons/content/pen.png'}/></a>
+                                                                                        <a onClick={::self.setUpdateTicketData} data-reveal-id="edit_ticket" data-animation="fade" data-project-index={index} data-facility-index={f_index} data-ticket-index={t_index} href="#">
+                                                                                          <span className="icon fa fa-pencil" style={{margin: '0px 0px 0px 0px'}}></span>
+                                                                                        </a>
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 10px'}}
                                                                                          className="column-5 no-border">
-                                                                                        <a onClick={::self.deleteTicket} data-project-index={index} data-facility-index={f_index} data-ticket-index={t_index} href="#"><img
-                                                                                            src={imgHost + "/_images/icons/content/close-blue.png"}/></a>
+                                                                                        <a onClick={::self.deleteTicket} data-project-index={index} data-facility-index={f_index} data-ticket-index={t_index} href="#">
+                                                                                          <span className="icon fa fa-remove" style={{margin: '0px 0px 0px 0px'}}></span>
+                                                                                        </a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -334,18 +333,19 @@ export default class ActiveProjects extends Component {
                                                                                         style={{padding: '0px 0px 0px 1px', textAlign: 'center'}}
                                                                                         className="column-5 no-border">
                                                                                         <a href={"#collapseSrImage"+sr_ticket.TICKET_SR_ID} data-parent="#accordion"
-                                                                                           data-toggle="collapse"><img
-                                                                                            src={imgHost + "/_images/icons/nav/tab-search.png"}/></a>
+                                                                                           data-toggle="collapse"><span className="icon fa fa-search" style={{margin: '0px 0px 0px 0px'}}></span></a>
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 14px'}}
                                                                                          className="column-5 no-border">
-                                                                                        <a onClick={::self.setUpdateTicketSrData} data-reveal-id="edit_ticket_sr" data-animation="fade" data-project-index={index} data-rtype-index={rt_index} data-ticket-index={srt_index} href="#"><img
-                                                                                            src={imgHost + '/_images/icons/content/pen.png'}/></a>
+                                                                                        <a onClick={::self.setUpdateTicketSrData} data-reveal-id="edit_ticket_sr" data-animation="fade" data-project-index={index} data-rtype-index={rt_index} data-ticket-index={srt_index} href="#">
+                                                                                          <span className="icon fa fa-pencil" style={{margin: '0px 0px 0px 0px'}}></span>
+                                                                                        </a>
                                                                                     </div>
                                                                                     <div style={{padding: '0px 0px 0px 10px'}}
                                                                                          className="column-5 no-border">
-                                                                                        <a onClick={::self.deleteSrTicket} data-project-index={index} data-rtype-index={rt_index} data-ticket-index={srt_index} href="#"><img
-                                                                                            src={imgHost + "/_images/icons/content/close-blue.png"}/></a>
+                                                                                        <a onClick={::self.deleteSrTicket} data-project-index={index} data-rtype-index={rt_index} data-ticket-index={srt_index} href="#">
+                                                                                          <span className="icon fa fa-remove" style={{margin: '0px 0px 0px 0px'}}></span>
+                                                                                        </a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

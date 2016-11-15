@@ -8,9 +8,9 @@ import { IMG_HOST } from '../config/settings'
 
 class SignUpContainer extends Component {
   render() {        
-    const { signUp } = this.props.loginActions    
+    const { signUp, confirmSignUp } = this.props.loginActions    
     return <div>
-        <SignUp imgHost={IMG_HOST} signUp={signUp} />
+        <SignUp imgHost={IMG_HOST} signUp={signUp} confirmSignUp={confirmSignUp} />
     </div>
   }
 }

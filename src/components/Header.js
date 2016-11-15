@@ -26,26 +26,37 @@ export default class Header extends Component {
         window.location = '/login'
   }
 
+  onSearchClick(e) {                                    
+        e.preventDefault()                                  
+        window.doMessage("In Development", "Warning!");
+  }
+
   render() {        
     const { imgHost } = this.props
     var location = window.location.pathname
     var subNav
     if(this.highlightMenu('/', location) != ''){
       subNav = <div className="col-ghgrid-8">
-                <a id='activeList' onClick={::this.onTabBtnClick} href="haulsub-projects-active.html" className={this.highlightTab('activeList') + " padding"}>ACTIVE PROJECTS</a>
-                <a id='completedList' onClick={::this.onTabBtnClick} style={{padding: '0px 14px 0px 12px'}} className={this.highlightTab('completedList')} href="haulsub-projects-completed.html">COMPLETED PROJECTS</a>
+                <a id='activeList' onClick={::this.onTabBtnClick} href="#" className={this.highlightTab('activeList') + " padding"}>ACTIVE PROJECTS</a>
+                <a id='completedList' onClick={::this.onTabBtnClick} style={{padding: '0px 14px 0px 12px'}} className={this.highlightTab('completedList')} href="#">COMPLETED PROJECTS</a>
               </div>
     }
     if(this.highlightMenu('/statistics', location) != ''){
       subNav = <div className="col-ghgrid-8">
-        <a id="overview" onClick={::this.onTabBtnClick} href="haulsub-statistics-overview.html" className={this.highlightTab('overview') + " padding"}>RECYCLING TOTALS</a>
-        <a id="carbonFootprint" onClick={::this.onTabBtnClick} href="haulsub-statistics-carbon-footprint.html" className={this.highlightTab('carbonFootprint') + " padding"}>CARBON FOOTPRINT</a>
-        <a id="materials" onClick={::this.onTabBtnClick} href="haulsub-statistics-materials-recycled.html" className={this.highlightTab('materials') + " padding"}>MATERIALS RECYCLED</a>
-        <a id="facilities" onClick={::this.onTabBtnClick} href="haulsub-statistics-facilities-used.html" className={this.highlightTab('facilities') + " padding"}>FACILITIES USED</a>
-        <a id="projectTypes" onClick={::this.onTabBtnClick} href="haulsub-statistics-project-types.html" className={this.highlightTab('projectTypes') + " padding"}>PROJECT TYPES</a>
-        <a id="buildingTypes" onClick={::this.onTabBtnClick} href="haulsub-statistics-building-types.html" className={this.highlightTab('buildingTypes') + " padding"}>BUILDING TYPES</a>
-        <a id="haulingTypes" onClick={::this.onTabBtnClick} href="haulsub-statistics-hauling-types.html" className={this.highlightTab('haulingTypes')} style={{padding: '0px 14px 0px 12px'}}>HAULING TYPES</a>        
+        <a id="overview" onClick={::this.onTabBtnClick} href="#" className={this.highlightTab('overview') + " padding"}>RECYCLING TOTALS</a>
+        <a id="carbonFootprint" onClick={::this.onTabBtnClick} href="#" className={this.highlightTab('carbonFootprint') + " padding"}>CARBON FOOTPRINT</a>
+        <a id="materials" onClick={::this.onTabBtnClick} href="#" className={this.highlightTab('materials') + " padding"}>MATERIALS RECYCLED</a>
+        <a id="facilities" onClick={::this.onTabBtnClick} href="#" className={this.highlightTab('facilities') + " padding"}>FACILITIES USED</a>
+        <a id="projectTypes" onClick={::this.onTabBtnClick} href="#" className={this.highlightTab('projectTypes') + " padding"}>PROJECT TYPES</a>
+        <a id="buildingTypes" onClick={::this.onTabBtnClick} href="#" className={this.highlightTab('buildingTypes') + " padding"}>BUILDING TYPES</a>
+        <a id="haulingTypes" onClick={::this.onTabBtnClick} href="#" className={this.highlightTab('haulingTypes')} style={{padding: '0px 14px 0px 12px'}}>HAULING TYPES</a>        
       </div>
+    }
+    if(this.highlightMenu('/settings', location) != ''){
+      subNav = <div className="col-ghgrid-8">
+                <a id='settingsProfile' onClick={::this.onTabBtnClick} href="#" className={this.highlightTab('settingsProfile') + " padding"}>VENDOR PROFILE</a>
+                <a id='settingsChangePassword' onClick={::this.onTabBtnClick} style={{padding: '0px 14px 0px 12px'}} className={this.highlightTab('settingsChangePassword')} href="#">CHANGE PASSWORD</a>
+              </div>
     }
     
     return <div>
@@ -69,16 +80,23 @@ export default class Header extends Component {
                   FOR CUSTOMER SERVICE CALL <span>1-888-525-1301</span>
                 </div>
               </div>              
+              <div className="col-ghgrid-3">                
+                  <div style={{float:'right'}}>
+                    <div id="ciDVan" style={{zIndex: 100, position: 'absolute'}} /><div id="scDVan" style={{display: 'inline'}} /><div id="sdDVan" style={{display: 'none'}} />
+                  </div>                
+              </div>              
             </div>
           </div>
         </div>
         {/* main header */}
         <div className="container-gh">
           <div id="header-container" className="row">
-            <div className="col-ghgrid-2">
-              <div className="logo">LOGO HERE</div>
+            <div className="col-ghgrid-3">
+              <div className="logo">
+                <img src={imgHost + "/_images/global/gh_logo.png"} alt="Green Halo Systems" />
+              </div>
             </div>
-            <div className="col-ghgrid-6">
+            <div className="col-ghgrid-5">
               <div className="user">
                 <p>Welcome <span className="name">{localStorage.getItem('name')}</span></p>
               </div>              
@@ -107,8 +125,8 @@ export default class Header extends Component {
               </a>
             </div>
             <div className="col-ghgrid-1">
-              <a href="haulsub-settings-change-password.html" className="link-regular">
-                <span className="nav nav-settings">
+              <a href="/settings" className="link-regular">
+                <span className={"nav" + this.highlightMenu('/settings', location) + " nav-settings"}>
                   <span style={{position: 'relative', top: 44}}>SETTINGS</span><br />
                   <img style={{margin: '2px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/settings-dark.png"} className="global-nav-settings" /><br />
                   <img style={{margin: '50px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/settings-white.png"} className="global-nav-settings-hover" />
@@ -116,7 +134,7 @@ export default class Header extends Component {
               </a>
             </div>
             <div className="col-ghgrid-1">
-              <a href="recycler-search.html" className="link-regular">
+              <a href="recycler-search.html" onClick={::this.onSearchClick} className="link-regular">
                 <div className="nav nav-recycler-search">
                   <span style={{position: 'relative', top: 44}}>RECYCLER SEARCH</span><br />
                   <img style={{margin: '2px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/recycler-search-dark.png"} className="global-nav-recycler-search" /><br />
@@ -143,7 +161,7 @@ export default class Header extends Component {
               </a>
             </div>
             <div className="col-ghgrid-1">
-              <a href="#" className="link-regular">
+              <a href="http://messenger.providesupport.com/messenger/greenhalo.html" target="_blank" className="link-regular">
                 <span className="nav nav-live-help">
                   <span style={{position: 'relative', top: 44}}>LIVE HELP</span><br />
                   <img style={{margin: '2px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/live-help-dark.png"} className="global-nav-live-help" /><br />

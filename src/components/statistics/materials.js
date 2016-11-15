@@ -4,16 +4,44 @@ import Tabs from '../../components/statistics/tabs'
 import Filter from '../../components/statistics/filter'
 
 export default class Materials extends Component {  
+  componentWillMount(){
+    const { statisticsActions, statistics } = this.props                                                    
+    statisticsActions.getMaterialsStats(statistics.dateFrom, statistics.dateTo)        
+  }
 
-  componentDidMount(){
-    //console.log($('#statistics-table'))    
-    window.setDataTable('statistics-table')
+  componentDidMount(){        
+    //window.setDataTable('statistics-table')    
+  }
+
+  componentDidUpdate(){        
+    window.setDataTable('statistics-table')    
   }
   
   render() {         
     var ReactHighcharts = require('react-highcharts');                
-    const { imgHost, statisticsActions } = this.props                                        
-    const { materialsRecycled, stats, currentTab } = this.props.statistics
+    const { imgHost, statisticsActions, statistics } = this.props                                        
+    const { materialsRecycled, currentTab, stats } = this.props.statistics
+
+    var listTemplate
+    if(materialsRecycled.materialsRecycledList.length > 0){
+      listTemplate = materialsRecycled.materialsRecycledList.map(function (item, index) {
+        return (
+          <tr key={'mat_' + index}>
+            <td className="column-title">{item.name}</td>
+            <td className="column-stats">{item.projects}</td>
+            <td className="column-stats">{item.totalTons}</td>
+            <td className="column-stats">{item.totalPercent}%</td>
+            <td className="column-stats">{item.reused}</td>
+            <td className="column-stats">{item.reusedPercent}%</td>
+            <td className="column-stats">{item.recycled}</td>
+            <td className="column-stats">{item.recycledPercent}%</td>
+            <td className="column-stats">{item.disposed}</td>
+            <td className="column-stats">{item.disposedPercent}%</td>
+          </tr>
+        )
+      })
+    }
+
     return <div>                  
       <div>
         <div id="global-main-top-bar" className="container-gh">
@@ -38,7 +66,7 @@ export default class Materials extends Component {
             </div>
             <div className="col-ghgrid-4">
               <div className="right">
-                <Filter />
+                <Filter statistics={statistics} statisticsActions={statisticsActions} />
               </div>
             </div>
           </div>
@@ -87,12 +115,12 @@ export default class Materials extends Component {
           <div style={{margin: '-1px 0px 0px 31px'}} id="statistics-filter" className="row">
             <div className="col-ghgrid-4">
               <div className="left">
-                <a style={{marginLeft: 0}} href="#" className="button-print">Print</a><a href="#" className="button-print">Excel</a>
+                <a onClick={window.doPrint} style={{marginLeft: 0, cursor:'pointer'}} className="button-print">Print</a><a href="#" className="button-print">Excel</a>
               </div>
             </div>
             <div className="col-ghgrid-4">
               <div className="right">
-                <Filter />
+                <Filter statistics={statistics} statisticsActions={statisticsActions} />
               </div>
             </div>
           </div>
@@ -108,8 +136,8 @@ export default class Materials extends Component {
                       <th className="column-stats">Projects</th>
                       <th className="column-stats">Total<br />(tons)</th>
                       <th className="column-stats">Total<br />(%)</th>
-                      <th className="column-stats">Salvaged<br />(tons)</th>
-                      <th className="column-stats">Salvaged<br />(%)</th>
+                      <th className="column-stats">Reused<br />(tons)</th>
+                      <th className="column-stats">Reused<br />(%)</th>
                       <th className="column-stats">Recycled<br />(tons)</th>
                       <th className="column-stats">Recycled<br />(%)</th>
                       <th className="column-stats">Disposed<br />(tons)</th>
@@ -119,150 +147,21 @@ export default class Materials extends Component {
                   <tfoot>
                     <tr>
                       <th className="column-title-footer">&nbsp;&nbsp;Total</th>
-                      <th className="column-stats-footer">30</th>
-                      <th className="column-stats-footer">4,969.05</th>
+                      <th className="column-stats-footer">{materialsRecycled.totalProjects}</th>
+                      <th className="column-stats-footer">{materialsRecycled.totalTons}</th>
                       <th className="column-stats-footer">100%</th>
-                      <th className="column-stats-footer">172.01</th>
-                      <th className="column-stats-footer">3.46%</th>
-                      <th className="column-stats-footer">3.947.45</th>
-                      <th className="column-stats-footer">79.44%</th>
-                      <th className="column-stats-footer">849.58</th>
-                      <th className="column-stats-footer">17.10%</th>
+                      <th className="column-stats-footer">{materialsRecycled.reused}</th>
+                      <th className="column-stats-footer">{materialsRecycled.reusedPercent}%</th>
+                      <th className="column-stats-footer">{materialsRecycled.recycled}</th>
+                      <th className="column-stats-footer">{materialsRecycled.recycledPercent}%</th>
+                      <th className="column-stats-footer">{materialsRecycled.disposed}</th>
+                      <th className="column-stats-footer">{materialsRecycled.disposedPercent}%</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td className="column-title">Appliances &amp; Equipment</td>
-                      <td className="column-stats">1</td>
-                      <td className="column-stats">12.00</td>
-                      <td className="column-stats">0.24%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">11.40</td>
-                      <td className="column-stats">0.23%</td>
-                      <td className="column-stats">0.60</td>
-                      <td className="column-stats">0.01%</td>
-                    </tr>
-                    <tr>
-                      <td className="column-title">Asphalt</td>
-                      <td className="column-stats">1</td>
-                      <td className="column-stats">64.00</td>
-                      <td className="column-stats">1.29%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">60.80</td>
-                      <td className="column-stats">1.22%</td>
-                      <td className="column-stats">3.20</td>
-                      <td className="column-stats">0.06%</td>
-                    </tr>
-                    <tr>
-                      <td className="column-title">Bricks, Masonry, &amp; Stone Products</td>
-                      <td className="column-stats">1</td>
-                      <td className="column-stats">464.47</td>
-                      <td className="column-stats">9.35%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">441.34</td>
-                      <td className="column-stats">8.88%</td>
-                      <td className="column-stats">23.23</td>
-                      <td className="column-stats">0.47%</td>
-                    </tr>
-                    <tr>
-                      <td className="column-title">Concrete</td>
-                      <td className="column-stats">9</td>
-                      <td className="column-stats">1,451.75</td>
-                      <td className="column-stats">29.22%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">1379.72</td>
-                      <td className="column-stats">27.77%</td>
-                      <td className="column-stats">72.03</td>
-                      <td className="column-stats">1.45%</td>
-                    </tr>
-                    <tr>
-                      <td className="column-title">Deconstructed &amp; Salvaged Items</td>
-                      <td className="column-stats">3</td>
-                      <td className="column-stats">172.01</td>
-                      <td className="column-stats">3.46%</td>
-                      <td className="column-stats">172.01</td>
-                      <td className="column-stats">3.46%</td>
-                      <td className="column-stats">441.34</td>
-                      <td className="column-stats">8.88%</td>
-                      <td className="column-stats">23.23</td>
-                      <td className="column-stats">0.47%</td>
-                    </tr>
-                    <tr>
-                      <td className="column-title">Drywall - Clean/Unpainted</td>
-                      <td className="column-stats">1</td>
-                      <td className="column-stats">500.00</td>
-                      <td className="column-stats">10.06%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">475.00</td>
-                      <td className="column-stats">9.56%</td>
-                      <td className="column-stats">25.00</td>
-                      <td className="column-stats">0.50%</td>
-                    </tr>
-                    <tr>
-                      <td className="column-title">Drywall - Demo &amp; Painted</td>
-                      <td className="column-stats">1</td>
-                      <td className="column-stats">0.75</td>
-                      <td className="column-stats">0.02%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.23%</td>
-                      <td className="column-stats">0.75</td>
-                      <td className="column-stats">0.02%</td>
-                    </tr>
-                    <tr>
-                      <td className="column-title">Dunnage</td>
-                      <td className="column-stats">1</td>
-                      <td className="column-stats">185.00</td>
-                      <td className="column-stats">3.72%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">175.75</td>
-                      <td className="column-stats">3.54%</td>
-                      <td className="column-stats">9.25</td>
-                      <td className="column-stats">0.19%</td>
-                    </tr>
-                    <tr>
-                      <td className="column-title">Metal</td>
-                      <td className="column-stats">2</td>
-                      <td className="column-stats">17.39</td>
-                      <td className="column-stats">0.35%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">17.39</td>
-                      <td className="column-stats">0.35%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                    </tr>
-                    <tr>
-                      <td className="column-title">Mix C &amp; D</td>
-                      <td className="column-stats">8</td>
-                      <td className="column-stats">2,079.92</td>
-                      <td className="column-stats">41.86%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">1,364.42</td>
-                      <td className="column-stats">27.46%</td>
-                      <td className="column-stats">715.51</td>
-                      <td className="column-stats">14.40%</td>
-                    </tr>
-                    <tr>
-                      <td className="column-title">Wood - Clean</td>
-                      <td className="column-stats">2</td>
-                      <td className="column-stats">21.66</td>
-                      <td className="column-stats">0.44%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">21.64</td>
-                      <td className="column-stats">0.44%</td>
-                      <td className="column-stats">0.02</td>
-                      <td className="column-stats">0.00%</td>
-                    </tr>
+
+                    {listTemplate}
+                    
                   </tbody>
                 </table>
               </div>

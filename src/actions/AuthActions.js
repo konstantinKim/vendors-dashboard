@@ -36,6 +36,18 @@ export function login(username, password) {
   }
 }
 
+export function confirmSignUp(token) {
+  return dispatch => {    
+    fetch(BACKEND_HOST+'auth/confirm_signup/'+token+'.json', 
+    {
+        headers: {'Accept': '*/*'}        
+    })
+    .then(checkSignUpStatus)
+    .then(response => response.json())    
+    .then(json => dispatch(setConfirmData(json)))    
+  }    
+}
+
 export function signUp(token, password) {     
   var formData  = new FormData();  
   formData.append('token', token);        
@@ -50,7 +62,7 @@ export function signUp(token, password) {
     })
     .then(checkSignUpStatus)
     .then(response => response.json())    
-    .then(json => dispatch(setAuthData(json)))    
+    .then(json => dispatch(setSignUpData(json)))    
   }    
 }
 
@@ -60,6 +72,7 @@ function setAuthData(data) {
   if(data.error != undefined || data.token == undefined){    
     //console.log('error')    
     //return { type: 'GET_LOGIN_ERROR', payload: data };
+    window.triggerSignUp('signup', data)
     alert(data.error)    
     throw new Error(data.error)
   }
@@ -69,9 +82,48 @@ function setAuthData(data) {
     localStorage.setItem('token', data.token);        
     localStorage.setItem('email', data.email);
     localStorage.setItem('name', data.contact);
-    localStorage.setItem('company', data.company);
-    window.location = '/'    
+    localStorage.setItem('company', data.name);    
+    window.location = '/'
   }
   
   //window.location = '/'      
+}
+
+function setSignUpData(data) {     
+  
+  console.log(data.error)
+  if(data.error != undefined || data.token == undefined){    
+    //console.log('error')    
+    //return { type: 'GET_LOGIN_ERROR', payload: data };
+    window.triggerSignUp('signup', data)
+    alert(data.error)    
+    throw new Error(data.error)
+  }
+  else{
+    // Put the object into storage
+    localStorage.clear();
+    localStorage.setItem('token', data.token);        
+    localStorage.setItem('email', data.email);
+    localStorage.setItem('name', data.contact);
+    localStorage.setItem('company', data.name);
+    localStorage.setItem('isFirstLogin', 'true');
+    window.location = '/settings'
+  }     
+}
+
+function setConfirmData(data) {          
+  if(!data){
+    alert('Permission Denied')
+    throw new Error('Permission Denied')      
+  }
+
+  if(data.error != undefined || data.token == undefined){    
+    //console.log('error')    
+    //return { type: 'GET_LOGIN_ERROR', payload: data };    
+    alert(data.error)    
+    throw new Error(data.error)      
+  }
+  else{    
+    window.triggerSignUp('confirm', data)
+  }
 }

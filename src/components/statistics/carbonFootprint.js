@@ -3,11 +3,15 @@ import RatesInfo from '../../components/statistics/ratesInfo'
 import Tabs from '../../components/statistics/tabs'
 import Filter from '../../components/statistics/filter'
 
-export default class CarbonFootprint extends Component {  
+export default class carbonFootprint extends Component {  
+  componentDidMount(){                
+    const { statisticsActions, statistics } = this.props                                                
+    statisticsActions.getCarbonFootprint(statistics.dateFrom, statistics.dateTo)        
+  }
   
   render() {             
-    const { imgHost, statisticsActions } = this.props                                        
-    const { stats, carbonFootprint, currentTab } = this.props.statistics
+    const { imgHost, statisticsActions, statistics } = this.props                                        
+    const { carbonFootprint, currentTab, stats } = this.props.statistics
     return <div>                  
       <div>
         <div id="global-main-top-bar" className="container-gh">
@@ -31,7 +35,7 @@ export default class CarbonFootprint extends Component {
             </div>
             <div className="col-ghgrid-4">
               <div className="right">
-                <Filter />
+                <Filter statistics={statistics} statisticsActions={statisticsActions} />
               </div>
             </div>
           </div>
@@ -52,37 +56,37 @@ export default class CarbonFootprint extends Component {
                 <div className="projected">Projected</div>
               </div>
               <div id="carbon-container">
-                <div style={{background: '#f5f5f5'}} id="carbon-row">
+                <div id="carbon-row">
                   <div className="img-area">
-                    <img src={imgHost + "/_images/icons/content/carbon-carbon.png"} />
+                    <img src={imgHost + "/_images/icons/content/co2.jpg"} />
                   </div>
                   <div className="title">
                     Carbon Footprint<br />Saving
                   </div>
                   <div style={{marginTop: '-9px'}} className="actual">
-                    {carbonFootprint.co2}<span className="small"> ( metric tons )<br /><span style={{color: '#4c4c4c', position: 'relative', top: '-5px'}}>Tons Recycled: {carbonFootprint.tonsRecycled}</span></span>
+                    {carbonFootprint.co2}<span className="small"> ( metric tons )<br /><span style={{color: '#4c4c4c', position: 'relative', top: '-5px'}}>Tons Recycled: {carbonFootprint.tonsRecycledReused}</span></span>
                   </div>
                   <div style={{marginTop: '-9px'}} className="projected">
-                    {carbonFootprint.projectedCo2}<span className="small"> ( metric tons )<br /><span style={{color: '#4c4c4c', position: 'relative', top: '-5px'}}>Tons Recycled: {carbonFootprint.projectedTonsRecycled}</span></span>
+                    {carbonFootprint.projectedCo2}<span className="small"> ( metric tons )<br /><span style={{color: '#4c4c4c', position: 'relative', top: '-5px'}}>Tons Recycled: {carbonFootprint.projectedTonsRecycledReused}</span></span>
                   </div>
                 </div>
                 <div style={{marginTop: '-1px'}} id="carbon-row">
                   <div className="img-area">
-                    <img src={imgHost + "/_images/icons/content/carbon-home.png"} />
+                    <img src={imgHost + "/_images/icons/content/home1.jpg"} />
                   </div>
                   <div className="title">
                     Homes powered<br />for 1 month
                   </div>
-                  <div style={{color: '#338ec9'}} className="actual">
+                  <div style={{color: '#6fa203'}} className="actual">
                     {carbonFootprint.homesPowered}
                   </div>
-                  <div style={{color: '#338ec9'}} className="projected">
+                  <div style={{color: '#6fa203'}} className="projected">
                     {carbonFootprint.projectedHomesPowered}
                   </div>
                 </div>
-                <div style={{background: '#f5f5f5', marginTop: '-1px'}} id="carbon-row">
+                <div style={{marginTop: '-1px'}} id="carbon-row">
                   <div className="img-area">
-                    <img src={imgHost + "/_images/icons/content/carbon-car.png"} />
+                    <img src={imgHost + "/_images/icons/content/vehicles.jpg"} />
                   </div>
                   <div className="title">
                     Vehicles removed<br />from road for 1 year
@@ -96,21 +100,21 @@ export default class CarbonFootprint extends Component {
                 </div>
                 <div style={{marginTop: '-1px'}} id="carbon-row">
                   <div className="img-area">
-                    <img src={imgHost + "/_images/icons/content/carbon-oil.png"} />
+                    <img src={imgHost + "/_images/icons/content/barrel.jpg"} />
                   </div>
                   <div className="title">
                     Barrels of oil saved
                   </div>
-                  <div style={{color: '#338ec9'}} className="actual">
+                  <div style={{color: '#6fa203'}} className="actual">
                     {carbonFootprint.oilSaved}
                   </div>
-                  <div style={{color: '#338ec9'}} className="projected">
+                  <div style={{color: '#6fa203'}} className="projected">
                     {carbonFootprint.projectedOilSaved}
                   </div>
                 </div>
-                <div style={{background: '#f5f5f5', marginTop: '-1px'}} id="carbon-row">
+                <div style={{marginTop: '-1px'}} id="carbon-row">
                   <div className="img-area">
-                    <img style={{padding: '0px 0px 0px 12px'}} src={imgHost + "/_images/icons/content/carbon-gas.png"} />
+                    <img style={{padding: '0px 0px 0px 12px'}} src={imgHost + "/_images/icons/content/gas_can.jpg"} />
                   </div>
                   <div className="title">
                     Gallons of<br />gasoline saved
@@ -124,15 +128,15 @@ export default class CarbonFootprint extends Component {
                 </div>
                 <div style={{marginTop: '-1px'}} id="carbon-row">
                   <div className="img-area">
-                    <img src={imgHost + "/_images/icons/content/carbon-tree.png"} />
+                    <img src={imgHost + "/_images/icons/content/tree.png"} />
                   </div>
                   <div className="title">
                     Tree carbon<br />processing equivalent
                   </div>
-                  <div style={{color: '#338ec9'}} className="actual">
+                  <div style={{color: '#6fa203'}} className="actual">
                     {carbonFootprint.treeCarbon}
                   </div>
-                  <div style={{color: '#338ec9'}} className="projected">
+                  <div style={{color: '#6fa203'}} className="projected">
                     {carbonFootprint.projectedTreeCarbon}
                   </div>
                 </div>

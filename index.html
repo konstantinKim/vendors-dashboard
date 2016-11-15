@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/vendor/bootstrap.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/vendor/bootstrap-datatables.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/vendor/bootstrap-datepicker.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/vendor/font-awesome.css">
     <!-- global styles -->
     <link rel="stylesheet" type="text/css" media="screen" href="/_lib/css/styles.css">
     <!-- settings styles -->
@@ -88,6 +89,20 @@
             $("input."+btnClass).removeAttr("checked");
             $("input."+btnClass+"[value="+ctId+"]").attr("checked", "checked");
         }
+
+        function doMessage(message, title){
+            if(typeof(title)==='undefined'){
+                title = 'Warning';
+            }
+            $("#myAlert .modal-title").html(title);
+            $("#myAlert .modal-body").html(message);
+            $("#myAlert").modal();
+        }
+
+        function doPrint(){            
+            window.print();
+            return false;            
+        }
     </script>  		      	    
     <div class="modal fade" id="myAlert" tabindex="-1">
         <div class="modal-dialog" style="top:35%">
@@ -118,13 +133,13 @@
         	<div class="row">
             	<div class="col-ghgrid-4">
                 	<div class="footer-left">
-                    	some text here
+                    	&nbsp;
                     </div>
                 </div>
                 <div class="col-ghgrid-1">&nbsp;</div>
                 <div class="col-ghgrid-3">
                 	<div class="footer-right">
-                    	&copy; 2016 Company Name. All Rights Reserved
+                    	&copy; 2016 <a href="http://wastetracking.com/" target="_blank">WasteTracking.com</a>. All Rights Reserved
                     </div>
                 </div>
             </div>
@@ -144,7 +159,33 @@
         $(document).ready(function(){
             $('.calendar').datepicker().on('changeDay', function (e) {
                 $('.calendar').datepicker('hide');
-            });                        
+            });
+
+            $("#show_pass").on('click', function(){
+                if($("#pass_encode").is(":visible")){
+                    $("#pass_encode").hide();                
+                    $("#pass_decode").show();                
+                    $("#show_pass small").text('hide');
+                }
+                else{
+                    $("#pass_encode").show();                
+                    $("#pass_decode").hide();                
+                    $("#show_pass small").text('show password');
+                }                
+                return false;
+            });
+
+            $("#returnToSignup").on('click', function(){
+                triggerSignUp('signup', null);
+                return false;
+            });
+
+             $('input.phone').keyup(function(){                                
+                if(this.value.length==$(this).attr("maxlength")){                                        
+                    var id = parseInt($(this).attr('data-id')) + 1;
+                    $("input.phone_" + id).focus();
+                }
+            });            
         })          
 
         function setDataTable(id){
@@ -154,16 +195,7 @@
         function closePopUp(){
             $('div.reveal-add-users a.close-reveal-modal').trigger("click");
         }
-        
-        function doMessage(message, title){
-            if(typeof(title)==='undefined'){
-                title = 'Warning';
-            }
-            $("#myAlert .modal-title").html(title);
-            $("#myAlert .modal-body").html(message);
-            $("#myAlert").modal();
-        }
-
+                
         function resetForm(formId){            
             $("#"+formId).trigger("reset");
         }
@@ -191,6 +223,30 @@
             return false;
         }        
 
+        function triggerSignUp(show, data){
+            if('confirm' == show){
+                $("#confirmed_password").val($("#signup_password").val());
+                $("#pass_decode").text($("#signup_password").val());                
+                $("#confirm_email").text(data.email);
+                
+                $("#setup_password").hide();
+                $("#confirm_info").show();                            
+            }
+            if('signup' == show){
+                $("#confirmed_password").val('');
+                $("#pass_decode").hide();
+                $("#pass_encode").show();
+                $("#show_pass small").text('show password');            
+                $("#confirm_info").hide();                            
+                $("#setup_password").show();                
+            }            
+            return false;
+        }                
+
+    </script>
+
+    <script type="text/javascript">
+        var seDVan=document.createElement("script");seDVan.type="text/javascript";var seDVans=(location.protocol.indexOf("https")==0?"https":"http")+"://image.providesupport.com/js/greenhalo/safe-standard.js?ps_h=DVan&ps_t="+new Date().getTime()+"&online-image=https%3A//www.greenhalosystems.com/images/online.gif&offline-image=https%3A//www.greenhalosystems.com/images/offline.png";setTimeout("seDVan.src=seDVans;document.getElementById('sdDVan').appendChild(seDVan)",1)
     </script>
 
   </body>

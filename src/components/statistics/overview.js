@@ -3,12 +3,25 @@ import RatesInfo from '../../components/statistics/ratesInfo'
 import Tabs from '../../components/statistics/tabs'
 import Filter from '../../components/statistics/filter'
 
-export default class Overview extends Component {  
+export default class Overview extends Component {    
+  componentDidMount(){                
+    const { statisticsActions, statistics } = this.props                                            
+    //statisticsActions.setDateRange(statistics.dateFrom, statistics.dateTo)
+    statisticsActions.getRecyclingTotals(statistics.dateFrom, statistics.dateTo)        
+  }
+
+  componentDidUpdate(){    
+    /*const { statisticsActions, statistics } = this.props                                            
+    statisticsActions.getRecyclingTotals(statistics.dateFrom, statistics.dateTo)    
+    alert('componentDidUpdate')*/
+  }
   
   render() {         
-    var ReactHighcharts = require('react-highcharts');                
-    const { imgHost, statisticsActions } = this.props                                        
-    const { recyclingTotals, stats, currentTab } = this.props.statistics
+    var ReactHighcharts = require('react-highcharts');
+    require('highcharts-no-data-to-display')(ReactHighcharts.Highcharts)     
+               
+    const { imgHost, statisticsActions, statistics } = this.props                                        
+    const { recyclingTotals, currentTab, stats } = this.props.statistics
     return <div>                  
       <div>
         <div id="global-main-top-bar" className="container-gh">
@@ -30,7 +43,7 @@ export default class Overview extends Component {
             </div>
             <div className="col-ghgrid-4">
               <div className="right">
-                <Filter />
+                <Filter statistics={statistics} statisticsActions={statisticsActions} />
               </div>
             </div>
           </div>
@@ -38,7 +51,7 @@ export default class Overview extends Component {
           <div className="row">
             <div className="col-ghgrid-8">
               <div id="statistics-title">
-                Project Recycling Totals<br />
+                Recycling Totals<br />
                 <span>Salvaged, Recycled, and Disposed by Tons</span>
               </div>
             </div>

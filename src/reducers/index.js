@@ -7,6 +7,7 @@ import addTicketSrForm from './addTicketSrForm'
 import editTicketForm from './editTicketForm'
 import editTicketSrForm from './editTicketSrForm'
 import statistics from './statistics'
+import settings from './settings'
 
 export default combineReducers({  
   activeProjects,
@@ -16,5 +17,6 @@ export default combineReducers({
   addTicketSrForm,
   editTicketForm,
   editTicketSrForm,
-  statistics
+  statistics,
+  settings
 })

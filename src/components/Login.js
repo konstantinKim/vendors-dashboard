@@ -9,12 +9,15 @@ export default class Login extends Component {
   render() {    
     const { imgHost } = this.props  
     return <div>      
+      <div className="container-gh">
+        <a href="/"><img style={{margin: 0, padding: '8px 0px 0px 12px'}} src={imgHost + "/_images/global/gh_logo.png"} alt="Green Halo Systems" /></a>
+      </div>
       <div>
         <div id="global-main-top-bar" className="container-gh">
           <div className="row">
             <div className="col-ghgrid-8">
               <div style={{float: 'left'}}>
-                <img style={{margin: 0, padding: '8px 0px 0px 12px'}} src={imgHost + "/_images/icons/content/header-settings.png"} /><p>Sign In</p>
+                <img style={{margin: 0, padding: '11px 0px 0px 12px'}} src={imgHost + "/_images/icons/content/header-lock.png"} /><p>Log In</p>
               </div>
             </div>
           </div>
@@ -29,19 +32,10 @@ export default class Login extends Component {
             {/* intro */}
             <div className="row">
               <div className="intro">
-                <span>Text Here </span><br /><br />
-                Text Here
+                <span>&nbsp; </span><br /><br />                
               </div>
             </div>
-            <div className="row">
-              <div className="header">
-                <div className="col-ghgrid-8">
-                  <div style={{float: 'left'}}>
-                    <img style={{margin: 0, padding: '11px 0px 0px 12px'}} src={imgHost + "/_images/icons/content/header-lock.png"} /><p>Log In</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <div className="row">
               <div className="form-container">
                 <div className="form">

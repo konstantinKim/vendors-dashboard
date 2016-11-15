@@ -18,7 +18,7 @@
 	background: -o-linear-gradient(top, rgb(248, 248, 248) 0%, rgb(238, 238, 238) 100%);
 }
 #statistics-sortby-region .column-10 { float: left; margin: 0; padding: 0; width: 10%; height: auto; }
-#statistics-sortby-region .column-10.border { color: #00285e; border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; line-height: 54px; }
+#statistics-sortby-region .column-10.border { color: #6fa203; border-style: solid; border-top-color: transparent !important; border-right-color: #ccc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; line-height: 54px; }
 #statistics-sortby-region .column-22 { float: left; margin: 0; padding: 0px 0px 0px 4px; width: 22%; height: auto; }
 #statistics-sortby-region .column-24 { float: left; margin: 0; padding: 0; width: 24%; height: auto; }
 #statistics-sortby-region .column-28 { float: left; margin: 0; padding: 0px 0px 0px 6px; width: 28%; height: auto; }
@@ -33,7 +33,7 @@
 	-o-border-radius: 4px;
 }
 #statistics-sortby-region select:focus { outline: none; }
-#statistics-sortby-region input[type=button], #statistics-sortby-region input[type=submit] { background: #0072bc; border: none; color: #fff; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0; outline: none; padding: 0px 22px 0px 22px; text-decoration: none; width: auto; height: 34px;
+#statistics-sortby-region input[type=button], #statistics-sortby-region input[type=submit] { background: #6fa203; border: none; color: #fff; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0; outline: none; padding: 0px 22px 0px 22px; text-decoration: none; width: auto; height: 34px;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -93,7 +93,7 @@
 /* == filter / calendar == */
 #statistics-filter { color: #4c4c4c; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 21px; margin: 29px 0px 0px 31px; padding: 0; width: 1038px; /*width: 94%;*/ height: auto; }
 #statistics-filter .left { margin: 0; padding: 0; width: 100%; height: auto; }
-#statistics-filter .left .button-print { background: #0072bc; border: none; color: #fff; float: left; font: normal 10px ArialRegular; letter-spacing: .15px; line-height: 12px; margin: 0px 0px 0px 5px; outline: none; padding: 4px 12px 4px 12px; position: relative; top: 0px; text-decoration: none;
+#statistics-filter .left .button-print { background: #6fa203; border: none; color: #fff; float: left; font: normal 10px ArialRegular; letter-spacing: .15px; line-height: 12px; margin: 0px 0px 0px 5px; outline: none; padding: 4px 12px 4px 12px; position: relative; top: 0px; text-decoration: none;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -114,7 +114,7 @@
 	-o-appearance: none;
 	-webkit-appearance: none;
 }
-#statistics-filter .right .filter-button { background: #0072bc; border: none; color: #fff; float: right; font: normal 10px ArialRegular; letter-spacing: .15px; line-height: 12px; margin: 0px 0px 0px 5px; outline: none; padding: 4px 12px 4px 12px; position: relative; top: 0px; text-decoration: none;
+#statistics-filter .right .filter-button { background: #6fa203; border: none; color: #fff; float: right; font: normal 10px ArialRegular; letter-spacing: .15px; line-height: 12px; margin: 0px 0px 0px 5px; outline: none; padding: 4px 12px 4px 12px; position: relative; top: 0px; text-decoration: none;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -146,8 +146,8 @@
 
 
 /* == title == */
-#statistics-title { color: #00285e; font: normal 30px ArialRegular; line-height: 32px; margin: 45px 0px 0px 0px; padding: 0; text-align: center; /*height: 53px;*/ }
-#statistics-title span { color: #00285e; font: normal 13px ArialRegular; line-height: 15px; margin: 0; padding: 0; position: relative; top: -8px; text-align: center; text-transform: uppercase; }
+#statistics-title { color: #6fa203; font: normal 30px ArialRegular; line-height: 32px; margin: 45px 0px 0px 0px; padding: 0; text-align: center; /*height: 53px;*/ }
+#statistics-title span { color: #6fa203; font: normal 13px ArialRegular; line-height: 15px; margin: 0; padding: 0; position: relative; top: -8px; text-align: center; text-transform: uppercase; }
 
 
 
@@ -167,9 +167,9 @@
 #carbon-row .withbg { background: #f5f5f5; }
 #carbon-row .img-area { float: left; margin: 0; padding: 0; text-align: center; width: 12%; height: auto; }
 #carbon-row .title { color: #4c4c4c; float: left; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 16px; margin: 0; padding: 12px 0px 0px 0px; position: relative; top: 0px; width: 30%; height: auto; }
-#carbon-row .actual { color: #33537e; float: left; font: normal 20px ArialBold; letter-spacing: .15px; line-height: 22px; margin: 0; padding: 18px 0px 0px 0px; width: 29%; height: auto; }
-#carbon-row .projected { color: #33537e; float: left; font: normal 20px ArialBold; letter-spacing: .15px; line-height: 22px; margin: 0; padding: 18px 0px 0px 0px; width: 29%; height: auto; }
-#carbon-row span.small { color: #33537e; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0; }
+#carbon-row .actual { color: #6fa203; float: left; font: normal 20px ArialBold; letter-spacing: .15px; line-height: 22px; margin: 0; padding: 18px 0px 0px 0px; width: 29%; height: auto; }
+#carbon-row .projected { color: #6fa203; float: left; font: normal 20px ArialBold; letter-spacing: .15px; line-height: 22px; margin: 0; padding: 18px 0px 0px 0px; width: 29%; height: auto; }
+#carbon-row span.small { color: #6fa203; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0; padding: 0; }
 
 
 

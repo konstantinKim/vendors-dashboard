@@ -5,18 +5,40 @@ import Filter from '../../components/statistics/filter'
 
 export default class ProjectTypes extends Component {  
 
-  componentDidMount(){    
-    window.setDataTable('statistics-table')
+  componentWillMount(){
+    const { statisticsActions, statistics } = this.props                                                    
+    statisticsActions.getProjectsStats(statistics.dateFrom, statistics.dateTo)        
   }
 
-  componentDidUpdate(){    
-    window.setDataTable('statistics-table')
+  componentDidUpdate(){        
+    window.setDataTable('statistics-table')    
   }
   
   render() {         
     var ReactHighcharts = require('react-highcharts');                
-    const { imgHost, statisticsActions } = this.props                                        
+    const { imgHost, statisticsActions, statistics } = this.props                                        
     const { projectTypes, stats, currentTab } = this.props.statistics
+
+    var listTemplate
+    if(projectTypes.projectTypesList.length > 0){
+      listTemplate = projectTypes.projectTypesList.map(function (item, index) {
+        return (
+          <tr key={'pt_' + index}>
+            <td className="column-title">{item.name}</td>
+            <td className="column-stats">{item.projects}</td>
+            <td className="column-stats">{item.totalTons}</td>
+            <td className="column-stats">{item.totalPercent}%</td>
+            <td className="column-stats">{item.reused}</td>
+            <td className="column-stats">{item.reusedPercent}%</td>
+            <td className="column-stats">{item.recycled}</td>
+            <td className="column-stats">{item.recycledPercent}%</td>
+            <td className="column-stats">{item.disposed}</td>
+            <td className="column-stats">{item.disposedPercent}%</td>
+          </tr>
+        )
+      })
+    }
+
     return <div>                  
       <div>
         <div id="global-main-top-bar" className="container-gh">
@@ -41,7 +63,7 @@ export default class ProjectTypes extends Component {
             </div>
             <div className="col-ghgrid-4">
               <div className="right">
-                <Filter />
+                <Filter statistics={statistics} statisticsActions={statisticsActions} />
               </div>
             </div>
           </div>
@@ -90,12 +112,12 @@ export default class ProjectTypes extends Component {
           <div style={{margin: '-1px 0px 0px 31px'}} id="statistics-filter" className="row">
             <div className="col-ghgrid-4">
               <div className="left">
-                <a style={{marginLeft: 0}} href="#" className="button-print">Print</a><a href="#" className="button-print">Excel</a>
+                <a onClick={window.doPrint} style={{marginLeft: 0, cursor:'pointer'}} className="button-print">Print</a><a href="#" className="button-print">Excel</a>
               </div>
             </div>
             <div className="col-ghgrid-4">
               <div className="right">
-                <Filter />
+                <Filter statistics={statistics} statisticsActions={statisticsActions} />
               </div>
             </div>
           </div>
@@ -107,7 +129,7 @@ export default class ProjectTypes extends Component {
                 <table className="table table-striped table-bordered table-hover" id="statistics-table" ref="statisticsTable">
                   <thead>
                     <tr>
-                      <th className="column-title">&nbsp;&nbsp;Facility Name</th>
+                      <th className="column-title">&nbsp;&nbsp;Project Type</th>
                       <th className="column-stats">Projects</th>
                       <th className="column-stats">Total<br />(tons)</th>
                       <th className="column-stats">Total<br />(%)</th>
@@ -122,30 +144,19 @@ export default class ProjectTypes extends Component {
                   <tfoot>
                     <tr>
                       <th className="column-title-footer">&nbsp;&nbsp;Total</th>
-                      <th className="column-stats-footer">30</th>
-                      <th className="column-stats-footer">4,969.05</th>
+                      <th className="column-stats-footer">{projectTypes.totalProjects}</th>
+                      <th className="column-stats-footer">{projectTypes.totalTons}</th>
                       <th className="column-stats-footer">100%</th>
-                      <th className="column-stats-footer">172.01</th>
-                      <th className="column-stats-footer">3.46%</th>
-                      <th className="column-stats-footer">3.947.45</th>
-                      <th className="column-stats-footer">79.44%</th>
-                      <th className="column-stats-footer">849.58</th>
-                      <th className="column-stats-footer">17.10%</th>
+                      <th className="column-stats-footer">{projectTypes.reused}</th>
+                      <th className="column-stats-footer">{projectTypes.reusedPercent}%</th>
+                      <th className="column-stats-footer">{projectTypes.recycled}</th>
+                      <th className="column-stats-footer">{projectTypes.recycledPercent}%</th>
+                      <th className="column-stats-footer">{projectTypes.disposed}</th>
+                      <th className="column-stats-footer">{projectTypes.disposedPercent}%</th>
                     </tr>
                   </tfoot>
-                  <tbody>
-                    <tr>
-                      <td className="column-title">Type 1</td>
-                      <td className="column-stats">1</td>
-                      <td className="column-stats">2.21</td>
-                      <td className="column-stats">0.04%</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">0.00%</td>
-                      <td className="column-stats">2.21</td>
-                      <td className="column-stats">0.04%</td>
-                      <td className="column-stats">0.00</td>
-                      <td className="column-stats">0.00%</td>
-                    </tr>                    
+                  <tbody>                    
+                      {listTemplate}                    
                   </tbody>
                 </table>
               </div>

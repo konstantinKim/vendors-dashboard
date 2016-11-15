@@ -51,11 +51,12 @@ html, body { background: #fff; margin: 0; padding: 0; overflow-x: hidden; }
 /* =========================== */
 
 a { margin: 0; padding: 0; }
-a.link-blue, a.link-blue:active, a.link-blue:hover, a.link-blue:visited { border: none; color: #0072bc; outline: none; text-decoration: none; }
+a, a:active, a:hover, a:visited { border: none; color: #71a810; outline: none; text-decoration: none; }
+a.link-blue, a.link-blue:active, a.link-blue:hover, a.link-blue:visited { border: none; color: #71a810; outline: none; text-decoration: none; }
 a.link-gray { border: none; color: #4c4c4c; outline: none; text-decoration: none; }
-a.link-gray:hover { border: none; color: #0072bc; outline: none; text-decoration: none; }
+a.link-gray:hover { border: none; color: #71a810; outline: none; text-decoration: none; }
 a.link-regular, a.link-regular:active, a.link-regular:hover, a.link-regular:visited { border: none; color: inherit !important; outline: none; text-decoration: none; }
-a.button, a.button:active, a.button:hover, a.button:visited { background: #0072bc; border: none; color: #fff; margin: 0; outline: none; padding: 6px 14px 7px 12px; text-decoration: none;
+a.button, a.button:active, a.button:hover, a.button:visited { background: #71a810; border: none; color: #fff; margin: 0; outline: none; padding: 6px 14px 7px 12px; text-decoration: none;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -63,7 +64,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 	-o-border-radius: 4px;
 	-webkit-border-radius: 4px;
 }
-.blue-text { color: #0072bc; }
+.blue-text { color: #71a810; }
 
 
 
@@ -82,7 +83,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 #top-most-header { margin: 0 auto; padding: 0; /*width: 100%;*/ min-width: 1100px; height: 33px; }
 #top-most-header .language-container { color: #666; font: normal 11px ArialRegular; line-height: 30px; letter-spacing: .15px; margin: 0; padding: 0px; }
 #top-most-header .cs-container { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: #ccc; border-width: 1px; color: #666; font: normal 11px ArialRegular; line-height: 30px; letter-spacing: .15px; margin: 0; padding: 0px 0px 0px 20px; }
-#top-most-header .cs-container span { color: #00285e; font: normal 15px ArialRegular; position: relative; top: 1px; }
+#top-most-header .cs-container span { color: #66C300; font: normal 15px ArialRegular; position: relative; top: 1px; }
 #top-most-header .alerts-container { color: #666; font: normal 11px ArialRegular; line-height: 30px; letter-spacing: .15px; margin: 0; padding: 0; }
 #top-most-header .alerts-container .box { border-style: solid; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: transparent !important; border-left-color: #ccc; border-width: 1px; cursor: pointer; float: right; margin: 0; padding: 0px 0px 0px 20px; }
 #top-most-header .alerts-container .box img { margin: 0; padding: 0px 10px 0px 0px; }
@@ -91,17 +92,17 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 
 /* == main header  == */
 #header-container { margin: 0 auto; padding: 0; /*width: 100%;*/ width: 1100px; min-width: 1100px; height: 100px; }
-#header-container .logo { margin: 0; padding: 29px 0px 0px 0px; position: relative; left: -10px; height: auto; }
+#header-container .logo { margin: 0; padding: 0px 0px 10px 0px; position: relative; left: -10px; height: auto; }
 #header-container .user { cursor: pointer; float: right; margin: 28px 0px 0px 0px; padding: 0; width: 205px; height: 44px; }
 #header-container .disposed { background: url(../../_images/global/chart-disposed.gif) no-repeat; float: right; margin: 28px 20px 0px 0px; padding: 0; width: 114px; height: 44px; }
 #header-container .recycled { background: url(../../_images/global/chart-recycled.gif) no-repeat; float: right; margin: 28px 10px 0px 0px; padding: 0; width: 114px; height: 44px; }
 #header-container .reused { background: url(../../_images/global/chart-reused.gif) no-repeat; float: right; margin: 28px 10px 0px 0px; padding: 0; width: 114px; height: 44px; }
 #header-container p { color: #4c4c4c; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 13px; margin: 0; padding: 10px 0px 0px 0px; position: relative; left: 24px; text-align: center; }
-#header-container p span.blue { color: #0072bc; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 13px; }
+#header-container p span.blue { color: #71a810; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 13px; }
 #header-container p span.green { color: #007f8d; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 13px; }
 #header-container p span.red { color: #bd1647; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 13px; }
 #header-container .user p { color: #4c4c4c; font: normal 12px ArialRegular; letter-spacing: .15px; line-height: 13px; margin: 0; padding: 16px 0px 0px 24px; text-align: left; }
-#header-container .user p span { color: #0072bc; }
+#header-container .user p span { color: #71a810; }
 @media screen and (max-width: 1100px) { #header-container .logo { left: 0px; } }
 
 
@@ -137,7 +138,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 	-o-border-top-right-radius: 5px;
 	-webkit-border-top-right-radius: 5px;
 }
-#global-nav-container .nav:hover { background: #00285e; border: none; color: #fff; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 13px; margin: 0 auto; padding: 0; text-align: center; width: 98%; height: 68px;
+#global-nav-container .nav:hover { background: #66C300; border: none; color: #fff; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 13px; margin: 0 auto; padding: 0; text-align: center; width: 98%; height: 68px;
 	border-top-left-radius: 5px;
 	-khtml-border-top-left-radius: 5px;
 	-ms-border-top-left-radius: 5px;
@@ -151,7 +152,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 	-o-border-top-right-radius: 5px;
 	-webkit-border-top-right-radius: 5px;
 }
-#global-nav-container .nav-selected { background: #00285e; border: none; color: #fff; display: inline-block; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 13px; margin: 0 auto; padding: 0; text-align: center; width: 98%; height: 68px;
+#global-nav-container .nav-selected { background: #66C300; border: none; color: #fff; display: inline-block; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 13px; margin: 0 auto; padding: 0; text-align: center; width: 98%; height: 68px;
 	border-top-left-radius: 5px;
 	-khtml-border-top-left-radius: 5px;
 	-ms-border-top-left-radius: 5px;
@@ -167,12 +168,12 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 }
 
 /* == sub nav  == */
-#global-sub-nav-container { background: #00285e; margin: 0 auto; padding: 0; text-align: center; width: 100%; height: 40px; }
-#global-sub-nav { background: #00285e; margin: 0 auto; padding: 0; text-align: center; /*width: 100%;*/ width: 1100px; min-width: 1100px; height: 40px; }
+#global-sub-nav-container { background: #66C300; margin: 0 auto; padding: 0; text-align: center; width: 100%; height: 40px; }
+#global-sub-nav { background: #66C300; margin: 0 auto; padding: 0; text-align: center; /*width: 100%;*/ width: 1100px; min-width: 1100px; height: 40px; }
 #global-sub-nav .sub-nav { color: #fff; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 40px; text-decoration: none; }
-#global-sub-nav .sub-nav:hover { color: #7fb2e5; }
-#global-sub-nav .sub-nav-selected { color: #7fb2e5; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 40px; text-decoration: none; }
-#global-sub-nav .padding { border-style: solid; border-top-color: transparent !important; border-right-color: #0072bc; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; margin: 0; padding: 0px 16px 0px 12px; }
+#global-sub-nav .sub-nav:hover { color: #5A5A5A; }
+#global-sub-nav .sub-nav-selected { color: #5A5A5A; font: normal 11px ArialRegular; letter-spacing: .15px; line-height: 40px; text-decoration: none; }
+#global-sub-nav .padding { border-style: solid; border-top-color: transparent !important; border-right-color: #71a810; border-bottom-color: transparent !important; border-left-color: transparent !important; border-width: 1px; margin: 0; padding: 0px 16px 0px 12px; }
 
 
 
@@ -309,7 +310,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 /* == reveal window == */
 .reveal-modal-bg {  background: #000; background: rgba(0,0,0,.8); display: none; position: fixed; top: 0; left; width: 100%; height: 100%; z-index: 100; }
 .close-reveal-modal { color: #ccc; cursor: pointer; font: normal 22px ArialRegular; line-height: .5; position: absolute; top: 10px; right: 10px; }
-.close-reveal-modal:hover { color: #0072bc; text-decoration: none; }
+.close-reveal-modal:hover { color: #71a810; text-decoration: none; }
 
 /* == add another project == */
 .modal-add-project { background: #fff; border: solid 1px #ccc; margin-left: -320px; padding: 40px 50px 45px 45px; position: absolute; top: 30%; left: 50%; visibility: hidden; width: 640px; z-index: 101;
@@ -335,7 +336,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 #modal-add-project-form  input.project { margin: 0px 10px 0px 0px; padding: 0px 0px 0px 5px;; width: 200px; }
 #modal-add-project-form  input.zipcode { background: url(../../_images/global/flag-usa.png) 10px 4px no-repeat; margin: 0; padding: 0px 0px 0px 5px;; width: 200px; }
 #modal-add-project-form  input.postalcode { background: url(../../_images/global/flagglobe.png) 10px 4px no-repeat; margin: 0; padding: 0px 0px 0px 5px;; width: 200px; }
-#modal-add-project-form  input.button { background: #0072bc; border: none; color: #fff; font: normal 13px ArialBold; letter-spacing: .15px; line-height: 15px; margin: 3px 0px 0px 0px; outline: none; padding: 10px 16px 10px 16px; text-decoration: none;
+#modal-add-project-form  input.button { background: #71a810; border: none; color: #fff; font: normal 13px ArialBold; letter-spacing: .15px; line-height: 15px; margin: 3px 0px 0px 0px; outline: none; padding: 10px 16px 10px 16px; text-decoration: none;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -398,7 +399,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 }
 .reveal-form input, .reveal-form select, .reveal-form textarea { outline: none; }
 .reveal-form .fields .note { font: normal 11px ArialItalic; letter-spacing: .15px; margin: 0; padding: 0; position: relative; top: -17px; left: 3px; }
-.reveal-form .fields input[type=button] { background: #0072bc; border: none; color: #fff; float: right; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0px 0px 50px 0px; outline: none; padding: 0; text-decoration: none; width: 120px; height: 34px;
+.reveal-form .fields input[type=button] { background: #71a810; border: none; color: #fff; float: right; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0px 0px 50px 0px; outline: none; padding: 0; text-decoration: none; width: 120px; height: 34px;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -406,10 +407,10 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 	-o-border-radius: 4px;
 	-webkit-border-radius: 4px;
 }
-.reveal-form .thankyou { color: #00285e; display: block; font: normal 20px ArialRegular; line-height: 22px; margin: 0px auto 50px auto; padding: 0; width: 80%; height: 70px; }
+.reveal-form .thankyou { color: #66C300; display: block; font: normal 20px ArialRegular; line-height: 22px; margin: 0px auto 50px auto; padding: 0; width: 80%; height: 70px; }
 .reveal-form .thankyou .left { float: left; margin: 0; padding: 0px 40px 0px 0px; text-align: right; width: 35%; }
 .reveal-form .thankyou .right {  float: left; margin: 0; padding: 2px 0px 0px 0px; width: 65%; }
-.reveal-form .thankyou .ok { background: #0072bc; border: none; color: #fff; float: right; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 0; outline: none; padding: 0; text-decoration: none; text-align: center; position: relative; top: 10px; left: -262px; width: 70px; height: 34px;
+.reveal-form .thankyou .ok { background: #71a810; border: none; color: #fff; float: right; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 0; outline: none; padding: 0; text-decoration: none; text-align: center; position: relative; top: 10px; left: -262px; width: 70px; height: 34px;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -497,7 +498,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #0072b
 }
 
 .reveal-add-users input[type=text]:focus, .reveal-add-users input[type=password]:focus { outline: none; }
-.reveal-add-users input[type=button], .reveal-add-users input[type=submit] { background: #0072bc; border: none; color: #fff; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 24px 0px 0px 0px; outline: none; padding: 0px 20px 0px 20px; text-align: center; text-decoration: none; width: auto; height: 34px;
+.reveal-add-users input[type=button], .reveal-add-users input[type=submit] { background: #71a810; border: none; color: #fff; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 24px 0px 0px 0px; outline: none; padding: 0px 20px 0px 20px; text-align: center; text-decoration: none; width: auto; height: 34px;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -527,3 +528,6 @@ input[type=radio].css-radiobox { border: 0; clip: rect(0 0 0 0); margin: -1px; o
 input[type=radio].css-radiobox.lrg + label.css-label.lrg { background-repeat: no-repeat; background-position: 0px 0px; cursor: pointer; display: inline-block; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 19px; padding-left: 27px; vertical-align: middle; height: 20px; }
 input[type=radio].css-radiobox.lrg:checked + label.css-label.lrg{ background-position: 0 -20px; }
 img.large_ticket_image{background-color: #fff}
+
+span.phoneSep{margin: 0 3px}
+div.noChartData{background-image: url(../../_images/global/chart_na.png); width: 244px; height: 244px}

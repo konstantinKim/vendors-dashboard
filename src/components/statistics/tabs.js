@@ -15,43 +15,43 @@ export default class Tabs extends Component {
   }    
   
   render() {                 
-    const { imgHost } = this.props                                        
+    //const { imgHost } = this.props                                        
     return <div>                        
       <div style={{marginTop: '-2px'}} id="global-main-tabs" className="container-gh">
           <div style={{position: 'relative', top: '-2px'}} className="row">
             <div className="col-gh-7">
               <a onClick={::this.onTabBtnClick} data-tab-id="overview" href="haulsub-statistics-overview.html" className="link-regular">
-                <span className={"tabs-statistics" + this.highlightTab('overview') + " border"}><img style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-1px'}} src={imgHost + "/_images/icons/nav/tab-statistics.png"} />Recycling Totals</span>
+                <span className={"tabs-statistics" + this.highlightTab('overview') + " border"}><span className="icon fa fa-bar-chart-o" style={{margin: '0px 0px 0px 0px'}}></span>Recycling Totals</span>
               </a>
             </div>
             <div className="col-gh-7">
               <a onClick={::this.onTabBtnClick} data-tab-id="carbonFootprint" href="haulsub-statistics-carbon-footprint.html" className="link-regular">
-                <span className={"tabs-statistics" + this.highlightTab('carbonFootprint') + " border"}><img style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}} src={imgHost + "/_images/icons/nav/tab-carbon.png"} />Carbon Footprint</span>
+                <span className={"tabs-statistics" + this.highlightTab('carbonFootprint') + " border"}><span className="icon glyphicon glyphicon-tree-deciduous" style={{margin: '0px 0px 0px 0px'}}></span>Carbon Footprint</span>
               </a>
             </div>
             <div className="col-gh-7">
               <a onClick={::this.onTabBtnClick} data-tab-id="materials" href="haulsub-statistics-materials-recycled.html" className="link-regular">
-                <span className={"tabs-statistics" + this.highlightTab('materials') + " border"}><img style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}} src={imgHost + "/_images/icons/nav/tab-checkoutlined.png"} />Materials Recycled</span>
+                <span className={"tabs-statistics" + this.highlightTab('materials') + " border"}><span className="icon fa fa-check-square-o" style={{margin: '0px 0px 0px 0px'}}></span>Materials Recycled</span>
               </a>
             </div>
             <div className="col-gh-7">
               <a onClick={::this.onTabBtnClick} data-tab-id="facilities" href="haulsub-statistics-facilities-used.html" className="link-regular">
-                <span className={"tabs-statistics" + this.highlightTab('facilities') + " border"}><img style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}} src={imgHost + "/_images/icons/nav/tab-facilities.png"} />Facilities Used</span>
+                <span className={"tabs-statistics" + this.highlightTab('facilities') + " border"}><span className="icon fa fa-recycle" style={{margin: '0px 0px 0px 0px'}}></span>Facilities Used</span>
               </a>
             </div>
             <div className="col-gh-7">
               <a onClick={::this.onTabBtnClick} data-tab-id="projectTypes" href="haulsub-statistics-project-types.html" className="link-regular">
-                <span className={"tabs-statistics" + this.highlightTab('projectTypes') + " border"}><img style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-1px'}} src={imgHost + "/_images/icons/nav/tab-project.png"} />Project Types</span>
+                <span className={"tabs-statistics" + this.highlightTab('projectTypes') + " border"}><span className="icon fa fa-tasks" style={{margin: '0px 0px 0px 0px'}}></span>Project Types</span>
               </a>
             </div>
             <div className="col-gh-7">
               <a onClick={::this.onTabBtnClick} data-tab-id="buildingTypes" href="haulsub-statistics-building-types.html" className="link-regular">
-                <span className={"tabs-statistics" + this.highlightTab('buildingTypes') + " border"}><img style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}} src={imgHost + "/_images/icons/nav/tab-building.png"} />Building Types</span>
+                <span className={"tabs-statistics" + this.highlightTab('buildingTypes') + " border"}><span className="icon fa fa-building-o" style={{margin: '0px 0px 0px 0px'}}></span>Building Types</span>
               </a>
             </div>
             <div className="col-gh-7">
               <a onClick={::this.onTabBtnClick} data-tab-id="haulingTypes" href="haulsub-statistics-hauling-types.html" className="link-regular">
-                <span className={"tabs-statistics" + this.highlightTab('haulingTypes') + " border"}><img style={{padding: '0px 8px 0px 0px'}} src={imgHost + "/_images/icons/nav/tab-hauling.png"} />Hauling Types</span>
+                <span className={"tabs-statistics" + this.highlightTab('haulingTypes') + " border"}><span className="icon fa fa-truck" style={{margin: '0px 0px 0px 0px'}}></span>Hauling Types</span>
               </a>
             </div>
           </div>

@@ -4,10 +4,19 @@ import Tabs from '../../components/statistics/tabs'
 import Filter from '../../components/statistics/filter'
 
 export default class HaulingTypes extends Component {    
+
+  componentWillMount(){
+    const { statisticsActions, statistics } = this.props                                                    
+    statisticsActions.getHaulingStats(statistics.dateFrom, statistics.dateTo)        
+  }
+
+  componentDidUpdate(){        
+    //window.setDataTable('statistics-table')    
+  }
   
   render() {         
     var ReactHighcharts = require('react-highcharts');                
-    const { imgHost, statisticsActions } = this.props                                        
+    const { imgHost, statisticsActions, statistics } = this.props                                        
     const { haulingTypes, stats, currentTab } = this.props.statistics
     return <div>                  
       <div>
@@ -33,7 +42,7 @@ export default class HaulingTypes extends Component {
             </div>
             <div className="col-ghgrid-4">
               <div className="right">
-                <Filter />
+                <Filter statistics={statistics} statisticsActions={statisticsActions} />
               </div>
             </div>
           </div>
@@ -41,8 +50,7 @@ export default class HaulingTypes extends Component {
           <div className="row">
             <div className="col-ghgrid-8">
               <div id="statistics-title">
-                Hauling Types<br />
-                <span>Salvaged, Recycled, and Disposed by Tons</span>
+                Hauling Types<br />                
               </div>
             </div>
           </div>
@@ -82,12 +90,12 @@ export default class HaulingTypes extends Component {
           <div style={{margin: '-1px 0px 0px 31px'}} id="statistics-filter" className="row">
             <div className="col-ghgrid-4">
               <div className="left">
-                <a style={{marginLeft: 0}} href="#" className="button-print">Print</a><a href="#" className="button-print">Excel</a>
+                <a onClick={window.doPrint} style={{marginLeft: 0, cursor:'pointer'}} className="button-print">Print</a><a href="#" className="button-print">Excel</a>
               </div>
             </div>
             <div className="col-ghgrid-4">
               <div className="right">
-                <Filter />
+                <Filter statistics={statistics} statisticsActions={statisticsActions} />
               </div>
             </div>
           </div>
@@ -97,17 +105,17 @@ export default class HaulingTypes extends Component {
               <div id="statistics-table-container">
                 <div className="statistics-box">
                   <div className="left">Debris Box Service</div>
-                  <div className="right">2</div>
+                  <div className="right">{haulingTypes.debris}</div>
                 </div>
                 <div className="statistics-box-space">&nbsp;</div>
                 <div className="statistics-box">
                   <div className="left">Hauiling Service</div>
-                  <div className="right">2</div>
+                  <div className="right">{haulingTypes.hauling}</div>
                 </div>
                 <div className="statistics-box-space">&nbsp;</div>
                 <div className="statistics-box">
                   <div className="left">Self Haul</div>
-                  <div className="right">4</div>
+                  <div className="right">{haulingTypes.haulingSelf}</div>
                 </div>
               </div>
             </div>

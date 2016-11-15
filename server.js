@@ -33,6 +33,9 @@ app.get("/settings", function(req, res) {
 app.get("/_lib/css/vendor/bootstrap.css", function(req, res) {
   res.sendFile(__dirname + '/_lib/css/vendor/bootstrap.css')
 })
+app.get("/_lib/css/vendor/font-awesome.css", function(req, res) {
+  res.sendFile(__dirname + '/_lib/css/vendor/font-awesome.css')
+})
 app.get("/_lib/css/vendor/bootstrap-datepicker.css", function(req, res) {
   res.sendFile(__dirname + '/_lib/css/vendor/bootstrap-datepicker.css')
 })
@@ -95,6 +98,12 @@ app.get("/_lib/fonts/glyphicons-halflings-regular.ttf", function(req, res) {
 })
 app.get("/_lib/fonts/italic.ttf", function(req, res) {
   res.sendFile(__dirname + '/_lib/fonts/italic.ttf')
+})
+app.get("/_lib/fonts/fontawesome-webfont.woff", function(req, res) {
+  res.sendFile(__dirname + '/_lib/fonts/fontawesome-webfont.woff')
+})
+app.get("/_lib/fonts/fontawesome-webfont.ttf", function(req, res) {
+  res.sendFile(__dirname + '/_lib/fonts/fontawesome-webfont.ttf')
 })
 
 app.listen(port, function(error) {

@@ -65,17 +65,13 @@ export default class Projects extends Component {
                 <div style={{position: 'relative', top: '-2px'}} className="row">
                     <div className="col-gh-5">
                         <a id='activeList' onClick={::this.onTabBtnClick} href="haulsub-projects-active.html" className="link-regular">
-                            <span className={this.highlightTab('activeList')}><img
-                                style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}}
-                                src={imgHost + "/_images/icons/nav/tab-statistics.png"}/>Active Projects (<span
+                            <span className={this.highlightTab('activeList')}><span className="icon fa fa-bar-chart-o" style={{margin: "0px 5px 0px -2px", top: "3px"}}></span>Active Projects (<span
                                 className="blue-text">{projects.length}</span>)</span>
                         </a>
                     </div>
                     <div className="col-gh-5">
                         <a id='completedList' onClick={::this.onTabBtnClick} href="haulsub-projects-completed.html" className="link-regular">
-                            <span className={this.highlightTab('completedList')}><img
-                                style={{padding: '0px 8px 0px 0px', position: 'relative', top: '-2px'}}
-                                src={imgHost + "/_images/icons/nav/tab-check.png"}/>Completed (<span
+                            <span className={this.highlightTab('completedList')}><span className="icon fa fa-check-square-o" style={{margin: '0px 5px 0px 0px', top: '3px'}}></span>Completed (<span
                                 className="blue-text">{projectsPage.completedCount}</span>)</span>
                         </a>
                     </div>
