@@ -30,6 +30,10 @@ app.get("/settings", function(req, res) {
   res.sendFile(__dirname + '/index.html')
 })
 
+app.get("/recycler-search", function(req, res) {
+  res.sendFile(__dirname + '/index.html')
+})
+
 app.get("/_lib/css/vendor/bootstrap.css", function(req, res) {
   res.sendFile(__dirname + '/_lib/css/vendor/bootstrap.css')
 })
@@ -50,6 +54,9 @@ app.get("/_lib/css/styles-settings.css", function(req, res) {
 })
 app.get("/_lib/css/styles-statistics.css", function(req, res) {
   res.sendFile(__dirname + '/_lib/css/styles-statistics.css')
+})
+app.get("/_lib/css/styles-recyclersearch.css", function(req, res) {
+  res.sendFile(__dirname + '/_lib/css/styles-recyclersearch.css')
 })
 app.get("/_lib/js/vendor/jquery-1.10.0.min.js", function(req, res) {
   res.sendFile(__dirname + '/_lib/js/vendor/jquery-1.10.0.min.js')

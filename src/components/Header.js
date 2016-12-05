@@ -24,12 +24,7 @@ export default class Header extends Component {
         e.preventDefault()                                  
         localStorage.clear()
         window.location = '/login'
-  }
-
-  onSearchClick(e) {                                    
-        e.preventDefault()                                  
-        window.doMessage("In Development", "Warning!");
-  }
+  } 
 
   render() {        
     const { imgHost } = this.props
@@ -134,7 +129,7 @@ export default class Header extends Component {
               </a>
             </div>
             <div className="col-ghgrid-1">
-              <a href="recycler-search.html" onClick={::this.onSearchClick} className="link-regular">
+              <a href="/recycler-search" className="link-regular">
                 <div className="nav nav-recycler-search">
                   <span style={{position: 'relative', top: 44}}>RECYCLER SEARCH</span><br />
                   <img style={{margin: '2px 0px 0px 0px'}} src={imgHost + "/_images/icons/nav/recycler-search-dark.png"} className="global-nav-recycler-search" /><br />

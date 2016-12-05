@@ -8,6 +8,7 @@ import editTicketForm from './editTicketForm'
 import editTicketSrForm from './editTicketSrForm'
 import statistics from './statistics'
 import settings from './settings'
+import search from './search'
 
 export default combineReducers({  
   activeProjects,
@@ -18,5 +19,6 @@ export default combineReducers({
   editTicketForm,
   editTicketSrForm,
   statistics,
-  settings
+  settings,
+  search
 })

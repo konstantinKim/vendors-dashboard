@@ -6,6 +6,7 @@ import App from './containers/App'
 import LoginContainer from './containers/Login'
 import Statistics from './containers/Statistics'
 import Settings from './containers/Settings'
+import RecyclerSearch from './containers/RecyclerSearch'
 import SignUp from './containers/SignUp'
 
 import './styles/app.css'
@@ -24,6 +25,9 @@ if(location == '/statistics'){
 }
 if(location == '/settings'){	
 	currentContainer = <Settings />
+}
+if(location == '/recycler-search'){	
+	currentContainer = <RecyclerSearch />
 }
 if(location == '/signup'){	
 	currentContainer = <SignUp />
