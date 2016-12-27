@@ -1,6 +1,7 @@
 import {  
   SET_MATERIALS_SUCCESS,
-  UPDATE_STATE
+  UPDATE_STATE,
+  SET_RESULTS
   
 } from '../../constants/Search'
 
@@ -19,7 +20,10 @@ export function updateState(data) {
 }
 
 export function doSearch(data) {    
-    alert(data)    
+    return dispatch => fetch(BACKEND_HOST+'facilities/material/'+data.MATERIAL_ID+'/zipcode/'+data.zipcode+'/radius/'+data.radius+'.json', {headers: REQUEST_HEADERS})
+        .then(checkResponseStatus)    
+        .then(response => response.json())    
+        .then(json => dispatch(setResults(json)))    
 }
 
 function setMaterials(data) {     
@@ -30,4 +34,8 @@ function setMaterials(data) {
     }
   }
   return { type: SET_MATERIALS_SUCCESS, payload: materials };
+}
+
+function setResults(data) {       
+  return { type: SET_RESULTS, payload: data };
 }

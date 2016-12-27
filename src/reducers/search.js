@@ -1,6 +1,7 @@
 import {  
   SET_MATERIALS_SUCCESS,
-  UPDATE_STATE
+  UPDATE_STATE,
+  SET_RESULTS
   
 } from '../constants/Search'
 
@@ -9,7 +10,8 @@ const initialState = {
   materials: [],
   MATERIAL_ID: 0,
   zipcode: '',
-  radius: 0
+  radius: 0,
+  searchResults: []
 }
 
 
@@ -19,7 +21,10 @@ export default function search(state = initialState, action) {
       return { ...state, materials: action.payload }
 
     case UPDATE_STATE:      
-      return { ...state, state: action.payload }  
+      return { ...state, state: action.payload }
+
+    case SET_RESULTS:      
+      return { ...state, searchResults: action.payload }    
 
     default:
       return state;

@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import Header from '../components/Header'
 import Find from '../components/search/find'
-import Results from '../components/search/results'
 
 import * as searchActions from '../actions/search/SearchActions'
 
@@ -17,7 +16,7 @@ class RecyclerSearch extends Component {
         return(<Find imgHost={IMG_HOST} search={search} searchActions={searchActions}  />);                    
     }    
     if(search.currentTab == 'results'){
-        return(<Results imgHost={IMG_HOST} search={search} searchActions={searchActions}  />);                    
+        //return(<Results imgHost={IMG_HOST} search={search} searchActions={searchActions}  />);                    
     }    
   }
 

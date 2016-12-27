@@ -399,7 +399,7 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #71a81
 }
 .reveal-form input, .reveal-form select, .reveal-form textarea { outline: none; }
 .reveal-form .fields .note { font: normal 11px ArialItalic; letter-spacing: .15px; margin: 0; padding: 0; position: relative; top: -17px; left: 3px; }
-.reveal-form .fields input[type=button] { background: #71a810; border: none; color: #fff; float: right; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0px 0px 50px 0px; outline: none; padding: 0; text-decoration: none; width: 120px; height: 34px;
+.reveal-form .fields input[type=button], .reveal-form .fields input[type=submit] { background: #71a810; border: none; color: #fff; float: right; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 14px; margin: 0px 0px 50px 0px; outline: none; padding: 0; text-decoration: none; width: 120px; height: 34px;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -407,10 +407,10 @@ a.button, a.button:active, a.button:hover, a.button:visited { background: #71a81
 	-o-border-radius: 4px;
 	-webkit-border-radius: 4px;
 }
-.reveal-form .thankyou { color: #66C300; display: block; font: normal 20px ArialRegular; line-height: 22px; margin: 0px auto 50px auto; padding: 0; width: 80%; height: 70px; }
-.reveal-form .thankyou .left { float: left; margin: 0; padding: 0px 40px 0px 0px; text-align: right; width: 35%; }
-.reveal-form .thankyou .right {  float: left; margin: 0; padding: 2px 0px 0px 0px; width: 65%; }
-.reveal-form .thankyou .ok { background: #71a810; border: none; color: #fff; float: right; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 0; outline: none; padding: 0; text-decoration: none; text-align: center; position: relative; top: 10px; left: -262px; width: 70px; height: 34px;
+#modal-thankyou .thankyou { color: #66C300; display: block; font: normal 20px ArialRegular; line-height: 22px; margin: 0px auto 50px auto; padding: 0; width: 80%; height: 70px; }
+#modal-thankyou .thankyou .left { float: left; margin: 0; padding: 0px 40px 0px 0px; text-align: right; width: 35%; }
+#modal-thankyou .thankyou .right {  float: left; margin: 0; padding: 22px 0px 0px 0px; width: 65%; }
+#modal-thankyou .thankyou .ok { background: #71a810; border: none; color: #fff; float: right; font: normal 14px ArialRegular; letter-spacing: .15px; line-height: 34px; margin: 0; outline: none; padding: 0; text-decoration: none; text-align: center; position: relative; top: 10px; left: -262px; width: 70px; height: 34px;
 	border-radius: 4px;
 	-kthml-border-radius: 4px;
 	-ms-border-radius: 4px;

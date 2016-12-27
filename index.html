@@ -77,9 +77,70 @@
     <script type="text/javascript" src="/_lib/js/vendor/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="/_lib/js/scripts.js"></script>
     <script type="text/javascript" src="/_lib/js/vendor/jquery.reveal.js"></script>        
-
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyD7yOGoRDHIximy53Vo-f6Tqp9WWjdBn3U"></script>
 </head>
   <body>
+    
+    <script type="text/javascript">
+        var infowindow;
+        (function () {
+
+            google.maps.Map.prototype.markers = new Array();
+
+            google.maps.Map.prototype.addMarker = function(marker) {
+                this.markers[this.markers.length] = marker;
+            };
+
+            google.maps.Map.prototype.getMarkers = function() {
+                return this.markers
+            };
+
+            google.maps.Map.prototype.clearMarkers = function() {
+                if(infowindow) {
+                    infowindow.close();
+                }
+
+                for(var i=0; i<this.markers.length; i++){
+                    this.markers[i].set_map(null);
+                }
+            };
+        })();
+
+        function createMarker(name, latlng, map) {
+            var marker = new google.maps.Marker({position: latlng, map: map});
+            google.maps.event.addListener(marker, "click", function() {
+                if (infowindow) infowindow.close();
+                infowindow = new google.maps.InfoWindow({content: name});
+                infowindow.open(map, marker);
+            });
+            return marker;
+        }
+
+
+        function initializeGMap(data) {
+            var LAT = 0
+            var LON = 0
+            for(i in data){
+                if(LAT == 0){
+                    LAT = data[i].LAT
+                    LON = data[i].LON
+                }                
+            }
+            var myLatlng = new google.maps.LatLng(LAT,LON);
+            var myOptions = {
+                zoom: 10,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            for(i in data){
+                var latlon = new google.maps.LatLng(data[i].LAT, data[i].LON);
+                map.addMarker( createMarker(data[i].name, latlon, map));                
+            }            
+        }
+
+    </script>
+
     <script type="text/javascript">
         function setCalendar(className){
             $('.'+className).datepicker().on('changeDay', function (e) {
@@ -115,6 +176,25 @@
                 <div class="modal-body">
 
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-thankyou" tabindex="-1">
+        <div class="modal-dialog" style="top:35%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Request Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="thankyou">
+                        <div class="left"><img src="/_images/icons/content/check-big.png" /></div>
+                        <div class="right">Thank you for your submission!<br/></div>
+                    </div>
+                </div>               
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -187,7 +267,17 @@
                     var id = parseInt($(this).attr('data-id')) + 1;
                     $("input.phone_" + id).focus();
                 }
-            });            
+            });      
+
+            $("input.my-email-field").val(localStorage.getItem('email'));
+            $("input.my-name-fileld").val(localStorage.getItem('name'));    
+
+            $("#modal-suggestions-form, #modal-reportbugs-form").submit(function(){                
+                closePopUp();
+                $("#modal-thankyou").modal();
+                return false;
+
+            });  
         })          
 
         function setDataTable(id){
@@ -243,13 +333,98 @@
                 $("#setup_password").show();                
             }            
             return false;
-        }                
+        }                        
 
     </script>
 
     <script type="text/javascript">
         var seDVan=document.createElement("script");seDVan.type="text/javascript";var seDVans=(location.protocol.indexOf("https")==0?"https":"http")+"://image.providesupport.com/js/greenhalo/safe-standard.js?ps_h=DVan&ps_t="+new Date().getTime()+"&online-image=https%3A//www.greenhalosystems.com/images/online.gif&offline-image=https%3A//www.greenhalosystems.com/images/offline.png";setTimeout("seDVan.src=seDVans;document.getElementById('sdDVan').appendChild(seDVan)",1)
     </script>
+
+    <!-- suggestions -->
+    <div id="reveal-suggestions" class="reveal-form">
+    	<form id="modal-suggestions-form" name="" method="" action="">
+            <div class="header"><img src="/_images/icons/content/speech.png" style="padding-right: 10px;" />Suggestions</div>
+                <div class="form">
+                    <div class="fields">
+                        <div class="left">Name *</div>
+                        <div class="right"><input class="my-name-fileld" name="" type="text" readonly="readonly" /></div>
+                    </div>
+                    <div class="fields">
+                        <div class="left">Email *</div>
+                        <div class="right"><input class="my-email-field" name="" placeholder="" type="text" readonly="readonly" /></div>
+                    </div>
+                    
+                    <div class="fields">
+                        <div class="left">Suggestions</div>
+                        <div class="right"><textarea name=""></textarea></div>
+                    </div>
+                    <div class="fields">
+                        <div class="left">&nbsp;</div>
+                        <div class="right"><span class="note">Leave your feedback to help make this an easier and faster system for you.</span></div>
+                    </div>
+                    <div class="fields">
+                        <div class="left">&nbsp;</div>
+                        <div class="right"><input class="submit-suggestions" type="submit" value="Submit"></div>
+                    </div>
+                </div>
+            <a class="close-reveal-modal"><img src="/_images/icons/content/close.png" style="margin: 1px 2px 0px 0px;" /></a>
+        </form>
+        
+    </div>
+
+    <!-- report bugs -->
+    <div id="reveal-reportbug" class="reveal-form">
+    	<form id="modal-reportbugs-form" name="" method="" action="">
+            <div class="header"><img src="/_images/icons/content/speech.png" style="padding-right: 10px;" />Report a Feature Bug</div>
+                <div class="form">
+                    <div class="fields" style="margin-bottom: 30px;">
+                    	<span style="color: #00285e; display: block; font: normal 16px ArialRegular; letter-spacing: .15px; line-height: 18px; text-align: center;">Call Customer Support at 1-888-525-1301</span>
+                    </div>
+                    <div class="fields">
+                        <div class="left">Attention</div>
+                        <div class="right">
+                        	<select>
+                            	<option value="">-- Select Attention --</option>
+                                <option value="">Graphic</option>
+                                <option value="">Programming</option>
+                                <option value="">Graphic / Programming</option>
+                                <option value="">Feature</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="left">Priority</div>
+                        <div class="right">
+                        	<select>
+                            	<option value="">-- Select Priority --</option>
+                                <option value="">High</option>
+                                <option value="">Medium</option>
+                                <option value="">Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="left">Name</div>
+                        <div class="right"><input class="my-name-fileld" name="" type="text" readonly="readonly" /></div>
+                    </div>
+                    <div class="fields">
+                        <div class="left">Email</div>
+                        <div class="right"><input class="my-email-field" name="" type="text" readonly="readonly" /></div>
+                    </div>                    
+                    <div class="fields">
+                        <div class="left">Bug Report</div>
+                        <div class="right"><textarea name=""></textarea></div>
+                    </div>
+                    <div class="fields">
+                        <div class="left">&nbsp;</div>
+                        <div class="right"><input class="submit-bug" type="submit" value="Submit"></div>
+                    </div>
+                </div>
+            <a class="close-reveal-modal"><img src="/_images/icons/content/close.png" style="margin: 1px 2px 0px 0px;" /></a>
+        </form>
+        
+    </div>    
 
   </body>
 </html>

@@ -112,6 +112,18 @@ app.get("/_lib/fonts/fontawesome-webfont.woff", function(req, res) {
 app.get("/_lib/fonts/fontawesome-webfont.ttf", function(req, res) {
   res.sendFile(__dirname + '/_lib/fonts/fontawesome-webfont.ttf')
 })
+app.get("/_images/icons/content/speech.png", function(req, res) {
+  res.sendFile(__dirname + '/_images/icons/content/speech.png')
+})
+app.get("/_images/icons/content/speech.png", function(req, res) {
+  res.sendFile(__dirname + '/_images/icons/content/speech.png')
+})
+app.get("/_images/icons/content/close.png", function(req, res) {
+  res.sendFile(__dirname + '/_images/icons/content/close.png')
+})
+app.get("/_images/icons/content/check-big.png", function(req, res) {
+  res.sendFile(__dirname + '/_images/icons/content/check-big.png')
+})
 
 app.listen(port, function(error) {
   if (error) {
