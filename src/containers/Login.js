@@ -8,9 +8,9 @@ import { IMG_HOST } from '../config/settings'
 
 class LoginContainer extends Component {
   render() {    
-    const { login } = this.props.loginActions    
+    const { login, loginByToken } = this.props.loginActions    
     return <div>
-        <Login imgHost={IMG_HOST} login={login} />
+        <Login imgHost={IMG_HOST} login={login} loginByToken={loginByToken} />
     </div>
   }
 }

@@ -1,6 +1,6 @@
 import { BACKEND_HOST } from '../config/settings'
 
-function checkStatus(response) {
+function checkStatus(response) {  
   if (response.status == 200) {
     console.log("status: ", response.statusText);    
     return response
@@ -48,6 +48,18 @@ export function confirmSignUp(token) {
   }    
 }
 
+export function loginByToken(token) {
+  return dispatch => {    
+    fetch(BACKEND_HOST+'auth/token_login/'+token+'.json', 
+    {
+        headers: {'Accept': '*/*'}        
+    })
+    .then(checkStatus)
+    .then(response => response.json())      
+    .then(json => dispatch(setAuthData(json)))      
+  }    
+}
+
 export function signUp(token, password) {     
   var formData  = new FormData();  
   formData.append('token', token);        
@@ -66,8 +78,7 @@ export function signUp(token, password) {
   }    
 }
 
-function setAuthData(data) {     
-  
+function setAuthData(data) {        
   console.log(data.error)
   if(data.error != undefined || data.token == undefined){    
     //console.log('error')    

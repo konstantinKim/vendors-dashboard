@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 
-export default class Login extends Component {    
+export default class Login extends Component {
+  componentWillMount(){    
+    var query = window.getQueryParams(document.location.search);
+    if(undefined != query.token){
+      window.doMessage('Please wait a few seconds. You will be redirected automatically', 'Authorization Processing')            
+      this.props.loginByToken(query.token)      
+      //window.location = '/'
+    }
+  }
+
   onLoginSubmit(e) {    
     e.preventDefault()                      
     return this.props.login(this.refs.email.value, this.refs.password.value)    

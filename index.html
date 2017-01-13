@@ -166,6 +166,20 @@
             window.print();
             return false;            
         }
+
+        function getQueryParams(qs) {
+            qs = qs.split('+').join(' ');
+
+            var params = {},
+                tokens,
+                re = /[?&]?([^=]+)=([^&]*)/g;
+
+            while (tokens = re.exec(qs)) {
+                params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+            }
+
+            return params;
+        }
     </script>  		      	    
     <div class="modal fade" id="myAlert" tabindex="-1">
         <div class="modal-dialog" style="top:35%">
@@ -333,7 +347,7 @@
                 $("#setup_password").show();                
             }            
             return false;
-        }                        
+        }                                
 
     </script>
 
