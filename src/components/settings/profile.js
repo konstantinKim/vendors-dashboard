@@ -15,6 +15,26 @@ export default class Profile extends Component {
   handleFormChange(e){      
     this.props.settings.profile[e.currentTarget.name] = e.currentTarget.value    
     return this.props.settingsActions.updateProfileStats(this.props.settings.profile)
+  }
+
+  handlePermitChange(e){          
+    let index = e.currentTarget.name
+    this.props.settings.profile.permits[index].name = e.currentTarget.value.replace(',',';')
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
+  }
+
+  addPermit(e){
+    e.preventDefault()              
+    this.props.settings.profile.permits.push({'name':''})
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
+  }
+
+  deletePermit(e){
+    e.preventDefault()
+    let index = e.currentTarget.name
+    //console.log(index)              
+    this.props.settings.profile.permits.splice(index, 1)
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
   }    
 
   handleCheckboxChange(e){      
@@ -26,15 +46,85 @@ export default class Profile extends Component {
       this.props.settings.profile[e.currentTarget.name] = "false" 
     }    
     return this.props.settingsActions.updateProfileStats(this.props.settings.profile)
+  }
+
+  handleHoursChange(e){          
+    let day = e.currentTarget.getAttribute('data-id')
+    let name = e.currentTarget.name
+    this.props.settings.profile.hours[day][name] = e.currentTarget.value    
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
+  }
+
+  handleExtraChange(e){          
+    let day = e.currentTarget.getAttribute('data-id')
+    let name = e.currentTarget.name
+    
+    if(e.currentTarget.checked){
+      window.disableFields(day+"_hours", true)
+      this.props.settings.profile.hours[day][name] = e.currentTarget.value
+    }
+    else{
+      window.disableFields(day+"_hours", false)
+      this.props.settings.profile.hours[day][name] = ''
+    }
+        
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
   } 
 
   onSubmitForm(e){    
     e.preventDefault()        
     return this.props.settingsActions.updateProfile(this.props.settings.profile)            
-  }   
+  }
 
   render() {    
-    const { settings, imgHost } = this.props      
+    const { settings, imgHost } = this.props
+    const { hours } = this.props.settings.profile
+    
+    var permitFields
+    let self = this 
+    if(settings.profile.permits.length > 0){
+      permitFields = settings.profile.permits.map(function (item, index) {
+        return (
+          <div key={'permit_'+index}>
+            <div className="fields">              
+              <div className="name">{index ? '' : 'Permits/Licenses *'}</div>
+              <div className="field"><input onChange={::self.handlePermitChange} value={item.name} type="text" placeholder="State License, business license, certifications, etc." name={index} required /></div>
+              <div className="spacer">{index ? <a name={index} className="icon fa fa-remove" style={{marginLeft:'10px', color:'red'}} href="#" onClick={::self.deletePermit}></a> : <a style={{marginLeft:'10px'}} href="#" onClick={::self.addPermit}>Add Another</a>}</div>                      
+            </div>
+          </div>
+        )
+      })
+    }
+
+    let hrs = []
+    for (let i = 12; i > 0; i = i-1){
+       hrs.push({'h':i})
+    }
+    let hoursOptions
+    hoursOptions = hrs.map(function (item) {
+      return (        
+          <option key={'hour_'+item.h} value={item.h}>{item.h}</option>        
+      )
+    })
+
+    let minuts = []
+    for (let i = 0; i < 60; i = i+15){
+      if(i == 0){
+        minuts.push({'m':'00'})
+      }
+      else{
+        minuts.push({'m':i})
+      }
+       
+    }
+    let minutsOptions
+    minutsOptions = minuts.map(function (item) {
+      return (        
+          <option key={'min_'+item.m} value={item.m}>{item.m}</option>        
+      )
+    })
+        
+    
     return <div>      
 
       <div>
@@ -75,7 +165,7 @@ export default class Profile extends Component {
               <div className="row">
                 <div className="form-container">
                   <div className="form">
-                    <form onSubmit={::this.onSubmitForm}>                                                              
+                    <form id="profileForm" onSubmit={::this.onSubmitForm}>                                                              
                       <div className="fields">
                         <div className="name">Company Name *</div>
                         <div className="field"><input value={settings.profile.name} onChange={::this.handleFormChange} type="text" placeholder="Enter Company Name" name="name" required /></div>
@@ -142,10 +232,147 @@ export default class Profile extends Component {
                       </div>                    
 
                       <div className="fields">
-                        <div className="name">Website</div>
-                        <div className="field"><input value={settings.profile.url} onChange={::this.handleFormChange} type="text" placeholder="Enter Website" name="url" /></div>
+                        <div className="name">Website *</div>
+                        <div className="field"><input value={settings.profile.url} onChange={::this.handleFormChange} type="text" placeholder="Enter Website" name="url" required /></div>
                         <div className="spacer">&nbsp;</div>
-                      </div>                    
+                      </div>
+
+                      {permitFields}
+
+                      <div className="fields">
+                        <div className="name">Hours *</div>
+                        <div className={hours.monday.extra ? 'field opacityFields':'field'} id="monday_hours">                          
+                          <span style={{display:'block', float:'left', width:'85px'}}>Monday</span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.monday['from_hours']} onChange={::this.handleHoursChange} data-id="monday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.monday['from_minutes']} onChange={::this.handleHoursChange} data-id="monday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
+                          <span style={{display:'block', float:'left', width:'20px'}}>to</span>
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.monday['to_hours']} onChange={::this.handleHoursChange} data-id="monday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.monday['to_minutes']} onChange={::this.handleHoursChange} data-id="monday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left'}}>pm</span> 
+                        </div>
+                        <div className="spacer">
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.monday.extra == 'open_24'? 'checked': ''} onChange={::this.handleExtraChange} data-id="monday" name="extra" value="open_24" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Open 24 hours</span> 
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.monday.extra == 'closed'? 'checked': ''} onChange={::this.handleExtraChange} data-id="monday" name="extra" value="closed" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Closed</span> 
+                        </div>
+                      </div>                      
+                      <div className="fields">
+                        <div className="name">&nbsp;</div>
+                        <div className={hours.tuesday.extra ? 'field opacityFields':'field'} id="tuesday_hours">                          
+                          <span style={{display:'block', float:'left', width:'85px'}}>Tuesday</span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.tuesday['from_hours']} onChange={::this.handleHoursChange} data-id="tuesday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.tuesday['from_minutes']} onChange={::this.handleHoursChange} data-id="tuesday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
+                          <span style={{display:'block', float:'left', width:'20px'}}>to</span>
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.tuesday['to_hours']} onChange={::this.handleHoursChange} data-id="tuesday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.tuesday['to_minutes']} onChange={::this.handleHoursChange} data-id="tuesday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left'}}>pm</span> 
+                        </div>
+                        <div className="spacer">
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.tuesday.extra == 'open_24'? 'checked': ''} onChange={::this.handleExtraChange} data-id="tuesday" name="extra" value="open_24" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Open 24 hours</span> 
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.tuesday.extra == 'closed'? 'checked': ''} onChange={::this.handleExtraChange} data-id="tuesday" name="extra" value="closed" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Closed</span> 
+                        </div>
+                      </div>
+                      <div className="fields">
+                        <div className="name">&nbsp;</div>
+                        <div className={hours.wednesday.extra ? 'field opacityFields':'field'} id="wednesday_hours">                          
+                          <span style={{display:'block', float:'left', width:'85px'}}>Wednesday</span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.wednesday['from_hours']} onChange={::this.handleHoursChange} data-id="wednesday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.wednesday['from_minutes']} onChange={::this.handleHoursChange} data-id="wednesday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
+                          <span style={{display:'block', float:'left', width:'20px'}}>to</span>
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.wednesday['to_hours']} onChange={::this.handleHoursChange} data-id="wednesday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.wednesday['to_minutes']} onChange={::this.handleHoursChange} data-id="wednesday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left'}}>pm</span> 
+                        </div>
+                        <div className="spacer">
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.wednesday.extra == 'open_24'? 'checked': ''} onChange={::this.handleExtraChange} data-id="wednesday" name="extra" value="open_24" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Open 24 hours</span> 
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.wednesday.extra == 'closed'? 'checked': ''} onChange={::this.handleExtraChange} data-id="wednesday" name="extra" value="closed" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Closed</span> 
+                        </div>
+                      </div>
+                      <div className="fields">
+                        <div className="name">&nbsp;</div>
+                        <div className={hours.thursday.extra ? 'field opacityFields':'field'} id="thursday_hours">                          
+                          <span style={{display:'block', float:'left', width:'85px'}}>Thursday</span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.thursday['from_hours']} onChange={::this.handleHoursChange} data-id="thursday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.thursday['from_minutes']} onChange={::this.handleHoursChange} data-id="thursday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
+                          <span style={{display:'block', float:'left', width:'20px'}}>to</span>
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.thursday['to_hours']} onChange={::this.handleHoursChange} data-id="thursday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.thursday['to_minutes']} onChange={::this.handleHoursChange} data-id="thursday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left'}}>pm</span> 
+                        </div>
+                        <div className="spacer">
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.thursday.extra == 'open_24'? 'checked': ''} onChange={::this.handleExtraChange} data-id="thursday" name="extra" value="open_24" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Open 24 hours</span> 
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.thursday.extra == 'closed'? 'checked': ''} onChange={::this.handleExtraChange} data-id="thursday" name="extra" value="closed" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Closed</span> 
+                        </div>
+                      </div>
+                      <div className="fields">
+                        <div className="name">&nbsp;</div>
+                        <div className={hours.friday.extra ? 'field opacityFields':'field'} id="friday_hours">                          
+                          <span style={{display:'block', float:'left', width:'85px'}}>Friday</span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.friday['from_hours']} onChange={::this.handleHoursChange} data-id="friday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.friday['from_minutes']} onChange={::this.handleHoursChange} data-id="friday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
+                          <span style={{display:'block', float:'left', width:'20px'}}>to</span>
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.friday['to_hours']} onChange={::this.handleHoursChange} data-id="friday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.friday['to_minutes']} onChange={::this.handleHoursChange} data-id="friday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left'}}>pm</span> 
+                        </div>
+                        <div className="spacer">
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.friday.extra == 'open_24'? 'checked': ''} onChange={::this.handleExtraChange} data-id="friday" name="extra" value="open_24" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Open 24 hours</span> 
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.friday.extra == 'closed'? 'checked': ''} onChange={::this.handleExtraChange} data-id="friday" name="extra" value="closed" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Closed</span> 
+                        </div>
+                      </div>
+                      <div className="fields">
+                        <div className="name">&nbsp;</div>
+                        <div className={hours.saturday.extra ? 'field opacityFields':'field'} id="saturday_hours">                          
+                          <span style={{display:'block', float:'left', width:'85px'}}>Saturday</span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.saturday['from_hours']} onChange={::this.handleHoursChange} data-id="saturday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.saturday['from_minutes']} onChange={::this.handleHoursChange} data-id="saturday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
+                          <span style={{display:'block', float:'left', width:'20px'}}>to</span>
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.saturday['to_hours']} onChange={::this.handleHoursChange} data-id="saturday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.saturday['to_minutes']} onChange={::this.handleHoursChange} data-id="saturday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left'}}>pm</span> 
+                        </div>
+                        <div className="spacer">
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.saturday.extra == 'open_24'? 'checked': ''} onChange={::this.handleExtraChange} data-id="saturday" name="extra" value="open_24" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Open 24 hours</span> 
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.saturday.extra == 'closed'? 'checked': ''} onChange={::this.handleExtraChange} data-id="saturday" name="extra" value="closed" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Closed</span> 
+                        </div>
+                      </div>
+                      <div className="fields">
+                        <div className="name">&nbsp;</div>
+                        <div className={hours.sunday.extra ? 'field opacityFields':'field'} id="sunday_hours">                          
+                          <span style={{display:'block', float:'left', width:'85px'}}>Sunday</span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.sunday['from_hours']} onChange={::this.handleHoursChange} data-id="sunday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.sunday['from_minutes']} onChange={::this.handleHoursChange} data-id="sunday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
+                          <span style={{display:'block', float:'left', width:'20px'}}>to</span>
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.sunday['to_hours']} onChange={::this.handleHoursChange} data-id="sunday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.sunday['to_minutes']} onChange={::this.handleHoursChange} data-id="sunday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left'}}>pm</span> 
+                        </div>
+                        <div className="spacer">
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.sunday.extra == 'open_24'? 'checked': ''} onChange={::this.handleExtraChange} data-id="sunday" name="extra" value="open_24" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Open 24 hours</span> 
+                          <span style={{display:'block', float:'left', width:'25px'}}><input checked={hours.sunday.extra == 'closed'? 'checked': ''} onChange={::this.handleExtraChange} data-id="sunday" name="extra" value="closed" type="checkbox" style={{width:'20px'}} /></span> 
+                          <span style={{display:'block', float:'left', width:'120px'}}>Closed</span> 
+                        </div>
+                      </div>
+
 
                       <div className="fields">
                         <div className="name">&nbsp;</div>

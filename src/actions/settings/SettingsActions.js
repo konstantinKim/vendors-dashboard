@@ -35,7 +35,7 @@ export function initProfileStats() {
 export function updateProfile(data) {       
   var formData  = new FormData();    
   for(let property in data){    
-    if(property.toString() != 'phone'){
+    if(property.toString() != 'phone' && property.toString() != 'permits' && property.toString() != 'hours'){
       formData.append(property.toString(), data[property].toString());              
     }    
   }
@@ -43,7 +43,15 @@ export function updateProfile(data) {
   var phone = data['phone_1'].toString() + data['phone_2'].toString() + data['phone_3'].toString() + data['phone_4'].toString()  
   formData.append('phone', phone);
   data['phone'] = phone
-    
+
+  var permits = [];
+  for(let i in data.permits){
+    permits.push(data.permits[i].name.toString().trim().replace(',',';'))
+  }
+  formData.append('permits', permits.join(','));
+  
+  formData.append('hours', JSON.stringify(data.hours));
+      
   return dispatch => {    
     fetch(BACKEND_HOST+'haulers/update.json', 
     {
@@ -56,10 +64,86 @@ export function updateProfile(data) {
   }    
 }
 
-function setProfileStats(data) {       	
+function setProfileStats(data) {  
+  if(!data.permits.length){
+    data.permits.push({'name':''})
+  }
+  
+  var hours = {
+      "monday":{
+        "day":"Monday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "tuesday":{
+        "day":"Tuesday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "wednesday":{
+        "day":"Wednesday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "thursday":{
+        "day":"Thursday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "friday":{
+        "day":"Friday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "saturday":{
+        "day":"Saturday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "sunday":{
+        "day":"Sunday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      }
+    }
+
+  try 
+  {    
+    data.hours = JSON.parse(data.hours)
+  } catch(e) {
+    data.hours = hours
+  }  
+  
+  if(!data.hours){
+    data.hours = hours
+  }
+      
+  
+  
   return { type: UPDATE_PROFILE, payload: data };
 }
 
-function setUpdateProfileStats(data) {        
+function setUpdateProfileStats(data) {          
   return { type: UPDATE_PROFILE_SUCCESS, payload: data };
 }

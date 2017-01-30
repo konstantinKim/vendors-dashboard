@@ -19,7 +19,66 @@ const initialState = {
     phone_3: '',
     phone_4: '',
     email: '',
-    url: ''
+    url: '',
+    permits: [],
+    hours: {
+      "monday":{
+        "day":"Monday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "tuesday":{
+        "day":"Tuesday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "wednesday":{
+        "day":"Wednesday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "thursday":{
+        "day":"Thursday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "friday":{
+        "day":"Friday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "saturday":{
+        "day":"Saturday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      },
+      "sunday":{
+        "day":"Sunday",
+        "from_hours":"12",
+        "from_minutes":"00",
+        "to_hours":"12",
+        "to_minutes":"00",
+        "extra":""
+      }
+    }
   }  
 }
 

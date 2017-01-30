@@ -68,7 +68,13 @@
 			-webkit-border-radius: 4px !important;;
 		}
 		.note { background: #fff; border: solid 1px #ccc; !important; line-height: 16px; margin: -30px auto 30px auto; padding: 9px 30px 10px 15px; width: 92% }
-	</style>
+
+        #profileForm input:invalid {
+            border-color:red!important;
+        }
+
+        .opacityFields select{ opacity:0.50 }
+    </style>
     
     <script type="text/javascript" src="/_lib/js/vendor/jquery-1.10.0.min.js"></script>
     <!-- jquery 1.7 for reveal window -->
@@ -179,6 +185,15 @@
             }
 
             return params;
+        }
+
+        function disableFields(id, disable) {
+            if(disable){                
+                $("#"+id+" select").prop('disabled', 'disabled');
+            }
+            else{                
+                $("#"+id+" select").prop('disabled', false);
+            }            
         }
     </script>  		      	    
     <div class="modal fade" id="myAlert" tabindex="-1">
