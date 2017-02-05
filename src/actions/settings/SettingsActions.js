@@ -35,7 +35,7 @@ export function initProfileStats() {
 export function updateProfile(data) {       
   var formData  = new FormData();    
   for(let property in data){    
-    if(property.toString() != 'phone' && property.toString() != 'permits' && property.toString() != 'hours'){
+    if(property.toString() != 'phone' && property.toString() != 'permits' && property.toString() != 'hours' && property.toString() != 'reps'){
       formData.append(property.toString(), data[property].toString());              
     }    
   }
@@ -51,6 +51,8 @@ export function updateProfile(data) {
   formData.append('permits', permits.join(','));
   
   formData.append('hours', JSON.stringify(data.hours));
+
+  formData.append('reps', JSON.stringify(data.reps));
       
   return dispatch => {    
     fetch(BACKEND_HOST+'haulers/update.json', 
@@ -67,7 +69,7 @@ export function updateProfile(data) {
 function setProfileStats(data) {  
   if(!data.permits.length){
     data.permits.push({'name':''})
-  }
+  }  
   
   var hours = {
       "monday":{

@@ -23,9 +23,21 @@ export default class Profile extends Component {
     return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
   }
 
+  handleRepsChange(e){          
+    let index = e.currentTarget.name
+    this.props.settings.profile.reps[index].email = e.currentTarget.value.replace(',',';')
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
+  }
+
   addPermit(e){
     e.preventDefault()              
     this.props.settings.profile.permits.push({'name':''})
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
+  }
+
+  addReps(e){
+    e.preventDefault()              
+    this.props.settings.profile.reps.push({'name':''})
     return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
   }
 
@@ -34,6 +46,14 @@ export default class Profile extends Component {
     let index = e.currentTarget.name
     //console.log(index)              
     this.props.settings.profile.permits.splice(index, 1)
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
+  }
+
+  deleteReps(e){
+    e.preventDefault()
+    let index = e.currentTarget.name
+    //console.log(index)              
+    this.props.settings.profile.reps.splice(index, 1)
     return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
   }    
 
@@ -79,9 +99,9 @@ export default class Profile extends Component {
   render() {    
     const { settings, imgHost } = this.props
     const { hours } = this.props.settings.profile
-    
-    var permitFields
-    let self = this 
+    let self = this
+
+    var permitFields     
     if(settings.profile.permits.length > 0){
       permitFields = settings.profile.permits.map(function (item, index) {
         return (
@@ -90,6 +110,21 @@ export default class Profile extends Component {
               <div className="name">{index ? '' : 'Permits/Licenses *'}</div>
               <div className="field"><input onChange={::self.handlePermitChange} value={item.name} type="text" placeholder="State License, business license, certifications, etc." name={index} required /></div>
               <div className="spacer">{index ? <a name={index} className="icon fa fa-remove" style={{marginLeft:'10px', color:'red'}} href="#" onClick={::self.deletePermit}></a> : <a style={{marginLeft:'10px'}} href="#" onClick={::self.addPermit}>Add Another</a>}</div>                      
+            </div>
+          </div>
+        )
+      })
+    }
+
+    var repsFields     
+    if(settings.profile.reps.length > 0){
+      repsFields = settings.profile.reps.map(function (item, index) {
+        return (
+          <div key={'reps_'+index}>
+            <div className="fields">              
+              <div className="name">Reps Email *</div>
+              <div className="field"><input data-id={item.id} onChange={::self.handleRepsChange} value={item.email} type="email" placeholder="Representative Email" name={index} required /></div>
+              <div className="spacer"><a name={index} className="icon fa fa-remove" style={{marginLeft:'10px', color:'red'}} href="#" onClick={::self.deleteReps}></a></div>                      
             </div>
           </div>
         )
@@ -227,9 +262,11 @@ export default class Profile extends Component {
 
                       <div className="fields">
                         <div className="name">Email *</div>
-                        <div className="field"><input value={settings.profile.email} onChange={::this.handleFormChange} type="text" placeholder="Enter Email" name="email" required /></div>
-                        <div className="spacer">&nbsp;</div>
-                      </div>                    
+                        <div className="field"><input value={settings.profile.email} onChange={::this.handleFormChange} type="email" placeholder="Enter Email" name="email" required /></div>
+                        <div className="spacer"><a style={{marginLeft:'10px'}} href="#" onClick={::self.addReps}>Add Another</a></div>
+                      </div>  
+
+                      {repsFields}                  
 
                       <div className="fields">
                         <div className="name">Website *</div>
@@ -243,12 +280,12 @@ export default class Profile extends Component {
                         <div className="name">Hours *</div>
                         <div className={hours.monday.extra ? 'field opacityFields':'field'} id="monday_hours">                          
                           <span style={{display:'block', float:'left', width:'85px'}}>Monday</span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.monday['from_hours']} onChange={::this.handleHoursChange} data-id="monday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.monday['from_minutes']} onChange={::this.handleHoursChange} data-id="monday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.monday['from_hours']} onChange={::this.handleHoursChange} data-id="monday" name="from_hours" style={{width:'55px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.monday['from_minutes']} onChange={::this.handleHoursChange} data-id="monday" name="from_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
                           <span style={{display:'block', float:'left', width:'20px'}}>to</span>
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.monday['to_hours']} onChange={::this.handleHoursChange} data-id="monday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.monday['to_minutes']} onChange={::this.handleHoursChange} data-id="monday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.monday['to_hours']} onChange={::this.handleHoursChange} data-id="monday" name="to_hours" style={{width:'55px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.monday['to_minutes']} onChange={::this.handleHoursChange} data-id="monday" name="to_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left'}}>pm</span> 
                         </div>
                         <div className="spacer">
@@ -262,12 +299,12 @@ export default class Profile extends Component {
                         <div className="name">&nbsp;</div>
                         <div className={hours.tuesday.extra ? 'field opacityFields':'field'} id="tuesday_hours">                          
                           <span style={{display:'block', float:'left', width:'85px'}}>Tuesday</span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.tuesday['from_hours']} onChange={::this.handleHoursChange} data-id="tuesday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.tuesday['from_minutes']} onChange={::this.handleHoursChange} data-id="tuesday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.tuesday['from_hours']} onChange={::this.handleHoursChange} data-id="tuesday" name="from_hours" style={{width:'55px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.tuesday['from_minutes']} onChange={::this.handleHoursChange} data-id="tuesday" name="from_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
                           <span style={{display:'block', float:'left', width:'20px'}}>to</span>
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.tuesday['to_hours']} onChange={::this.handleHoursChange} data-id="tuesday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.tuesday['to_minutes']} onChange={::this.handleHoursChange} data-id="tuesday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.tuesday['to_hours']} onChange={::this.handleHoursChange} data-id="tuesday" name="to_hours" style={{width:'55px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.tuesday['to_minutes']} onChange={::this.handleHoursChange} data-id="tuesday" name="to_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left'}}>pm</span> 
                         </div>
                         <div className="spacer">
@@ -281,12 +318,12 @@ export default class Profile extends Component {
                         <div className="name">&nbsp;</div>
                         <div className={hours.wednesday.extra ? 'field opacityFields':'field'} id="wednesday_hours">                          
                           <span style={{display:'block', float:'left', width:'85px'}}>Wednesday</span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.wednesday['from_hours']} onChange={::this.handleHoursChange} data-id="wednesday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.wednesday['from_minutes']} onChange={::this.handleHoursChange} data-id="wednesday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.wednesday['from_hours']} onChange={::this.handleHoursChange} data-id="wednesday" name="from_hours" style={{width:'55px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.wednesday['from_minutes']} onChange={::this.handleHoursChange} data-id="wednesday" name="from_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
                           <span style={{display:'block', float:'left', width:'20px'}}>to</span>
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.wednesday['to_hours']} onChange={::this.handleHoursChange} data-id="wednesday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.wednesday['to_minutes']} onChange={::this.handleHoursChange} data-id="wednesday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.wednesday['to_hours']} onChange={::this.handleHoursChange} data-id="wednesday" name="to_hours" style={{width:'55px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.wednesday['to_minutes']} onChange={::this.handleHoursChange} data-id="wednesday" name="to_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left'}}>pm</span> 
                         </div>
                         <div className="spacer">
@@ -300,12 +337,12 @@ export default class Profile extends Component {
                         <div className="name">&nbsp;</div>
                         <div className={hours.thursday.extra ? 'field opacityFields':'field'} id="thursday_hours">                          
                           <span style={{display:'block', float:'left', width:'85px'}}>Thursday</span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.thursday['from_hours']} onChange={::this.handleHoursChange} data-id="thursday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.thursday['from_minutes']} onChange={::this.handleHoursChange} data-id="thursday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.thursday['from_hours']} onChange={::this.handleHoursChange} data-id="thursday" name="from_hours" style={{width:'55px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.thursday['from_minutes']} onChange={::this.handleHoursChange} data-id="thursday" name="from_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
                           <span style={{display:'block', float:'left', width:'20px'}}>to</span>
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.thursday['to_hours']} onChange={::this.handleHoursChange} data-id="thursday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.thursday['to_minutes']} onChange={::this.handleHoursChange} data-id="thursday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.thursday['to_hours']} onChange={::this.handleHoursChange} data-id="thursday" name="to_hours" style={{width:'55px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.thursday['to_minutes']} onChange={::this.handleHoursChange} data-id="thursday" name="to_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left'}}>pm</span> 
                         </div>
                         <div className="spacer">
@@ -319,12 +356,12 @@ export default class Profile extends Component {
                         <div className="name">&nbsp;</div>
                         <div className={hours.friday.extra ? 'field opacityFields':'field'} id="friday_hours">                          
                           <span style={{display:'block', float:'left', width:'85px'}}>Friday</span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.friday['from_hours']} onChange={::this.handleHoursChange} data-id="friday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.friday['from_minutes']} onChange={::this.handleHoursChange} data-id="friday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.friday['from_hours']} onChange={::this.handleHoursChange} data-id="friday" name="from_hours" style={{width:'55px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.friday['from_minutes']} onChange={::this.handleHoursChange} data-id="friday" name="from_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
                           <span style={{display:'block', float:'left', width:'20px'}}>to</span>
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.friday['to_hours']} onChange={::this.handleHoursChange} data-id="friday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.friday['to_minutes']} onChange={::this.handleHoursChange} data-id="friday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.friday['to_hours']} onChange={::this.handleHoursChange} data-id="friday" name="to_hours" style={{width:'55px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.friday['to_minutes']} onChange={::this.handleHoursChange} data-id="friday" name="to_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left'}}>pm</span> 
                         </div>
                         <div className="spacer">
@@ -338,12 +375,12 @@ export default class Profile extends Component {
                         <div className="name">&nbsp;</div>
                         <div className={hours.saturday.extra ? 'field opacityFields':'field'} id="saturday_hours">                          
                           <span style={{display:'block', float:'left', width:'85px'}}>Saturday</span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.saturday['from_hours']} onChange={::this.handleHoursChange} data-id="saturday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.saturday['from_minutes']} onChange={::this.handleHoursChange} data-id="saturday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.saturday['from_hours']} onChange={::this.handleHoursChange} data-id="saturday" name="from_hours" style={{width:'55px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.saturday['from_minutes']} onChange={::this.handleHoursChange} data-id="saturday" name="from_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
                           <span style={{display:'block', float:'left', width:'20px'}}>to</span>
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.saturday['to_hours']} onChange={::this.handleHoursChange} data-id="saturday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.saturday['to_minutes']} onChange={::this.handleHoursChange} data-id="saturday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.saturday['to_hours']} onChange={::this.handleHoursChange} data-id="saturday" name="to_hours" style={{width:'55px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.saturday['to_minutes']} onChange={::this.handleHoursChange} data-id="saturday" name="to_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left'}}>pm</span> 
                         </div>
                         <div className="spacer">
@@ -357,12 +394,12 @@ export default class Profile extends Component {
                         <div className="name">&nbsp;</div>
                         <div className={hours.sunday.extra ? 'field opacityFields':'field'} id="sunday_hours">                          
                           <span style={{display:'block', float:'left', width:'85px'}}>Sunday</span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.sunday['from_hours']} onChange={::this.handleHoursChange} data-id="sunday" name="from_hours" style={{width:'50px'}}>{hoursOptions}</select></span> 
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.sunday['from_minutes']} onChange={::this.handleHoursChange} data-id="sunday" name="from_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.sunday['from_hours']} onChange={::this.handleHoursChange} data-id="sunday" name="from_hours" style={{width:'55px'}}>{hoursOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.sunday['from_minutes']} onChange={::this.handleHoursChange} data-id="sunday" name="from_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left', width:'30px'}}>am</span> 
                           <span style={{display:'block', float:'left', width:'20px'}}>to</span>
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.sunday['to_hours']} onChange={::this.handleHoursChange} data-id="sunday" name="to_hours" style={{width:'50px'}}>{hoursOptions}</select></span>     
-                          <span style={{display:'block', float:'left', width:'55px'}}><select value={hours.sunday['to_minutes']} onChange={::this.handleHoursChange} data-id="sunday" name="to_minutes" style={{width:'50px'}}>{minutsOptions}</select></span> 
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.sunday['to_hours']} onChange={::this.handleHoursChange} data-id="sunday" name="to_hours" style={{width:'55px'}}>{hoursOptions}</select></span>     
+                          <span style={{display:'block', float:'left', width:'60px'}}><select value={hours.sunday['to_minutes']} onChange={::this.handleHoursChange} data-id="sunday" name="to_minutes" style={{width:'55px'}}>{minutsOptions}</select></span> 
                           <span style={{display:'block', float:'left'}}>pm</span> 
                         </div>
                         <div className="spacer">

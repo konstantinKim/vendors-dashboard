@@ -19,6 +19,7 @@ const initialState = {
     phone_3: '',
     phone_4: '',
     email: '',
+    reps: [{email:'rep1@vendor.test'},{email:'rep2@vendor.test'}],
     url: '',
     permits: [],
     hours: {
