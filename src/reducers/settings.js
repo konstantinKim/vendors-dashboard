@@ -1,7 +1,8 @@
 import {  
   SWITCH_TAB,
   UPDATE_PROFILE,
-  UPDATE_PROFILE_SUCCESS
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_IMAGES
 } from '../constants/Settings'
 
 const initialState = {  
@@ -22,6 +23,7 @@ const initialState = {
     reps: [{email:'rep1@vendor.test'},{email:'rep2@vendor.test'}],
     url: '',
     permits: [],
+    associations: [],
     hours: {
       "monday":{
         "day":"Monday",
@@ -80,7 +82,8 @@ const initialState = {
         "extra":""
       }
     }
-  }  
+  },
+  images: []  
 }
 
 
@@ -90,16 +93,21 @@ export default function settings(state = initialState, action) {
       return { ...state, currentTab: action.payload }    
 
     case UPDATE_PROFILE:
-      return { ...state, profile: action.payload }      
+      return { ...state, profile: action.payload }
+
+    case UPDATE_IMAGES:
+      var data = []
+      for(let i in action.payload['data']){                
+        data.push({'path': "/data/extensions_data/haulers_images/"+action.payload['data'][i]['attributes']['HAULER_ID']+"/"+action.payload['data'][i]['attributes']['name']+"."+action.payload['data'][i]['attributes']['type'], id: action.payload['data'][i]['id']})
+      } 
+      return { ...state, images: data }        
 
     case UPDATE_PROFILE_SUCCESS:
       window.doMessage('Profile Updated', 'Success')
       if("true" == localStorage.getItem('isFirstLogin')){        
         localStorage.setItem('isFirstLogin', 'false');
         window.location = '/'
-        return { ...state, profile: action.payload }
-        
-
+        return { ...state, profile: action.payload }        
       }
       return { ...state, profile: action.payload }
               

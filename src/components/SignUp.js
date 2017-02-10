@@ -59,7 +59,7 @@ export default class SignUp extends Component {
             <div className="row">
               <div className="intro">
                 <span>Register as a Vendor </span><br /><br />
-                If you need further assistant, please call tech support at 1-888-525-1301 or click <a href="http://messenger.providesupport.com/messenger/greenhalo.html" target="_blank">Live Chat</a> 
+                
               </div>
             </div>
             
@@ -87,15 +87,23 @@ export default class SignUp extends Component {
                         <div className="field"><input type="password" placeholder="Confirm password" name="confirm_password" ref="confirm_password" required /></div>
                         <div className="spacer">&nbsp;</div>
                       </div>                    
-                      <div className="fields">
+                      <div className="fields" style={{height: '70px'}}>
                         <div className="name">&nbsp;</div>
                         <div className="field"><input type="submit" defaultValue="Submit" /></div>
                         <div className="spacer">&nbsp;</div>
                       </div>
-                    </form>
-                  </div>
+
+                      <div className="fields">
+                        <div className="name">&nbsp;</div>
+                        <div className="field">&nbsp;</div>
+                        <div className="spacer">&nbsp;</div>
+                        <div style={{paddingLeft: '30px'}}>If you need further assistant, please call tech support at 1-888-525-1301 or click <a href="http://messenger.providesupport.com/messenger/greenhalo.html" target="_blank">Live Chat</a> </div>
+                      </div>
+
+                    </form>                    
+                  </div>                  
                 </div>
-              </div>
+              </div>              
             </div>
               
             <div id="confirm_info" style={{display:'none'}}>
@@ -124,14 +132,22 @@ export default class SignUp extends Component {
                         <div className="field"><span id="pass_encode">*****</span> <span style={{display:'none'}} id="pass_decode"></span> <a href="#" id="show_pass"><small>show password</small></a></div>
                         <div className="spacer">&nbsp;</div>
                       </div>                    
-                      <div className="fields">
+                      <div className="fields" style={{height: '70px'}}>
                         <div className="name">&nbsp;</div>
                         <div className="field">
                           <input type="submit" defaultValue="Confirm" style={{float:'left'}} />
                           <input id="returnToSignup" type="button" defaultValue="Cancel" style={{float:'left', marginLeft:'10px'}} />
                         </div>
                         <div className="spacer">&nbsp;</div>
-                      </div>                    
+                      </div>
+
+                      <div className="fields">
+                        <div className="name">&nbsp;</div>
+                        <div className="field">&nbsp;</div>
+                        <div className="spacer">&nbsp;</div>
+                        <div style={{paddingLeft: '30px'}}>If you need further assistant, please call tech support at 1-888-525-1301 or click <a href="http://messenger.providesupport.com/messenger/greenhalo.html" target="_blank">Live Chat</a> </div>
+                      </div>
+
                     </form>  
                   </div>
                 </div>

@@ -4,6 +4,7 @@ export default class Profile extends Component {
   componentWillMount(){
     const { settingsActions } = this.props                                                    
     settingsActions.initProfileStats()
+    settingsActions.getImages()
   }
 
   componentDidMount(){
@@ -23,15 +24,32 @@ export default class Profile extends Component {
     return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
   }
 
+  handleAssociationChange(e){          
+    let index = e.currentTarget.name
+    this.props.settings.profile.associations[index].name = e.currentTarget.value.replace(',',';')
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
+  }
+
   handleRepsChange(e){          
     let index = e.currentTarget.name
     this.props.settings.profile.reps[index].email = e.currentTarget.value.replace(',',';')
     return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
   }
 
+  handleImageAdd(e){
+    this.props.settingsActions.addImage(e.currentTarget.files[0])    
+    return window.doMessage('Image Added', 'Success')           
+  }
+
   addPermit(e){
     e.preventDefault()              
     this.props.settings.profile.permits.push({'name':''})
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
+  }
+
+  addAssociation(e){
+    e.preventDefault()              
+    this.props.settings.profile.associations.push({'name':''})
     return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
   }
 
@@ -46,6 +64,13 @@ export default class Profile extends Component {
     let index = e.currentTarget.name
     //console.log(index)              
     this.props.settings.profile.permits.splice(index, 1)
+    return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
+  }
+
+  deleteAssociation(e){
+    e.preventDefault()
+    let index = e.currentTarget.name                  
+    this.props.settings.profile.associations.splice(index, 1)
     return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
   }
 
@@ -91,6 +116,22 @@ export default class Profile extends Component {
     return this.props.settingsActions.updateProfileStats(this.props.settings.profile)    
   } 
 
+  slideImg(e){
+    e.preventDefault()
+    let index = e.currentTarget.getAttribute('data-id')
+    window.slideImg(index)
+  }
+
+  deleteImg(e){
+    e.preventDefault()
+    if(confirm("Delete this image?")){
+      window.slideImg(0)
+      let index = e.currentTarget.getAttribute('data-id')
+      this.props.settingsActions.deleteImage(index)
+      return window.doMessage('Image Deleted', 'Success')
+    }               
+  }
+
   onSubmitForm(e){    
     e.preventDefault()        
     return this.props.settingsActions.updateProfile(this.props.settings.profile)            
@@ -116,6 +157,21 @@ export default class Profile extends Component {
       })
     }
 
+    var associationsFields     
+    if(settings.profile.associations.length > 0){
+      associationsFields = settings.profile.associations.map(function (item, index) {
+        return (
+          <div key={'association_'+index}>
+            <div className="fields">              
+              <div className="name">{index ? '' : 'Associations *'}</div>
+              <div className="field"><input onChange={::self.handleAssociationChange} value={item.name} type="text" placeholder="Associations" name={index} required /></div>
+              <div className="spacer">{index ? <a name={index} className="icon fa fa-remove" style={{marginLeft:'10px', color:'red'}} href="#" onClick={::self.deleteAssociation}></a> : <a style={{marginLeft:'10px'}} href="#" onClick={::self.addAssociation}>Add Another</a>}</div>                      
+            </div>
+          </div>
+        )
+      })
+    }
+
     var repsFields     
     if(settings.profile.reps.length > 0){
       repsFields = settings.profile.reps.map(function (item, index) {
@@ -127,6 +183,19 @@ export default class Profile extends Component {
               <div className="spacer"><a name={index} className="icon fa fa-remove" style={{marginLeft:'10px', color:'red'}} href="#" onClick={::self.deleteReps}></a></div>                      
             </div>
           </div>
+        )
+      })
+    }
+
+    var images    
+    if(settings.images.length > 0){
+      images = settings.images.map(function (item, index) {
+        return (
+          <div key={'img_'+index} className={index? 'hiddenImg slide_img ' + "slide_"+index : 'slide_img ' + "slide_"+index} style={{width:'600px'}}>
+            <div><a href="#" style={{color: 'red'}} onClick={::self.deleteImg} data-id={item.id}>Delete</a></div>
+            <img src={imgHost + item.path} style={{maxWidth: '600px'}} />            
+            <div>{index? <a href="#" onClick={::self.slideImg} data-id={index - 1} >&lt;</a>:''} {index+1} of {settings.images.length} {settings.images.length > index+1? <a onClick={::self.slideImg} href="#" className="slideImg" data-id={index+1}>&gt;</a>:''}</div>
+          </div>          
         )
       })
     }
@@ -200,7 +269,7 @@ export default class Profile extends Component {
               <div className="row">
                 <div className="form-container">
                   <div className="form">
-                    <form id="profileForm" onSubmit={::this.onSubmitForm}>                                                              
+                    <form encType='multipart/form-data' id="profileForm" onSubmit={::this.onSubmitForm}>                                                              
                       <div className="fields">
                         <div className="name">Company Name *</div>
                         <div className="field"><input value={settings.profile.name} onChange={::this.handleFormChange} type="text" placeholder="Enter Company Name" name="name" required /></div>
@@ -275,6 +344,8 @@ export default class Profile extends Component {
                       </div>
 
                       {permitFields}
+                      
+                      {associationsFields}
 
                       <div className="fields">
                         <div className="name">Hours *</div>
@@ -409,6 +480,17 @@ export default class Profile extends Component {
                           <span style={{display:'block', float:'left', width:'120px'}}>Closed</span> 
                         </div>
                       </div>
+
+                      <div className="fields">
+                        <div className="name">Facility Images *</div>
+                        <div className="field"><input onChange={::this.handleImageAdd} type="file" style={{lineHeight:'18px', marginTop:'9px'}} /></div>
+                        <div className="spacer">&nbsp;</div>
+                      </div>
+                      
+                      <div style={{clear: 'both', width: '600px', margin: '0 auto', textAlign: 'center'}}>
+                        {images}
+                      </div>
+                      
 
 
                       <div className="fields">

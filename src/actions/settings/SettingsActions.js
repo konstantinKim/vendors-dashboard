@@ -1,7 +1,8 @@
 import {  
   SWITCH_TAB,
   UPDATE_PROFILE,
-  UPDATE_PROFILE_SUCCESS
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_IMAGES
 } from '../../constants/Settings'
 
 import { BACKEND_HOST, REQUEST_HEADERS, TOKEN } from '../../config/settings'
@@ -35,7 +36,7 @@ export function initProfileStats() {
 export function updateProfile(data) {       
   var formData  = new FormData();    
   for(let property in data){    
-    if(property.toString() != 'phone' && property.toString() != 'permits' && property.toString() != 'hours' && property.toString() != 'reps'){
+    if(property.toString() != 'phone' && property.toString() != 'permits' && property.toString() != 'associations' && property.toString() != 'hours' && property.toString() != 'reps'){
       formData.append(property.toString(), data[property].toString());              
     }    
   }
@@ -49,6 +50,12 @@ export function updateProfile(data) {
     permits.push(data.permits[i].name.toString().trim().replace(',',';'))
   }
   formData.append('permits', permits.join(','));
+
+  var associations = [];
+  for(let i in data.associations){
+    associations.push(data.associations[i].name.toString().trim().replace(',',';'))
+  }
+  formData.append('associations', associations.join(','));
   
   formData.append('hours', JSON.stringify(data.hours));
 
@@ -66,9 +73,48 @@ export function updateProfile(data) {
   }    
 }
 
+export function addImage(data) {       
+  var formData  = new FormData();  
+  formData.append('image', data);      
+      
+  return dispatch => {    
+    fetch(BACKEND_HOST+'haulers_images.json', 
+    {
+        headers: {'Accept': '*/*', 'Authorization': 'Bearer ' + TOKEN},        
+        method: 'POST',        
+        body: formData
+    })
+    .then(checkResponseStatus)            
+    .then(dispatch(getImages()))
+  }    
+}
+
+export function deleteImage(id) {
+  return dispatch => {    
+    fetch(BACKEND_HOST+'haulers_images/'+id+'.json', 
+    {
+        headers: {'Accept': '*/*', 'Authorization': 'Bearer ' + TOKEN},        
+        method: 'DELETE'        
+    })
+    .then(checkResponseStatus)                
+    .then(dispatch(getImages()))
+    .then(dispatch(getImages()))
+  }     
+}
+
+export function getImages() {       
+  return dispatch => fetch(BACKEND_HOST+'haulers_images.json', {headers: REQUEST_HEADERS})
+        .then(checkResponseStatus)    
+        .then(response => response.json())    
+        .then(json => dispatch(setUpdateImages(json)))    
+}
+
 function setProfileStats(data) {  
   if(!data.permits.length){
     data.permits.push({'name':''})
+  }
+  if(!data.associations.length){
+    data.associations.push({'name':''})
   }  
   
   var hours = {
@@ -148,4 +194,8 @@ function setProfileStats(data) {
 
 function setUpdateProfileStats(data) {          
   return { type: UPDATE_PROFILE_SUCCESS, payload: data };
+}
+
+function setUpdateImages(data) {            
+  return { type: UPDATE_IMAGES, payload: data };
 }

@@ -74,6 +74,7 @@
         }
 
         .opacityFields select{ opacity:0.50 }
+        .hiddenImg{display: none}
     </style>
     
     <script type="text/javascript" src="/_lib/js/vendor/jquery-1.10.0.min.js"></script>
@@ -195,6 +196,12 @@
                 $("#"+id+" select").prop('disabled', false);
             }            
         }
+
+        function slideImg(index){
+            $("div.slide_img").addClass("hiddenImg");
+            $("div.slide_"+index).removeClass("hiddenImg");            
+            return false;
+        }
     </script>  		      	    
     <div class="modal fade" id="myAlert" tabindex="-1">
         <div class="modal-dialog" style="top:35%">
@@ -306,7 +313,7 @@
                 $("#modal-thankyou").modal();
                 return false;
 
-            });  
+            });              
         })          
 
         function setDataTable(id){
