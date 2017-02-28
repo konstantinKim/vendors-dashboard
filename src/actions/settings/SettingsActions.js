@@ -53,7 +53,10 @@ export function updateProfile(data) {
 
   var associations = [];
   for(let i in data.associations){
-    associations.push(data.associations[i].name.toString().trim().replace(',',';'))
+    let name = data.associations[i].name.toString().trim().replace(',',';')
+    if(name){
+      associations.push(data.associations[i].name.toString().trim().replace(',',';'))
+    }    
   }
   formData.append('associations', associations.join(','));
   

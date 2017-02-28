@@ -31,7 +31,8 @@ export default class CompletedProjects extends Component {
                                           <span
                                               style={{borderRight: 'solid 1px #ccc', display: 'table-cell', padding: '15px 0px 15px 7px', width: 281, height: '100%', minHeight: '100%'}}>
                                             {item.name}<br />
-                                            {item.street}
+                                            {item.street}<br />
+                                            {item.city}, {item.state} {item.zipcode} 
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #ccc', display: 'table-cell', padding: '15px 0px 15px 16px', width: 197, height: '100%', minHeight: '100%'}}>

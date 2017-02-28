@@ -163,8 +163,8 @@ export default class Profile extends Component {
         return (
           <div key={'association_'+index}>
             <div className="fields">              
-              <div className="name">{index ? '' : 'Associations *'}</div>
-              <div className="field"><input onChange={::self.handleAssociationChange} value={item.name} type="text" placeholder="Associations" name={index} required /></div>
+              <div className="name">{index ? '' : 'Associations'}</div>
+              <div className="field"><input onChange={::self.handleAssociationChange} value={item.name} type="text" placeholder="Associations" name={index}  /></div>
               <div className="spacer">{index ? <a name={index} className="icon fa fa-remove" style={{marginLeft:'10px', color:'red'}} href="#" onClick={::self.deleteAssociation}></a> : <a style={{marginLeft:'10px'}} href="#" onClick={::self.addAssociation}>Add Another</a>}</div>                      
             </div>
           </div>
