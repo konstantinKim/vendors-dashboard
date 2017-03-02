@@ -2,9 +2,13 @@ import React, { PropTypes, Component } from 'react'
 
 
 export default class ActiveProjects extends Component {   
-    componentWillMount(){                        
-        this.props.activeProjectsActions.getActiveProjects()        
-    }      
+    componentWillMount(){                                        
+        this.props.activeProjectsActions.getActiveProjects()                        
+    }
+
+    componentDidUpdate(){                                                
+        window.zoomImg()
+    }                      
 
     identifyTicket(e){          
           var projectId = e.target.attributes.getNamedItem('data-project-id').value
@@ -52,7 +56,13 @@ export default class ActiveProjects extends Component {
             return this.props.activeProjectsActions.deleteSrTicket(ticket, {'project_index': project_index, 'rtype_index': rtype_index, 'ticket_index': ticket_index})
           }
           return false;          
-    }        
+    }   
+
+    collapseImg(e){
+        e.preventDefault()
+        var index = e.currentTarget.attributes.getNamedItem('data-id').value
+        window.collapseImg(index);
+    }     
 
     render() {                                                        
         var ReactHighcharts = require('react-highcharts');        
@@ -258,7 +268,17 @@ export default class ActiveProjects extends Component {
                                                                         </div>
                                                                         <div className="panel-collapse collapse" id={"collapseOne"+ticket.TICKET_RD_ID}>
                                                                             <div style={{borderTop: 'none', textAlign: 'center'}} className="panel-body">
-                                                                                <img src={imgHost + ticket.image}/>
+                                                                                <div className="zoomControls">
+                                                                                    <button className="rotate_left" type="button" title="Rotate left"> &lt; </button>
+                                                                                    <button className="zoom_out" type="button" title="Zoom out"> - </button>
+                                                                                    <button className="fit" type="button" title="Fit image"> [ ]</button>
+                                                                                    <button onClick={::self.collapseImg} data-id={"#collapseOne"+ticket.TICKET_RD_ID} className="zoom_close" type="button" title="Close"> X</button>
+                                                                                    <button className="zoom_in" type="button" title="Zoom in"> + </button>
+                                                                                    <button className="rotate_right" type="button" title="Rotate right"> &gt; </button>
+                                                                                </div>
+                                                                                <div className='doZoom'>
+                                                                                    <img src={imgHost + ticket.image}/> 
+                                                                                </div>                                                                                
                                                                             </div>
                                                                         </div>
                                                                     </div>

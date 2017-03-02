@@ -86,12 +86,12 @@ export default class AddTicketSrForm extends Component {
       )
     })    
 
-    var selectedFacilitiesList
-    selectedFacilitiesList = projectsPage.selectedSalvageFacilities.map(function (item) {
-      return (        
-          <option key={'sel_fac_'+item.FACILITY_ID} value={item.FACILITY_ID}>{item.name}</option>        
-      )
-    })
+    // var selectedFacilitiesList
+    // selectedFacilitiesList = projectsPage.selectedSalvageFacilities.map(function (item) {
+    //   return (        
+    //       <option key={'sel_fac_'+item.FACILITY_ID} value={item.FACILITY_ID}>{item.name}</option>        
+    //   )
+    // })
 
     var donatedFields
     if(this.props.addTicketSrForm.constructionTypeId == '18'){
@@ -102,9 +102,7 @@ export default class AddTicketSrForm extends Component {
                     <select name="FACILITY_ID" required>
                       <option value=''>-- Select Facility --</option>
                       {facilitiesList}                                                                                              
-                      <optgroup label="Project Selected Facilities">
-                        {selectedFacilitiesList}
-                      </optgroup> 
+                       
                     </select>
               </div>                           
             </div>

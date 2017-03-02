@@ -58,8 +58,14 @@ app.get("/_lib/css/styles-statistics.css", function(req, res) {
 app.get("/_lib/css/styles-recyclersearch.css", function(req, res) {
   res.sendFile(__dirname + '/_lib/css/styles-recyclersearch.css')
 })
+app.get("/_lib/js/guillotine/css/jquery.guillotine.css", function(req, res) {
+  res.sendFile(__dirname + '/_lib/js/guillotine/css/jquery.guillotine.css')
+})
 app.get("/_lib/js/vendor/jquery-1.10.0.min.js", function(req, res) {
   res.sendFile(__dirname + '/_lib/js/vendor/jquery-1.10.0.min.js')
+})
+app.get("/_lib/js/guillotine/js/jquery.guillotine.min.js", function(req, res) {
+  res.sendFile(__dirname + '/_lib/js/guillotine/js/jquery.guillotine.min.js')
 })
 app.get("/_lib/js/vendor/bootstrap-datepicker.js", function(req, res) {
   res.sendFile(__dirname + '/_lib/js/vendor/bootstrap-datepicker.js')
@@ -123,6 +129,9 @@ app.get("/_images/icons/content/close.png", function(req, res) {
 })
 app.get("/_images/icons/content/check-big.png", function(req, res) {
   res.sendFile(__dirname + '/_images/icons/content/check-big.png')
+})
+app.get("/_images/global/user.gif", function(req, res) {
+  res.sendFile(__dirname + '/_images/global/user.gif')
 })
 
 app.listen(port, function(error) {

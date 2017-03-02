@@ -90,12 +90,12 @@ export default class EditTicketSrForm extends Component {
       )
     })    
 
-    var selectedFacilitiesList
-    selectedFacilitiesList = projectsPage.selectedSalvageFacilities.map(function (item) {
-      return (        
-          <option key={'sel_fac_'+item.FACILITY_ID} value={item.FACILITY_ID}>{item.name}</option>        
-      )
-    })
+    // var selectedFacilitiesList
+    // selectedFacilitiesList = projectsPage.selectedSalvageFacilities.map(function (item) {
+    //   return (        
+    //       <option key={'sel_fac_'+item.FACILITY_ID} value={item.FACILITY_ID}>{item.name}</option>        
+    //   )
+    // })
 
     var donatedFields
     if(editTicketSrForm.ticket.CONSTRUCTION_TYPE_ID == 18){
@@ -106,9 +106,7 @@ export default class EditTicketSrForm extends Component {
                     <select name="FACILITY_ID" value={editTicketSrForm.ticket.FACILITY_ID} onChange={::this.handleFormChange} required>
                       <option value=''>-- Select Facility --</option>
                       {facilitiesList}                                                                                              
-                      <optgroup label="Project Selected Facilities">
-                        {selectedFacilitiesList}
-                      </optgroup> 
+                       
                     </select>
               </div>                           
             </div>
