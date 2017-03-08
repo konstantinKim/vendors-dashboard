@@ -148,10 +148,10 @@ export default class ActiveProjects extends Component {
                                                   <div className="header">
                                                       <p style={{fontSize: 14, paddingLeft: 18}}>
                                                           <span
-                                                              style={{fontFamily: 'ArialRegular', paddingLeft: 6}}>{item.street}</span>
+                                                              style={{fontFamily: 'ArialRegular', paddingLeft: 6}}>{item.name} <span style={{paddingLeft: 6, fontFamily: 'ArialRegular', color: '#6fa203'}}>{item.street}, {item.city}, {item.state} {item.zipcode}</span> </span>
                                                       </p><a
-                                                      style={{fontSize: 11, lineHeight: 37, marginLeft: 10, padding: '4px 10px 5px 8px'}}
-                                                      href="#" className="button"><span
+                                                      style={{fontSize: 11, marginLeft: 10, position:'relative', top:'8px'}}
+                                                      href={"https://maps.google.com/?q=" + item.street + ", " + item.city + ", " + item.state + " " + item.zipcode} className="button" target="_blank"><span
                                                       style={{color: '#fff', paddingRight: 3, position: 'relative', top: 2}}
                                                       className="glyphicon glyphicon-map-marker"/>map</a>
                                                   </div>
@@ -181,7 +181,13 @@ export default class ActiveProjects extends Component {
                                                 return(
                                                   <div key={'facility_'+facility.FACILITY_ID+'_'+f_index}>
                                                     <div className="header">
-                                                      <p style={{fontSize: 14, paddingLeft: 18}}>{facility.name}</p>                                                      
+                                                      <p style={{fontSize: 14, paddingLeft: 18}}>{facility.name} <span style={{paddingLeft: 6, fontFamily: 'ArialRegular', color: '#6fa203'}}>{facility.street}, {facility.city}, {facility.state} {facility.zipcode}</span> </p>                                                      
+                                                      <a
+                                                      style={{fontSize: 11, marginLeft: 10, position:'relative', top:'8px'}}
+                                                      href={"https://maps.google.com/?q=" + facility.street + ", " + facility.city + ", " + facility.state + " " + facility.zipcode} className="button" target="_blank"><span
+                                                      style={{color: '#fff', paddingRight: 3, position: 'relative', top: 2}}
+                                                      className="glyphicon glyphicon-map-marker"/>map
+                                                      </a>
                                                     </div>
                                                     <div>
                                                       <div style={{lineHeight: '26px', fontSize: '14px', marginTop: '-1px', width: '100%'}}

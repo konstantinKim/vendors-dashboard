@@ -93,7 +93,7 @@ function setAuthData(data) {
     localStorage.setItem('token', data.token);        
     localStorage.setItem('email', data.email);
     localStorage.setItem('name', data.contact);
-    localStorage.setItem('company', data.name);    
+    localStorage.setItem('company', data.company);    
     window.location = '/'
   }
   
@@ -116,7 +116,7 @@ function setSignUpData(data) {
     localStorage.setItem('token', data.token);        
     localStorage.setItem('email', data.email);
     localStorage.setItem('name', data.contact);
-    localStorage.setItem('company', data.name);
+    localStorage.setItem('company', data.company);
     localStorage.setItem('isFirstLogin', 'true');
     window.location = '/settings'
   }     

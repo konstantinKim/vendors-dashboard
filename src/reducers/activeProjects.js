@@ -221,7 +221,7 @@ export default function activeProjects(state = initialState, action) {
 
       //Add New Facility and push ticket to it
       if(newFacility == true && newProjects.length > 0){        
-        newProjects[project_index].facilities.push({'FACILITY_ID':action.payload.FACILITY_ID, 'name':action.payload.facility, 'tickets':[action.payload]})        
+        newProjects[project_index].facilities.push({'FACILITY_ID':action.payload.FACILITY_ID, 'name':action.payload.facility, 'street':action.payload.facility_street, 'city':action.payload.facility_city, 'state':action.payload.facility_state, 'zipcode':action.payload.facility_zipcode, 'tickets':[action.payload]})        
       }
 
       newProjects[project_index] = setChartConfig(setStatistic(newProjects[project_index]))       
@@ -270,7 +270,7 @@ export default function activeProjects(state = initialState, action) {
         }
 
         if(!found){
-          project.facilities.push({'name': action.payload.facility, 'FACILITY_ID': action.payload.FACILITY_ID, 'tickets': [action.payload]})
+          project.facilities.push({'FACILITY_ID':action.payload.FACILITY_ID, 'name':action.payload.facility, 'street':action.payload.facility_street, 'city':action.payload.facility_city, 'state':action.payload.facility_state, 'zipcode':action.payload.facility_zipcode, 'tickets':[action.payload]})
         }                
       }
       
