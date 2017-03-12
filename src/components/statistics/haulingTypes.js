@@ -13,11 +13,33 @@ export default class HaulingTypes extends Component {
   componentDidUpdate(){        
     //window.setDataTable('statistics-table')    
   }
+
+  exportExcel(e){
+    e.preventDefault()
+    const { haulingTypes } = this.props.statistics
+    var A = [['Debris Box Service','Hauiling Service','Self Haul'], [haulingTypes.debris, haulingTypes.hauling,haulingTypes.haulingSelf]];        
+    
+    var csvRows = [];
+    for(var i=0, l=A.length; i<l; ++i){
+        csvRows.push(A[i].join(','));        
+    }    
+
+    var csvString = csvRows.join('\n');
+    var a         = document.createElement('a');
+    a.href        = 'data:attachment/csv,' +  encodeURIComponent(csvString);
+    a.target      = '_blank';
+    a.download    = 'HaulingTypesStatistics.csv';
+
+    document.body.appendChild(a);
+    a.click();      
+  }
   
   render() {         
     var ReactHighcharts = require('react-highcharts');                
     const { imgHost, statisticsActions, statistics } = this.props                                        
     const { haulingTypes, stats, currentTab } = this.props.statistics
+    const self = this
+
     return <div>                  
       <div>
         <div id="global-main-top-bar" className="container-gh">
@@ -90,7 +112,8 @@ export default class HaulingTypes extends Component {
           <div style={{margin: '-1px 0px 0px 31px'}} id="statistics-filter" className="row">
             <div className="col-ghgrid-4">
               <div className="left">
-                <a onClick={window.doPrint} style={{marginLeft: 0, cursor:'pointer'}} className="button-print">Print</a><a href="#" className="button-print">Excel</a>
+                <a onClick={window.doPrint} style={{marginLeft: 0, cursor:'pointer'}} className="button-print">Print</a>
+                <a onClick={::self.exportExcel} href="#" className="button-print">Excel</a>
               </div>
             </div>
             <div className="col-ghgrid-4">

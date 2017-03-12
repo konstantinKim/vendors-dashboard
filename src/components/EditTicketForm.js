@@ -45,7 +45,9 @@ export default class EditTicketForm extends Component {
   }    
 
   handleFormChange(e){    
-    this.props.editTicketForm[e.currentTarget.name] = e.currentTarget.value    
+    this.props.editTicketForm[e.currentTarget.name] = e.currentTarget.value
+    console.log(this.refs['ticket_date'])    
+    this.props.editTicketForm['thedate'] = this.refs['update_calendar'].value
     return this.props.editTicketFormActions.setUpdateTicketData(this.props.editTicketForm, this.props.editTicketForm.CITY_ID, this.props.editTicketForm.indexes)
   }    
 

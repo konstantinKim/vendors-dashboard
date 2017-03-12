@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import RatesInfo from '../../components/statistics/ratesInfo'
 import Tabs from '../../components/statistics/tabs'
 import Filter from '../../components/statistics/filter'
+import * as numberFormat from '../../helpers/numberFormat'
 
 export default class BuildingTypes extends Component {  
 
@@ -13,11 +14,49 @@ export default class BuildingTypes extends Component {
   componentDidUpdate(){        
     window.setDataTable('statistics-table')    
   }
+
+  exportExcel(e){
+    e.preventDefault()
+    var A = [['Building Type','Projects','Total (tons)','Total(%)','Reused (tons)','Reused (%)','Recycled (tons)','Recycled (%)','Disposed (tons)','Disposed (%)']];
+
+    var list = this.props.statistics.buildingTypes.projectTypesList
+    var ll = list.length    
+
+    for(var k=0; k < ll; ++k){
+      var row = []
+      row.push('"'+list[k].name+'"')
+      row.push(list[k].projects)
+      row.push('"' + numberFormat.addCommas(list[k].totalTons) + '"')
+      row.push('"' + numberFormat.addCommas(list[k].totalPercent) + '"')
+      row.push('"' + numberFormat.addCommas(list[k].reused) + '"')
+      row.push('"' + numberFormat.addCommas(list[k].reusedPercent) + '"')
+      row.push('"' + numberFormat.addCommas(list[k].recycled) + '"')
+      row.push('"' + numberFormat.addCommas(list[k].recycledPercent) + '"')
+      row.push('"' + numberFormat.addCommas(list[k].disposed) + '"')
+      row.push('"' + numberFormat.addCommas(list[k].disposedPercent) + '"')
+      A.push(row)
+    }
+    
+    var csvRows = [];
+    for(var i=0, l=A.length; i<l; ++i){
+        csvRows.push(A[i].join(','));        
+    }    
+
+    var csvString = csvRows.join('\n');
+    var a         = document.createElement('a');
+    a.href        = 'data:attachment/csv,' +  encodeURIComponent(csvString);
+    a.target      = '_blank';
+    a.download    = 'BuildingTypesStatistics.csv';
+
+    document.body.appendChild(a);
+    a.click();      
+  }
   
   render() {         
     var ReactHighcharts = require('react-highcharts');                
     const { imgHost, statisticsActions, statistics } = this.props                                        
     const { buildingTypes, stats, currentTab } = this.props.statistics
+    const self = this
 
     var listTemplate
     if(buildingTypes.projectTypesList.length > 0){
@@ -26,14 +65,14 @@ export default class BuildingTypes extends Component {
           <tr key={'pt_' + index}>
             <td className="column-title">{item.name}</td>
             <td className="column-stats">{item.projects}</td>
-            <td className="column-stats">{item.totalTons}</td>
-            <td className="column-stats">{item.totalPercent}%</td>
-            <td className="column-stats">{item.reused}</td>
-            <td className="column-stats">{item.reusedPercent}%</td>
-            <td className="column-stats">{item.recycled}</td>
-            <td className="column-stats">{item.recycledPercent}%</td>
-            <td className="column-stats">{item.disposed}</td>
-            <td className="column-stats">{item.disposedPercent}%</td>
+            <td className="column-stats">{numberFormat.addCommas(item.totalTons)}</td>
+            <td className="column-stats">{numberFormat.addCommas(item.totalPercent)}%</td>
+            <td className="column-stats">{numberFormat.addCommas(item.reused)}</td>
+            <td className="column-stats">{numberFormat.addCommas(item.reusedPercent)}%</td>
+            <td className="column-stats">{numberFormat.addCommas(item.recycled)}</td>
+            <td className="column-stats">{numberFormat.addCommas(item.recycledPercent)}%</td>
+            <td className="column-stats">{numberFormat.addCommas(item.disposed)}</td>
+            <td className="column-stats">{numberFormat.addCommas(item.disposedPercent)}%</td>
           </tr>
         )
       })
@@ -98,6 +137,9 @@ export default class BuildingTypes extends Component {
           {/* end chart line */}
         </div>
         {/* end charts */}
+        
+        <div className="print-page-break"></div>
+        
         {/* statistics overall bar */}
         <div style={{marginTop: 0}} id="global-main-top-bar" className="container-gh">
           <div className="row">
@@ -112,7 +154,8 @@ export default class BuildingTypes extends Component {
           <div style={{margin: '-1px 0px 0px 31px'}} id="statistics-filter" className="row">
             <div className="col-ghgrid-4">
               <div className="left">
-                <a onClick={window.doPrint} style={{marginLeft: 0, cursor:'pointer'}} className="button-print">Print</a><a href="#" className="button-print">Excel</a>
+                <a onClick={window.doPrint} style={{marginLeft: 0, cursor:'pointer'}} className="button-print">Print</a>
+                <a onClick={::self.exportExcel} href="#" className="button-print">Excel</a>
               </div>
             </div>
             <div className="col-ghgrid-4">
@@ -145,14 +188,14 @@ export default class BuildingTypes extends Component {
                     <tr>
                       <th className="column-title-footer">&nbsp;&nbsp;Total</th>
                       <th className="column-stats-footer">{buildingTypes.totalProjects}</th>
-                      <th className="column-stats-footer">{buildingTypes.totalTons}</th>
+                      <th className="column-stats-footer">{numberFormat.addCommas(buildingTypes.totalTons)}</th>
                       <th className="column-stats-footer">100%</th>
-                      <th className="column-stats-footer">{buildingTypes.reused}</th>
-                      <th className="column-stats-footer">{buildingTypes.reusedPercent}%</th>
-                      <th className="column-stats-footer">{buildingTypes.recycled}</th>
-                      <th className="column-stats-footer">{buildingTypes.recycledPercent}%</th>
-                      <th className="column-stats-footer">{buildingTypes.disposed}</th>
-                      <th className="column-stats-footer">{buildingTypes.disposedPercent}%</th>
+                      <th className="column-stats-footer">{numberFormat.addCommas(buildingTypes.reused)}</th>
+                      <th className="column-stats-footer">{numberFormat.addCommas(buildingTypes.reusedPercent)}%</th>
+                      <th className="column-stats-footer">{numberFormat.addCommas(buildingTypes.recycled)}</th>
+                      <th className="column-stats-footer">{numberFormat.addCommas(buildingTypes.recycledPercent)}%</th>
+                      <th className="column-stats-footer">{numberFormat.addCommas(buildingTypes.disposed)}</th>
+                      <th className="column-stats-footer">{numberFormat.addCommas(buildingTypes.disposedPercent)}%</th>
                     </tr>
                   </tfoot>
                   <tbody>

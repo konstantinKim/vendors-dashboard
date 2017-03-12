@@ -149,7 +149,7 @@ export default class Profile extends Component {
           <div key={'permit_'+index}>
             <div className="fields">              
               <div className="name">{index ? '' : 'Permits/Licenses *'}</div>
-              <div className="field"><input onChange={::self.handlePermitChange} value={item.name} type="text" placeholder="State License, business license, certifications, etc." name={index} required /></div>
+              <div className="field"><input onChange={::self.handlePermitChange} value={item.name} type="text" placeholder="License information (i.e contractor license, state license, etc.)" name={index} required /></div>
               <div className="spacer">{index ? <a name={index} className="icon fa fa-remove" style={{marginLeft:'10px', color:'red'}} href="#" onClick={::self.deletePermit}></a> : <a style={{marginLeft:'10px'}} href="#" onClick={::self.addPermit}>Add Another</a>}</div>                      
             </div>
           </div>

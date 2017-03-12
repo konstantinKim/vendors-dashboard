@@ -152,7 +152,7 @@ export function updateTicketSr(data, file, material_image_1, material_image_2, m
   formData.append('material_image_1', material_image_1.files[0]);
   formData.append('material_image_2', material_image_2.files[0]);
   formData.append('material_image_3', material_image_3.files[0]);
-  formData.append('material_image_4', material_image_4.files[0]);  
+  formData.append('material_image_4', material_image_4.files[0]);    
 
   return dispatch => {    
     dispatch(onOffEditSrTicketForm('True'));

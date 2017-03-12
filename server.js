@@ -58,6 +58,9 @@ app.get("/_lib/css/styles-statistics.css", function(req, res) {
 app.get("/_lib/css/styles-recyclersearch.css", function(req, res) {
   res.sendFile(__dirname + '/_lib/css/styles-recyclersearch.css')
 })
+app.get("/_lib/css/styles-print.css", function(req, res) {
+  res.sendFile(__dirname + '/_lib/css/styles-print.css')
+})
 app.get("/_lib/js/guillotine/css/jquery.guillotine.css", function(req, res) {
   res.sendFile(__dirname + '/_lib/js/guillotine/css/jquery.guillotine.css')
 })

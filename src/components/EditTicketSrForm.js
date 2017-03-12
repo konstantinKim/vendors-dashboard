@@ -13,6 +13,7 @@ export default class EditTicketSrForm extends Component {
   onEditTicketSrSubmit(e){    
     e.preventDefault()    
     if(this.props.isDisableEditTicketSrForm == 'False'){
+      this.props.editTicketSrForm.ticket['thedate_ticket'] = this.refs['ticket_date'].value
       return this.props.activeProjectsActions.updateTicketSr(this.props.editTicketSrForm, this.refs['ticket_file'], this.refs['material_image_1'], this.refs['material_image_2'], this.refs['material_image_3'], this.refs['material_image_4'])    
     }
     else{
@@ -53,7 +54,7 @@ export default class EditTicketSrForm extends Component {
     else{
       this.props.editTicketSrForm.ticket[e.currentTarget.name] = e.currentTarget.value    
     }
-    
+    this.props.editTicketSrForm.ticket['thedate_ticket'] = this.refs['ticket_date'].value    
     return this.props.editTicketSrFormActions.setUpdateTicketSrData(this.props.editTicketSrForm.ticket, this.props.editTicketSrForm.indexes, this.props.editTicketSrForm.CITY_ID)
   }      
 
@@ -128,7 +129,7 @@ export default class EditTicketSrForm extends Component {
             <div className="row" style={{paddingTop: '10px'}}>
                 <div style={{lineHeight: '34px', textAlign: 'right'}} className="column-15 no-border">Ticket Date * </div>
                 <div className="column-35 no-border">
-                      <input type="text" placeholder="enter ticket date" required="required" name="thedate_ticket" className="editTicketSrFormCalendar" data-date-format="yyyy-mm-dd" value={editTicketSrForm.ticket.thedate_ticket} onChange={::this.handleFormChange} readOnly="readonly" />
+                      <input ref="ticket_date" type="text" placeholder="enter ticket date" required="required" name="thedate_ticket" className="editTicketSrFormCalendar" data-date-format="yyyy-mm-dd" value={editTicketSrForm.ticket.thedate_ticket} onChange={::this.handleFormChange} readOnly="readonly" />
                 </div>                           
             </div>
       </div>

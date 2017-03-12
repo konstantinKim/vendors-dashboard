@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-
+import * as numberFormat from '../helpers/numberFormat'
 
 export default class CompletedProjects extends Component {
     componentWillMount(){                        
@@ -180,8 +180,8 @@ export default class CompletedProjects extends Component {
                                                                                     </div>
                                                                                     <div className="column-11 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={ticket.material}>{ticket.material}</div>
                                                                                     <div className="column-16 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={ticket.submitted_by}>{ticket.submitted_by}</div>
-                                                                                    <div className="column-10 no-border">{ticket.weight}</div>
-                                                                                    <div className="column-10 no-border">{ticket.recycled}</div>
+                                                                                    <div className="column-10 no-border">{numberFormat.addCommas(ticket.weight)}</div>
+                                                                                    <div className="column-10 no-border">{numberFormat.addCommas(ticket.recycled)}</div>
                                                                                     <div className="column-11 no-border">{ticket.rate_used}%</div>
                                                                                     <div className="column-11 no-border">{ticket.thedate}</div>                                                                                    
                                                                                     <div
@@ -268,8 +268,8 @@ export default class CompletedProjects extends Component {
                                                                                     </div>
                                                                                     <div className="column-11 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={sr_ticket.material}>{sr_ticket.material}</div>
                                                                                     <div className="column-16 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={sr_ticket.submitted_by}>{sr_ticket.submitted_by}</div>
-                                                                                    <div className="column-10 no-border">{sr_ticket.weight}</div>
-                                                                                    <div className="column-10 no-border">{sr_ticket.weight}</div>
+                                                                                    <div className="column-10 no-border">{parseFloat(sr_ticket.weight).toFixed(2)}</div>
+                                                                                    <div className="column-10 no-border">{parseFloat(sr_ticket.weight).toFixed(2)}</div>
                                                                                     <div className="column-11 no-border">{sr_ticket.percentage}%</div>
                                                                                     <div className="column-11 no-border">{sr_ticket.thedate_ticket}</div>                                                                                    
                                                                                     <div

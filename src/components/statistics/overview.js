@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import RatesInfo from '../../components/statistics/ratesInfo'
 import Tabs from '../../components/statistics/tabs'
 import Filter from '../../components/statistics/filter'
+import * as numberFormat from '../../helpers/numberFormat'
 
 export default class Overview extends Component {    
   componentDidMount(){                
@@ -132,18 +133,18 @@ export default class Overview extends Component {
                 <p><span className="line">&nbsp;</span></p>
               </div>
               <div className="content">
-                <p><span className="left">Avg. Ticket Weight</span> <span className="right">{recyclingTotals.avgTicketWeight} t</span></p>
+                <p><span className="left">Avg. Ticket Weight</span> <span className="right">{numberFormat.addCommas(recyclingTotals.avgTicketWeight)} t</span></p>
               </div>
             </div>
             <div className="col-gh-3">
               <div className="content">
-                <p><span className="left">Total Sq. Ft.</span> <span className="right">{recyclingTotals.totalSqFt} sq ft</span></p>
+                <p><span className="left">Total Sq. Ft.</span> <span className="right">{numberFormat.addCommas(recyclingTotals.totalSqFt)} sq ft</span></p>
               </div>
               <div className="content">
                 <p><span className="line">&nbsp;</span></p>
               </div>
               <div className="content">
-                <p><span className="left">Total Dollar Val.</span> <span className="right">${recyclingTotals.totalDollarVal}</span></p>
+                <p><span className="left">Total Dollar Val.</span> <span className="right">${numberFormat.addCommas(recyclingTotals.totalDollarVal)}</span></p>
               </div>
               <div className="content">
                 <p><span className="line">&nbsp;</span></p>
@@ -155,7 +156,7 @@ export default class Overview extends Component {
                 <p><span className="line">&nbsp;</span></p>
               </div>
               <div className="content">
-                <p><span className="left">Avg. Project Tonnage</span> <span className="right">{recyclingTotals.avgProjectTonnage} t</span></p>
+                <p><span className="left">Avg. Project Tonnage</span> <span className="right">{numberFormat.addCommas(recyclingTotals.avgProjectTonnage)} t</span></p>
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react'
+import * as numberFormat from '../helpers/numberFormat'
 
 
 export default class ActiveProjects extends Component {   
@@ -25,13 +26,13 @@ export default class ActiveProjects extends Component {
           return this.props.editTicketFormActions.setUpdateTicketData(ticket, this.props.projects[project_index].CITY_ID, {'project_index': project_index, 'facility_index': facility_index, 'ticket_index': ticket_index}, this.props.projects[project_index].PROJECT_ID)
     }
 
-    setUpdateTicketSrData(e){                              
+    setUpdateTicketSrData(e){                                        
           var project_index = e.currentTarget.attributes.getNamedItem('data-project-index').value
           var rtype_index = e.currentTarget.attributes.getNamedItem('data-rtype-index').value                    
           var ticket_index = e.currentTarget.attributes.getNamedItem('data-ticket-index').value                              
-          var ticket = this.props.projects[project_index].reused_types[rtype_index].tickets[ticket_index]
+          var sr_ticket = this.props.projects[project_index].reused_types[rtype_index].tickets[ticket_index]
           this.props.projectsActions.getSalvageFacilities(this.props.projects[project_index].CITY_ID, 7, this.props.projects[project_index].PROJECT_ID)
-          return this.props.editTicketSrFormActions.setUpdateTicketSrData(ticket, {'project_index': project_index, 'rtype_index': rtype_index, 'ticket_index': ticket_index}, this.props.projects[project_index].CITY_ID)
+          return this.props.editTicketSrFormActions.setUpdateTicketSrData(sr_ticket, {'project_index': project_index, 'rtype_index': rtype_index, 'ticket_index': ticket_index}, this.props.projects[project_index].CITY_ID)
     }
 
     deleteTicket(e){
@@ -247,8 +248,8 @@ export default class ActiveProjects extends Component {
                                                                                     </div>
                                                                                     <div className="column-11 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={ticket.material}>{ticket.material}</div>
                                                                                     <div className="column-16 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={ticket.submitted_by}>{ticket.submitted_by}</div>
-                                                                                    <div className="column-10 no-border">{ticket.weight}</div>
-                                                                                    <div className="column-10 no-border">{ticket.recycled}</div>
+                                                                                    <div className="column-10 no-border">{numberFormat.addCommas(ticket.weight)}</div>
+                                                                                    <div className="column-10 no-border">{numberFormat.addCommas(ticket.recycled)}</div>
                                                                                     <div className="column-11 no-border">{ticket.percentage}%</div>
                                                                                     <div className="column-11 no-border">{ticket.thedate}</div>                                                                                    
                                                                                     <div
@@ -352,8 +353,8 @@ export default class ActiveProjects extends Component {
                                                                                     </div>
                                                                                     <div className="column-11 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={sr_ticket.material}>{sr_ticket.material}</div>
                                                                                     <div className="column-16 no-border" style={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', border: 'none'}} title={sr_ticket.submitted_by}>{sr_ticket.submitted_by}</div>
-                                                                                    <div className="column-10 no-border">{sr_ticket.weight}</div>
-                                                                                    <div className="column-10 no-border">{sr_ticket.weight}</div>
+                                                                                    <div className="column-10 no-border">{numberFormat.addCommas(sr_ticket.weight)}</div>
+                                                                                    <div className="column-10 no-border">{numberFormat.addCommas(sr_ticket.weight)}</div>
                                                                                     <div className="column-11 no-border">{sr_ticket.percentage}%</div>
                                                                                     <div className="column-11 no-border">{sr_ticket.thedate_ticket}</div>                                                                                    
                                                                                     <div

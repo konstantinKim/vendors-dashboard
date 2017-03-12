@@ -24,6 +24,12 @@ export default class AddTicketSrForm extends Component {
         }
         
       }
+      
+      if(inventory.length < 1){
+        alert('Please choose Materials')
+        return false;    
+      }
+      
       inventory = inventory.join()            
       inputs.inventory = inventory      
       inputs.CONSTRUCTION_TYPE_ID = this.props.addTicketSrForm.constructionTypeId

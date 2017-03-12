@@ -26,6 +26,8 @@
     
     <link rel="stylesheet" href="/_lib/js/guillotine/css/jquery.guillotine.css" type="text/css" />
 
+    <link rel="stylesheet" type="text/css" media="print" href="/_lib/css/styles-print.css">
+
     
     <style>
 		#chart-donut-container { border: none; margin: 24px auto 0px auto; overflow: hidden; padding: 0; width: 100%; height: auto; }
@@ -166,6 +168,8 @@
     <script type="text/javascript">
         function setCalendar(className){
             $('.'+className).datepicker({ dateFormat: 'yy-mm-dd' }).on('changeDay', function (e) {
+                //console.log($(this).val());
+                //return false;
                 $('.'+className).datepicker('hide');
             });                        
         }
