@@ -9,5 +9,10 @@ export function addCommas(nStr)
     while (rgx.test(x1)) {
         x1 = x1.replace(rgx, '$1' + ',' + '$2');
     }
-    return x1 + x2;
+    if(x2 != '.00'){
+        return x1 + x2;
+    } 
+    else{
+        return x1;
+    }
 }

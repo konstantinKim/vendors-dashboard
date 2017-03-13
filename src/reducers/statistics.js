@@ -10,6 +10,8 @@ import {
   SET_DATE_RANGE
 } from '../constants/Statistics'
 
+import * as numberFormat from '../helpers/numberFormat'
+
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
@@ -117,7 +119,15 @@ function donutChartConfig(data){
         {
           connectorPadding: 10,
           enabled: true,
-          format: '<b>{point.name}</b>: {point.y}',
+          //format: '<b>{point.name}</b>: {point.y}',
+          formatter: function() {
+            var pname = this.point.name;
+            if (pname.length > 45)
+            {
+              pname = pname.slice(0, 21) + '...' + pname.slice(-21);
+            }
+            return '<b>'+ pname +'</b>: '+ numberFormat.addCommas(this.y) +'';
+          },
           style:
           {
             fontFamily: 'Arial',
@@ -145,7 +155,7 @@ function donutChartConfig(data){
       //pointFormat: '<span style="color: #fff;"><b>{point.name}</b>: {point.y}</span>',
       formatter: function ()
       {
-        return '<span style="color: #fff;"><b>' + this.point.name + '</b>: ' + this.point.y + ' (' + this.percentage + '%)</span>';
+        return '<span style="color: #fff;"><b>' + this.point.name + '</b>: ' + numberFormat.addCommas(this.point.y) + ' (' + numberFormat.addCommas(this.percentage) + '%)</span>';
       }
     }          
   }
@@ -193,7 +203,16 @@ function timeLineChartConfig(timeLineData, categories, title='In Tons'){
     series: timeLineData,
     tooltip:
     {
-        backgroundColor: 'rgba(255, 255, 255, 0)', borderWidth: 0, enabled: true, headerFormat: '<span style="color: #fff;"><b>{point.key}</b></span>', pointFormat: '<span style="color: #fff;"><b>{series.name}</b>: {point.y}</span>', shadow: false, useHTML: true
+        backgroundColor: 'rgba(255, 255, 255, 0)', 
+        borderWidth: 0, 
+        enabled: true, 
+        headerFormat: '<span style="color: #fff;"><b>{point.key}</b></span>', 
+        //pointFormat: '<span style="color: #fff;"><b>{series.name}</b>: {point.y}</span>', 
+        formatter: function() {
+                return '<span style="color: #fff;"><b>'+ this.series.name +'</b>: ' + numberFormat.addCommas(this.y) +' </span>';
+        },
+        shadow: false, 
+        useHTML: true
 
     }
   }
@@ -319,9 +338,9 @@ function setHaulingChartConfig(data) {
   //OVERVIEW DONUT CHART
   let chartData = []      
   
-  chartData.push([ 'debris', data.debris ])
-  chartData.push([ 'service', data.hauling ])
-  chartData.push([ 'self_hauler', data.haulingSelf ])
+  chartData.push([ 'Debris Box Service', parseInt(data.debris)])
+  chartData.push([ 'Hauiling Service', parseInt(data.hauling) ])
+  chartData.push([ 'Self Haul', parseInt(data.haulingSelf) ])
     
 
   let timeLineData = []
@@ -330,8 +349,9 @@ function setHaulingChartConfig(data) {
     for (let item in data.timelineStats[attr]){
       attrData.push(parseFloat(data.timelineStats[attr][item]))
     }
-    timeLineData.push({ name: attr,  data: attrData, lineWidth: 2, marker: { fillColor: '#fff', lineWidth: 2, lineColor: null, radius: 4, symbol: 'circle' } })
-  }
+    var names = {'debris': 'Debris Box Service', 'self_hauler': 'Hauiling Service', 'service': 'Self Haul' }    
+    timeLineData.push({ name: names[attr],  data: attrData, lineWidth: 2, marker: { fillColor: '#fff', lineWidth: 2, lineColor: null, radius: 4, symbol: 'circle' } })
+  }  
 
   data.donutChart = donutChartConfig(chartData)      
   data.timelineChart = timeLineChartConfig(timeLineData, data.chartCategories)
