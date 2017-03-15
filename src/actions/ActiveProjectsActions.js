@@ -105,7 +105,7 @@ export function deleteSrTicket(ticket, indexes) {
 export function addTicketSr(data, file, material_image_1, material_image_2, material_image_3, material_image_4) {       
   var formData  = new FormData();  
   for (var i = 0; i < data.length; i++) {
-    if(data[i].name != 'CONSTRUCTION_TYPE_ID' && data[i].name != 'image' && data[i].name != 'material_image_1' && data[i].name != 'material_image_2' && data[i].name != 'material_image_3' && data[i].name != 'material_image_4'){
+    if(data[i].name != 'CONSTRUCTION_TYPE_ID' && data[i].name != 'image' && data[i].name != 'material_image_1' && data[i].name != 'material_image_2' && data[i].name != 'material_image_3' && data[i].name != 'material_image_4'){        
         formData.append(data[i].name, data[i].value);
     }        
   }
@@ -120,8 +120,8 @@ export function addTicketSr(data, file, material_image_1, material_image_2, mate
   formData.append('material_image_1', material_image_1.files[0]);
   formData.append('material_image_2', material_image_2.files[0]);
   formData.append('material_image_3', material_image_3.files[0]);
-  formData.append('material_image_4', material_image_4.files[0]);
-  console.log(formData.get('CONSTRUCTION_TYPE_ID'))
+  formData.append('material_image_4', material_image_4.files[0]);  
+  
   return dispatch => {
     dispatch(addTicketRequest());
     fetch(BACKEND_HOST+'tickets_sr.json', 

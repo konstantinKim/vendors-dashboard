@@ -13,7 +13,10 @@ export default class EditTicketSrForm extends Component {
   onEditTicketSrSubmit(e){    
     e.preventDefault()    
     if(this.props.isDisableEditTicketSrForm == 'False'){
-      this.props.editTicketSrForm.ticket['thedate_ticket'] = this.refs['ticket_date'].value
+      if (this.refs['ticket_date'] != undefined){
+        this.props.editTicketSrForm.ticket['thedate_ticket'] = this.refs['ticket_date'].value
+      }
+      
       return this.props.activeProjectsActions.updateTicketSr(this.props.editTicketSrForm, this.refs['ticket_file'], this.refs['material_image_1'], this.refs['material_image_2'], this.refs['material_image_3'], this.refs['material_image_4'])    
     }
     else{
@@ -54,7 +57,10 @@ export default class EditTicketSrForm extends Component {
     else{
       this.props.editTicketSrForm.ticket[e.currentTarget.name] = e.currentTarget.value    
     }
-    this.props.editTicketSrForm.ticket['thedate_ticket'] = this.refs['ticket_date'].value    
+    
+    if (this.refs['ticket_date'] != undefined){
+      this.props.editTicketSrForm.ticket['thedate_ticket'] = this.refs['ticket_date'].value    
+    }    
     return this.props.editTicketSrFormActions.setUpdateTicketSrData(this.props.editTicketSrForm.ticket, this.props.editTicketSrForm.indexes, this.props.editTicketSrForm.CITY_ID)
   }      
 
