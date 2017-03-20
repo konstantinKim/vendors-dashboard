@@ -33,9 +33,15 @@ export default class ActiveProjects extends Component {
         e.preventDefault()
         var projectId = e.target.attributes.getNamedItem('data-project-id').value        
         var projectIndex = getProjectIndex(projectId, this.props.projects)
-        if(this.props.projects[projectIndex].vendor_terms_agree == 'true'){            
-            this.props.activeProjectsActions.submitFinal(projectId)
-            this.props.activeProjectsActions.getActiveProjects()
+        if(this.props.projects[projectIndex].vendor_terms_agree == 'true'){
+            if(confirm('Are you sure you want to submit this project?')){
+                this.props.activeProjectsActions.submitFinal(projectId)
+                this.props.activeProjectsActions.getActiveProjects()
+            }
+            else{
+                return false
+            }            
+            
         }
         else{
           window.doMessage('Please agree to all the Terms and Conditions before begin reporting.')              
