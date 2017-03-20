@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import * as numberFormat from '../helpers/numberFormat'
+import { getProjectIndex } from '../store/enhancers/projects'
 
 
 export default class ActiveProjects extends Component {   
@@ -9,12 +10,49 @@ export default class ActiveProjects extends Component {
 
     componentDidUpdate(){                                                
         window.zoomImg()
+    }
+
+    showTerms(e){ 
+        e.preventDefault()         
+        var projectId = e.target.attributes.getNamedItem('data-id').value                
+        window.doMessage(this.props.projects[projectId].vendor_terms, 'Terms and Conditions')  
+    }
+
+    agreeTerms(e){                  
+        var projectId = e.target.attributes.getNamedItem('data-project-id').value
+        var projectIndex = e.target.attributes.getNamedItem('data-id').value                        
+        if(this.props.projects[projectIndex].vendor_terms_agree != 'true'){
+            this.props.activeProjectsActions.agreeTerms(projectId, projectIndex)
+        }
+        else{
+            return true              
+        }        
+    }
+
+    submitFinal(e){          
+        e.preventDefault()
+        var projectId = e.target.attributes.getNamedItem('data-project-id').value        
+        var projectIndex = getProjectIndex(projectId, this.props.projects)
+        if(this.props.projects[projectIndex].vendor_terms_agree == 'true'){            
+            this.props.activeProjectsActions.submitFinal(projectId)
+            this.props.activeProjectsActions.getActiveProjects()
+        }
+        else{
+          window.doMessage('Please agree to all the Terms and Conditions before begin reporting.')              
+        }        
+        
     }                      
 
-    identifyTicket(e){          
+    identifyTicket(e){
           var projectId = e.target.attributes.getNamedItem('data-project-id').value
           var cityId = e.target.attributes.getNamedItem('data-project-city-id').value
-          return this.props.addTicketFormActions.identifyTicket(projectId, cityId)
+          var projectIndex = getProjectIndex(projectId, this.props.projects)
+          if(this.props.projects[projectIndex].vendor_terms_agree == 'true'){
+            return this.props.addTicketFormActions.identifyTicket(projectId, cityId)
+          }
+          else{
+            window.doMessage('Please agree to all the Terms and Conditions before begin reporting.')            
+          }          
     }
 
     setUpdateTicketData(e){                              
@@ -79,9 +117,14 @@ export default class ActiveProjects extends Component {
                                className="panel-group">
                               <div style={{background: 'none', marginTop: '-2px'}} className="panel panel-default">
                                   <a id={"add_ticket_btn_"+item.PROJECT_ID} onClick={::self.identifyTicket} style={{float: 'right', marginBottom: '-33px', padding: '2px 17px 5px 10px', position: 'relative', top: 10, right: '10%'}}
-                                     href="#" data-reveal-id="add_new_ticket" data-animation="fade" data-project-id={item.PROJECT_ID} data-project-city-id={item.CITY_ID} className="button"><span
+                                     href="#" data-reveal-id={item.vendor_terms_agree == 'true'? 'add_new_ticket':'' } data-animation="fade" data-project-id={item.PROJECT_ID} data-project-city-id={item.CITY_ID} className="button"><span
                                       style={{font: 'normal 20px ArialRegular', position: 'relative', top: 2}}>+ </span>Add
                                       New Ticket</a>
+                                  <span style={{position: 'relative', float: 'right', marginBottom: '-33px', top: '55px', right: '105px'}}>
+                                    <input onChange={::self.agreeTerms} data-id={index} data-project-id={item.PROJECT_ID} type="checkbox" checked={item.vendor_terms_agree == 'true'? 'checked':'' } />&nbsp;
+                                    <a onClick={::self.showTerms} href="#" data-id={index} >Project and Terms Accepted</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a onClick={::self.submitFinal} data-project-id={item.PROJECT_ID} href="#">Reporting Completed</a>
+                                  </span>    
                                   <a href={'#collapse'+item.PROJECT_ID} data-parent="#accordion-main" data-toggle="collapse">
                                       <div
                                           style={{color: '#333', margin: '0px 0px -5px 0px', width: '100%', height: '100%', minHeight: '100%'}}
@@ -100,7 +143,7 @@ export default class ActiveProjects extends Component {
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #fff', display: 'table-cell', fontFamily: 'ArialBold', padding: '15px 0px 15px 17px', width: 477, height: '100%', minHeight: '100%'}}>
-                                            Number of tickets added: (<span className="blue-text">{item.tickets_count}</span>)                                              
+                                            Number of tickets added: (<span className="blue-text">{item.tickets_count}</span>)                                                                                          
                                           </span>
                                           <span
                                               style={{borderRight: 'solid 1px #fff', display: 'table-cell', padding: 0, width: 40, height: '100%', minHeight: '100%'}}>
@@ -138,7 +181,7 @@ export default class ActiveProjects extends Component {
                                                               style={{font: 'normal 12px ArialRegular', padding: '6px 6px 0px 0px', textAlign: 'right'}}>
                                                               Number of Tickets Uploaded ({item.tickets_count})&nbsp;&nbsp;
                                                               <a onClick={::self.identifyTicket} style={{padding: '6px 14px 7px 12px'}}
-                                                                 href="#" data-reveal-id="add_new_ticket" data-animation="fade" data-project-id={item.PROJECT_ID} data-project-city-id={item.CITY_ID} className="button add_new_ticket_btn"><span
+                                                                 href="#" data-reveal-id={item.vendor_terms_agree == 'true'? 'add_new_ticket':'' } data-animation="fade" data-project-id={item.PROJECT_ID} data-project-city-id={item.CITY_ID} className="button add_new_ticket_btn"><span
                                                                   style={{fontSize: 20, position: 'relative', top: 3}}>+</span>
                                                                   Add New Ticket</a>                                                              
                                                           </div>

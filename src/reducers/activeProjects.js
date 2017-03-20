@@ -12,7 +12,9 @@ import {
   DELETE_TICKET_SR_SUCCESS,
   ON_OFF_EDIT_TICKET_FORM,
   ON_OFF_EDIT_TICKET_SR_FORM,
-  CLEAR_ADD_TICKET_ERROR
+  CLEAR_ADD_TICKET_ERROR,
+  PATCH_TERMS_AGREE,
+  PATCH_SUBMIT_FINAL
 } from '../constants/ActiveProjects'
 
 
@@ -397,6 +399,15 @@ export default function activeProjects(state = initialState, action) {
       window.resetForm('add_ticket_sr_form')
 
       return { ...state, projects: state.projects, disableAddTicketForm: 'False' }  
+
+    case PATCH_TERMS_AGREE:
+      newProjects = state.projects      
+      newProjects[action.index].vendor_terms_agree = "true"
+      
+      return { ...state, projects: newProjects }
+
+    case PATCH_SUBMIT_FINAL:
+      return state;
 
     default:
       return state;

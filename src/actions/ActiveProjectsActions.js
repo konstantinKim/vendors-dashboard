@@ -12,7 +12,9 @@ import {
   DELETE_TICKET_SR_SUCCESS,
   ON_OFF_EDIT_TICKET_FORM,
   ON_OFF_EDIT_TICKET_SR_FORM,
-  CLEAR_ADD_TICKET_ERROR
+  CLEAR_ADD_TICKET_ERROR,
+  PATCH_TERMS_AGREE,
+  PATCH_SUBMIT_FINAL
 } from '../constants/ActiveProjects'
 
 import { BACKEND_HOST, REQUEST_HEADERS, TOKEN } from '../config/settings'
@@ -28,6 +30,40 @@ export function getActiveProjects() {
 
 export function clearAddTicketError() {    
  return { type: CLEAR_ADD_TICKET_ERROR, payload: '' };   
+}
+
+export function agreeTerms(project_id, project_index) {      	       
+  var formData  = new FormData();
+  formData.append('vendor_terms_agree', 'true');
+  
+  return dispatch => {
+    fetch(BACKEND_HOST+'projects/'+project_id+'.json', 
+    {
+        headers: {'Accept': '*/*', 'Authorization': 'Bearer ' + TOKEN},        
+        method: 'PATCH',        
+        body: formData
+    })
+    .then(checkResponseStatus)    
+    .then(response => response.json())    
+    .then(dispatch(setTermsAgree(project_index)));
+  }     
+}
+
+export function submitFinal(project_id) {      	       
+  var formData  = new FormData();
+  formData.append('status', 'submitted_for_final');
+  
+  return dispatch => {
+    fetch(BACKEND_HOST+'projects/'+project_id+'.json', 
+    {
+        headers: {'Accept': '*/*', 'Authorization': 'Bearer ' + TOKEN},        
+        method: 'PATCH',        
+        body: formData
+    })
+    .then(checkResponseStatus)    
+    .then(response => response.json())    
+    .then(dispatch(setSubmitFinal()));
+  }     
 }
 
 export function addTicket(data, file) {      	
@@ -266,6 +302,14 @@ function unsetTicketSr(data, indexes) {
 
 function addTicketRequest() {       
   return { type: POST_ADD_TICKET_REQUEST, payload: 'True' };    
+}
+
+function setTermsAgree(projectIndex) {     
+    return { type: PATCH_TERMS_AGREE, index: projectIndex };    
+}
+
+function setSubmitFinal() {     
+    return { type: PATCH_SUBMIT_FINAL };    
 }
 
 export function onOffEditTicketForm(status) {    
