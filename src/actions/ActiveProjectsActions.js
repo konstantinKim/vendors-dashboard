@@ -14,7 +14,8 @@ import {
   ON_OFF_EDIT_TICKET_SR_FORM,
   CLEAR_ADD_TICKET_ERROR,
   PATCH_TERMS_AGREE,
-  PATCH_SUBMIT_FINAL
+  PATCH_SUBMIT_FINAL,
+  GET_TERMS
 } from '../constants/ActiveProjects'
 
 import { BACKEND_HOST, REQUEST_HEADERS, TOKEN } from '../config/settings'
@@ -46,6 +47,15 @@ export function agreeTerms(project_id, project_index) {
     .then(checkResponseStatus)    
     .then(response => response.json())    
     .then(dispatch(setTermsAgree(project_index)));
+  }     
+}
+
+export function showTerms(city_id, project_index) {      	             
+  return dispatch => {
+    fetch(BACKEND_HOST+'projects/terms/city/'+city_id+'.json', {headers: REQUEST_HEADERS})
+    .then(checkResponseStatus)    
+    .then(response => response.json())    
+    .then(json => dispatch(setTerms(json, project_index)))
   }     
 }
 
@@ -306,6 +316,10 @@ function addTicketRequest() {
 
 function setTermsAgree(projectIndex) {     
     return { type: PATCH_TERMS_AGREE, index: projectIndex };    
+}
+
+function setTerms(json, projectIndex) {     
+    return { type: GET_TERMS, payload: json, index: projectIndex };    
 }
 
 function setSubmitFinal() {     

@@ -14,8 +14,10 @@ export default class ActiveProjects extends Component {
 
     showTerms(e){ 
         e.preventDefault()         
-        var projectId = e.target.attributes.getNamedItem('data-id').value                
-        window.doMessage(this.props.projects[projectId].vendor_terms, 'Terms and Conditions')  
+        var projectIndex = e.target.attributes.getNamedItem('data-id').value                
+        //var projectIndex = getProjectIndex(projectId, this.props.projects)
+        this.props.activeProjectsActions.showTerms(this.props.projects[projectIndex].CITY_ID, projectIndex)                        
+        //window.doMessage(this.props.projects[projectIndex].vendor_terms, 'Terms and Conditions')  
     }
 
     agreeTerms(e){                  

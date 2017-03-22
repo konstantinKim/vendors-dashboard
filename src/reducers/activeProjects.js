@@ -14,7 +14,8 @@ import {
   ON_OFF_EDIT_TICKET_SR_FORM,
   CLEAR_ADD_TICKET_ERROR,
   PATCH_TERMS_AGREE,
-  PATCH_SUBMIT_FINAL
+  PATCH_SUBMIT_FINAL,
+  GET_TERMS
 } from '../constants/ActiveProjects'
 
 
@@ -405,6 +406,15 @@ export default function activeProjects(state = initialState, action) {
       newProjects[action.index].vendor_terms_agree = "true"
       
       return { ...state, projects: newProjects }
+
+    case GET_TERMS:
+      console.log(action.payload)
+      newProjects = state.projects      
+      var terms = action.payload
+      
+      newProjects[action.index].vendor_terms = terms 
+      window.doMessage(terms, 'Terms and Conditions')  
+      return { ...state, projects: newProjects }   
 
     case PATCH_SUBMIT_FINAL:
       return state;

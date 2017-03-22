@@ -1,3 +1,4 @@
+export const GET_TERMS = 'GET_TERMS'
 export const GET_ACTIVE_REQUEST = 'GET_ACTIVE_REQUEST'
 export const GET_ACTIVE_SUCCESS = 'GET_ACTIVE_SUCCESS'
 
