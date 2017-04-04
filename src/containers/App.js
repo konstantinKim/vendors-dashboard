@@ -16,13 +16,13 @@ import { IMG_HOST } from '../config/settings'
 
 class App extends Component {  
   render() {    
-    const { projects, completed, projectsPage, sync, projectsActions, activeProjectsActions, addTicketForm, addTicketFormActions, editTicketForm, editTicketFormActions, addTicketSrForm, addTicketSrFormActions, editTicketSrForm, editTicketSrFormActions } = this.props                    
+    const { projects, completed, facilities, projectsPage, sync, projectsActions, activeProjectsActions, addTicketForm, addTicketFormActions, editTicketForm, editTicketFormActions, addTicketSrForm, addTicketSrFormActions, editTicketSrForm, editTicketSrFormActions } = this.props                    
     const { switchTab } = this.props.projectsActions
     const { getCompletedProjects } = this.props.completedProjectsActions
     const { getActiveProjects } = this.props.activeProjectsActions        
     return <div>
       <Header imgHost={IMG_HOST} switchTab={switchTab} activeTab={projectsPage.activeTab} />       
-      <Projects projects={projects} projectsActions={projectsActions} completed={completed.projects} activeTab={projectsPage.activeTab} projectsPage={projectsPage} switchTab={switchTab} getCompletedProjects={getCompletedProjects} getActiveProjects={getActiveProjects} imgHost={IMG_HOST} sync={sync} activeProjectsActions={activeProjectsActions} addTicketForm={addTicketForm} addTicketFormActions={addTicketFormActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} addTicketSrForm={addTicketSrForm} addTicketSrFormActions={addTicketSrFormActions} editTicketSrForm={editTicketSrForm} editTicketSrFormActions={editTicketSrFormActions} />                     
+      <Projects projects={projects} projectsActions={projectsActions} completed={completed.projects} facilities={facilities} activeTab={projectsPage.activeTab} projectsPage={projectsPage} switchTab={switchTab} getCompletedProjects={getCompletedProjects} getActiveProjects={getActiveProjects} imgHost={IMG_HOST} sync={sync} activeProjectsActions={activeProjectsActions} addTicketForm={addTicketForm} addTicketFormActions={addTicketFormActions} editTicketForm={editTicketForm} editTicketFormActions={editTicketFormActions} addTicketSrForm={addTicketSrForm} addTicketSrFormActions={addTicketSrFormActions} editTicketSrForm={editTicketSrForm} editTicketSrFormActions={editTicketSrFormActions} />                     
     </div>
   }
 }
@@ -31,6 +31,7 @@ function mapStateToProps(state) {
   return {    
     projects: state.activeProjects,
     completed: state.completedProjects,    
+    facilities: state.facilityReporting,    
     projectsPage: state.projects,
     addTicketForm: state.addTicketForm,
     addTicketSrForm: state.addTicketSrForm,
