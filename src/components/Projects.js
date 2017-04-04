@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import ActiveProjects from '../components/ActiveProjects'
 import CompletedProjects from '../components/CompletedProjects'
+import FacilityReporting from '../components/FacilityReporting'
 import AddTicketForm from '../components/AddTicketForm'
 import AddTicketSrForm from '../components/AddTicketSrForm'
 import EditTicketForm from '../components/EditTicketForm'
@@ -23,14 +24,29 @@ export default class Projects extends Component {
     renderTab(){
         const { projects } = this.props.projects        
         const { imgHost, activeTab, projectsActions, activeProjectsActions, projectsPage, getCompletedProjects } = this.props        
-        const { completed } = this.props                        
+        const { completed } = this.props
+        const { facilities } = this.props.facilities
+
 
         if(activeTab == 'activeList'){
             return(<ActiveProjects activeProjectsActions={activeProjectsActions} projects={projects} imgHost={imgHost} addTicketFormActions={this.props.addTicketFormActions} editTicketFormActions={this.props.editTicketFormActions} projectsActions={projectsActions} projectsPage={projectsPage} editTicketSrFormActions={this.props.editTicketSrFormActions} />);                    
         }
         if(activeTab == 'completedList'){
             return(<CompletedProjects completed={completed} imgHost={imgHost} getCompletedProjects={getCompletedProjects} />);                    
+        }
+        if(activeTab == 'facilityReporting'){
+            return(<FacilityReporting facilities={facilities} imgHost={imgHost} />);                    
         }        
+    }
+
+    renderFacilityReporting(){
+        if('true' == localStorage.getItem('selfhaul')){
+            return (<div className="col-gh-5">
+                        <a id='facilityReporting' onClick={::this.onTabBtnClick} href="#" className="link-regular">
+                            <span className={this.highlightTab('facilityReporting')}><span className="icon fa fa-recycle" style={{margin: '0px 5px 0px 0px', top: '3px'}}></span>Facility Reporting</span>
+                        </a>
+                    </div>)
+        }
     }
 
     componentWillMount(){                                
@@ -75,17 +91,12 @@ export default class Projects extends Component {
                                 className="blue-text">{projectsPage.completedCount}</span>)</span>
                         </a>
                     </div>
+                    {this.renderFacilityReporting()}
                 </div>
             </div>
 
             <div className="container-gh" id="global-main-content">
-                <div id="settings-container">
-                    <div className="titles">
-                        <div className="column-31">Project Address</div>
-                        <div className="column-19">Project #</div>
-                        <div className="column-50 no-border">Tickets</div>
-                    </div>
-                </div>                                                                
+                                                                                
                 {
                     this.renderTab()                    
                 }                                                

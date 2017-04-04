@@ -104,6 +104,7 @@ export default function settings(state = initialState, action) {
 
     case UPDATE_PROFILE_SUCCESS:
       window.doMessage('Profile Updated', 'Success')
+      localStorage.setItem('selfhaul', action.payload.selfhaul);    
       if("true" == localStorage.getItem('isFirstLogin')){        
         localStorage.setItem('isFirstLogin', 'false');
         window.location = '/'
